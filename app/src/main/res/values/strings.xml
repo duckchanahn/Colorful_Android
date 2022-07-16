@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Colorful_android</string>
+    <string name="personal_color_select_image_layout">보다 더 정확한 퍼스널 컬러 측정을 위해 \n흰색 배경 앞에서 촬영한 얼굴 사진을 \n준비해주세요.</string>
+</resources>

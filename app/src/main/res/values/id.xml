@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--    personal_color_select_image_layout-->
+    <item name="get_image_camera_button" type="id" />
+    <item name="get_image_gallery_button"  type="id" />
+
+<!--    test_main_layout-->
+    <item name="personal_color_test_button" type="id" />
+    <item name="trial_color_test_button" type="id" />
+<!--    activity_main-->
+    <item name="start_test" type="id" />
+
+    <item name="원하시는_아이디" type="id" />
+
+
+</resources>
