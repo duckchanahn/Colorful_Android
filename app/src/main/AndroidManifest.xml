@@ -8,13 +8,20 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
 
+    <!-- Always include this permission -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- Include only if your app benefits from precise location access. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Colorful_android">
+        android:theme="@style/Theme.Colorful_android"
+        android:requestLegacyExternalStorage="true">
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -25,9 +32,13 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".TestColor.TestColorActivity"></activity>
+        <activity android:name=".TestColor.TestColorActivity_java"></activity>
+        <activity android:name=".TestColor.PersonalTestResultActivity_java"></activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.colorful_android.fileprovider"
+            android:authorities="com.example.colorful_android.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

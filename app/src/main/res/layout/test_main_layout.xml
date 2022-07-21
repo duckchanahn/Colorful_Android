@@ -15,14 +15,15 @@
         android:layout_height="wrap_content"
         android:text="님만을 위한\n컬러 팔레트를\n만들어 볼까요?"
         android:textSize="40dp"
-        android:layout_marginBottom="30pt"
+        android:layout_weight="0.3"
         />
+        <!--        android:layout_marginBottom="30pt"-->
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/test_main_puzzle_image"
-            />
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/test_main_puzzle_image"-->
+<!--            />-->
 
         <Button
             android:id="@id/personal_color_test_button"
@@ -34,7 +35,6 @@
             android:layout_height="wrap_content"
             android:text="퍼스널 컬러 찾으러 가기"
             android:textColor="#FFFFFF"
-
             />
 
         <Button
