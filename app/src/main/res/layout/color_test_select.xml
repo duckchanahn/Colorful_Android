@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="김상혁님만을 위한\n 컬러 팔레트를\n 만들어 볼까요?"
+            android:textSize="32dp"
+            android:layout_marginBottom="10pt"
+            android:layout_marginRight="30pt"
+            />
+
+            <ImageView
+                android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+                android:src="@drawable/test_choose_puzzle_image"
+                />
+
+        <Button
+            android:id="@id/get_image_camera_button"
+            android:backgroundTint="#EF5A74"
+            android:layout_marginBottom="-5pt"
+            android:layout_marginTop="10pt"
+            android:layout_marginRight="10pt"
+            android:layout_marginLeft="10pt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="퍼스널 컬러 찾으러 가기"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            />
+
+        <Button
+            android:id="@id/get_image_gallery_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10pt"
+            android:layout_marginTop="10pt"
+            android:layout_marginRight="10pt"
+            android:backgroundTint="#EF5A74"
+            android:onClick="moveButton"
+            android:text="심리 컬러 찾으러 가기"
+            android:textColor="#FFFFFF"
+
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
