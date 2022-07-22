@@ -11,9 +11,13 @@
     <!--    test_main_layout-->
     <item name="personal_color_test_button" type="id" />
     <item name="trial_color_test_button" type="id" />
+
     <!--    activity_main-->
     <item name="start_test" type="id" />
 
+    <!--    psychological_test-->
+    <item name="first" type="id"/>
+    <item name="second" type="id"/>
 
 
 

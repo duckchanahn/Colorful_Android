@@ -46,7 +46,7 @@
             />
 
         <Button
-            android:id="@id/personal_color_test_button"
+            android:id="@id/first"
             android:backgroundTint="#FFFFFF"
             android:layout_marginTop="10pt"
             android:layout_marginRight="10pt"
@@ -59,7 +59,7 @@
             />
 
         <Button
-            android:id="@id/personal_color_test_button"
+            android:id="@id/second"
             android:backgroundTint="#FFFFFF"
             android:layout_marginTop="10pt"
             android:layout_marginRight="10pt"

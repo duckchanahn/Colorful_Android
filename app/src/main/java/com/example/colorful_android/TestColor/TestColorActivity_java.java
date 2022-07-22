@@ -1,22 +1,12 @@
 package com.example.colorful_android.TestColor;
 
-import static android.os.Environment.DIRECTORY_PICTURES;
-import static com.gun0912.tedpermission.provider.TedPermissionProvider.context;
-
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.SystemClock;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.util.Base64;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -29,24 +19,13 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.target.Target;
-import com.example.colorful_android.MainActivity;
 import com.example.colorful_android.R;
 import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.normal.TedPermission;
 
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -61,7 +40,7 @@ public class TestColorActivity_java extends AppCompatActivity {
 
     private Uri uri;
     private PermissionListener permissionlistener;
-    private String photoPath;
+    private String filePath;
 
     private byte[] user_image_binary;
 
@@ -85,9 +64,17 @@ public class TestColorActivity_java extends AppCompatActivity {
 
         Button next_button = findViewById(R.id.next_personal_color_select_image);
         next_button.setOnClickListener(v -> {
-            Intent intent = new Intent(getBaseContext(), PersonalTestResultActivity_java.class);
-            intent.putExtra("binary", user_image_binary);
-            startActivity(intent);
+
+            if(filePath == null) {
+                Toast.makeText(getBaseContext(), "사진을 선택해주세요!", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent next_button_intent = new Intent(this, PersonalTestResultActivity_java.class);
+//                user_image_binary = new byte['a'];
+                next_button_intent.putExtra("filePath", filePath);
+                startActivity(next_button_intent);
+
+                finish();
+            }
         }) ;
 
     }
@@ -125,7 +112,7 @@ public class TestColorActivity_java extends AppCompatActivity {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == RESULT_OK) {
-                        pathToBitmap(photoPath);
+                        Log.d(TAG, "success get filePath : " + filePath);
                     }
                 }
             });
@@ -138,36 +125,11 @@ public class TestColorActivity_java extends AppCompatActivity {
                     if (result.getResultCode() == RESULT_OK) {
                         Intent intent = result.getData();
                         uri = intent.getData();
-                        String imagePath = getRealPathFromURI(uri);
-                        pathToBitmap(imagePath);
+                        filePath = getRealPathFromURI(uri);
+                        Log.d(TAG, "success get filePath : " + filePath);
                     }
                 }
             });
-
-    private void pathToBitmap(String path) {
-        Bitmap bitmap= BitmapFactory.decodeFile(path);
-
-//        int height=bitmap.getHeight();
-//        int width=bitmap.getWidth();
-
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-
-        this.user_image_binary = stream.toByteArray();
-
-//        System.out.println("byte[].length : " + user_image_binary.length);
-
-//        String encoded_string = Base64.encodeToString(array, 0);
-
-        imageview.setImageBitmap(bitmap);
-
-
-//        Intent intent = new Intent(getBaseContext(), PersonalTestResultActivity_java.class);
-//        intent.putExtra("binary", user_image_binary);
-//        startActivity(intent);
-//        startActivity(new Intent(getBaseContext(), PersonalTestResultActivity_java.class));
-
-    }
 
 
     private File createImageFile() throws IOException {
@@ -178,7 +140,7 @@ public class TestColorActivity_java extends AppCompatActivity {
         storageDir.mkdirs();
 
         File image = File.createTempFile(imageFileName, ".png", storageDir);
-        this.photoPath = image.getAbsolutePath();
+        this.filePath = image.getAbsolutePath();
         return image;
     }
 
