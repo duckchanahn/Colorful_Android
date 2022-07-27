@@ -21,7 +21,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Colorful_android"
-        android:requestLegacyExternalStorage="true">
+        android:requestLegacyExternalStorage="true"
+
+        android:name=".Retrofit.Retrofit"
+
+        >
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -35,6 +39,7 @@
         <activity android:name=".TestColor.TestColorActivity"></activity>
         <activity android:name=".TestColor.TestColorActivity_java"></activity>
         <activity android:name=".TestColor.PersonalTestResultActivity_java"></activity>
+
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -1,6 +1,27 @@
-package com.example.colorful_android.model;
+package com.example.colorful_android.Model;
 
 public class User {
+
+    private static final User user = new User();
+
+    public static User getInstance() { // 테스트
+        user.setUserId(1);
+        user.setUserName("이름름");
+        user.setPersonalColor("겨울싱글톤");
+        user.setPsychologiclaColor("ENTP");
+
+        return user;
+    }
+
+    public static User getInstance(int userId, String userName, String personalColor, String psychologiclaColor) {
+        user.setUserId(userId);
+        user.setUserName(userName);
+        user.setPersonalColor(personalColor);
+        user.setPsychologiclaColor(psychologiclaColor);
+
+        return user;
+    }
+
 
     private int userId;
     private String userName;
