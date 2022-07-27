@@ -6,6 +6,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.colorful_android.TestColor.TestColorActivity
 import com.example.colorful_android.TestColor.TestColorActivity_java
+import com.example.colorful_android.model.User
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,7 +20,11 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, newActivity::class.java))
             }
          */
+        var user : User = User();
 
+        user.userId = 1;
+
+        println(user.userId);
 
         val startTestButton : Button = findViewById(R.id.start_test); // permission 확인하기
         startTestButton.setOnClickListener {
