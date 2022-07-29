@@ -22,8 +22,7 @@ class MainActivity : AppCompatActivity() {
             }
          */
 
-        val user : User = User.getInstance();
-        println(user.psychologiclaColor)
+//        val user : User = User.getInstance();
 
         val startTestButton : Button = findViewById(R.id.start_test); // permission 확인하기
         startTestButton.setOnClickListener {

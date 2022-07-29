@@ -19,6 +19,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import com.example.colorful_android.Model.User;
 import com.example.colorful_android.R;
 import com.gun0912.tedpermission.PermissionListener;
 

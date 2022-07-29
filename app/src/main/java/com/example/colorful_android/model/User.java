@@ -4,6 +4,11 @@ public class User {
 
     private static final User user = new User();
 
+    private int userId;
+    private String userName;
+    private String personalColor;
+    private String psychologiclaColor;
+
     public static User getInstance() { // 테스트
         user.setUserId(1);
         user.setUserName("이름름");
@@ -22,11 +27,6 @@ public class User {
         return user;
     }
 
-
-    private int userId;
-    private String userName;
-    private String personalColor;
-    private String psychologiclaColor;
 
     public User() {
         this.userId = 0;
