@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content">
+
+    <data>
+
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingStart="40dp"
+        android:background="@color/white"
+        android:paddingEnd="40dp">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
-            android:gravity="center">
+            android:gravity="center"
+            android:clipToPadding="false">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout3"
@@ -32,7 +38,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    tools:ignore="MissingConstraints" />
                     android:fontFamily="@font/notosanskr_bold"
                     android:gravity="center"
                     android:includeFontPadding="false"
@@ -49,7 +54,7 @@
                 android:id="@+id/view3"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
-                android:background="#E9E9E9"
+                android:background="#E0E0E0"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
                 app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
@@ -60,7 +65,7 @@
                 android:id="@+id/constraintLayout2"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:background="#ffffff"
+                android:background="@drawable/psy_test_shape_gray_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout5"
                 app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
@@ -70,12 +75,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    tools:ignore="MissingConstraints" />
                     android:fontFamily="@font/notosanskr_bold"
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:text="2"
-                    android:textColor="#E9E9E9"
+                    android:textColor="#E0E0E0"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +91,7 @@
                 android:id="@+id/view"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
-                android:background="#E9E9E9"
+                android:background="#E0E0E0"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout5"
                 app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
@@ -98,7 +102,7 @@
                 android:id="@+id/constraintLayout5"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:background="#ffffff"
+                android:background="@drawable/psy_test_shape_gray_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout4"
                 app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
@@ -108,12 +112,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    tools:ignore="MissingConstraints" />
                     android:fontFamily="@font/notosanskr_bold"
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:text="3"
-                    android:textColor="#E9E9E9"
+                    android:textColor="#E0E0E0"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -125,7 +128,7 @@
                 android:id="@+id/view2"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
-                android:background="#E9E9E9"
+                android:background="#E0E0E0"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout4"
                 app:layout_constraintStart_toEndOf="@+id/constraintLayout5"
@@ -136,7 +139,7 @@
                 android:id="@+id/constraintLayout4"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:background="#ffffff"
+                android:background="@drawable/psy_test_shape_gray_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -145,12 +148,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    tools:ignore="MissingConstraints" />
                     android:fontFamily="@font/notosanskr_bold"
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:text="4"
-                    android:textColor="#E9E9E9"
+                    android:textColor="#E0E0E0"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -162,93 +164,115 @@
 
 
         <TextView
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/main_color"
+            android:fontFamily="@font/notosanskr_bold"
+            android:textSize="32dp"
             android:text="Q."
-            android:textSize="32dp"
-            android:layout_marginBottom="5pt"
-            android:layout_marginRight="67pt"
-            android:layout_marginTop="50pt"
-            android:textColor="#EF5A74"
-            android:textStyle="bold"
-            />
+            android:includeFontPadding="false"
+            android:layout_marginTop="60dp"
+            android:layout_marginStart="0dp"/>
 
         <TextView
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="당신의\n여행 스타일은?"
-            android:textSize="32dp"
-            android:layout_marginBottom="0pt"
+            android:layout_gravity="center"
             android:layout_marginRight="30pt"
-            android:textColor="#424242"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="63pt"
-            android:layout_marginTop="5pt"
-            android:layout_marginBottom="30pt"
-            android:text="(1/3)"
-            android:textSize="16dp"
-            android:textColor="#424242"
-            />
-
-        <Button
-            android:id="@id/first"
-            android:backgroundTint="#FFFFFF"
-            android:layout_marginTop="10pt"
-            android:layout_marginRight="10pt"
-            android:layout_marginLeft="10pt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="남는건 사진 뿐! 돌아다니며 사진찍기"
-            android:textColor="#424242"
-            android:textStyle="bold"
-            />
-
-        <Button
-            android:id="@id/second"
-            android:backgroundTint="#FFFFFF"
-            android:layout_marginTop="10pt"
-            android:layout_marginRight="10pt"
-            android:layout_marginLeft="10pt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="여행은 힐링이지! 푹 쉴 수 있는 호캉스"
-            android:textColor="#424242"
-            android:textStyle="bold"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="75pt"
-            android:layout_marginTop="50pt"
-            android:layout_marginBottom="30pt"
-            android:text="이전"
-            android:textSize="16dp"
-
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="75pt"
-            android:layout_marginTop="-40pt"
             android:layout_marginBottom="0pt"
-            android:text="다음"
-            android:textSize="16dp"
+            android:text="당신의\n여행 스타일은?"
+            android:textColor="#424242"
+            android:textSize="32dp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5pt"
+            android:layout_marginRight="63pt"
+            android:text="(1/3)"
+            android:textColor="#424242"
+            android:textSize="16dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@id/first"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40sp"
+            android:fontFamily="@font/notosanskr_medium"
+            android:backgroundTint="@drawable/psy_test_answer_non_select_btn"
+            android:text="남는건 사진뿐! 돌아다니면서 사진찍기"
+            android:stateListAnimator="@null"
+            android:shadowColor="#40CACACA"
+            android:elevation="2dp"
+            android:textColor="#424242" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@id/second"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16sp"
+            android:fontFamily="@font/notosanskr_medium"
+            android:backgroundTint="@drawable/psy_test_answer_non_select_btn"
+            android:text="여행은 힐링이지! 푹 쉴 수 있는 호캉스"
+            android:stateListAnimator="@null"
+            android:shadowColor="#40CACACA"
+            android:elevation="2dp"
+            android:textColor="#424242" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="159dp"
             />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="이전"
+                android:fontFamily="@font/notosanskr_medium"
+                android:textColor="#777777"
+                android:textSize="16sp"
+                android:layout_marginEnd="12dp"
+                android:enabled="true"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:padding="15dp"
+
+
+                tools:ignore="MissingConstraints" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="다음"
+                style="@style/Widget.AppCompat.Button.Borderless"
+
+                android:fontFamily="@font/notosanskr_medium"
+                android:textColor="#777777"
+                android:textSize="16sp"
+                android:enabled="false"
+                android:padding="15dp"
+
+
+                tools:ignore="MissingConstraints" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

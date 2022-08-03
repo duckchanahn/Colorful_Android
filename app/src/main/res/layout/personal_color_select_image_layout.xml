@@ -4,19 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
 
-    <TextView
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/personal_select_description"
-        android:layout_marginBottom="30pt"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:layout_marginBottom="36pt"
+            android:fontFamily="@font/notosanskr_regular"
+            android:textSize="16dp"
+            android:textColor="#212121"
+            android:text="@string/personal_select_description" />
 
         <ImageView
             android:id="@id/test_user_imageview"
@@ -25,42 +28,26 @@
             android:src="@drawable/test_main_puzzle_image"
             />
 
-        <Button
-            android:id="@id/get_image_camera_button"
-            android:backgroundTint="#EF5A74"
-            android:layout_marginTop="10pt"
-            android:layout_marginRight="10pt"
-            android:layout_marginLeft="10pt"
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="328sp"
             android:layout_height="wrap_content"
-            android:text="@string/personal_select_getCamera"
-            android:textColor="#FFFFFF"
+            android:fontFamily="@font/notosanskr_bold"
+            android:background="@drawable/personal_color_selet_btn"
+            android:text="카메라로 찍기"
+            android:stateListAnimator="@null"
+            android:textColor="@color/white" />
 
-        />
-
-        <Button
-            android:id="@id/get_image_gallery_button"
-            android:backgroundTint="#EF5A74"
-            android:layout_marginTop="10pt"
-            android:layout_marginRight="10pt"
-            android:layout_marginLeft="10pt"
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="328sp"
             android:layout_height="wrap_content"
-            android:text="@string/personal_select_getGallery"
-            android:textColor="#FFFFFF"
-            />
+            android:layout_marginTop="16sp"
+            android:fontFamily="@font/notosanskr_bold"
+            android:background="@drawable/personal_color_selet_btn"
+            android:text="갤러리에서 가져오기"
+            android:stateListAnimator="@null"
+            android:textColor="@color/white" />
 
-        <Button
-            android:id="@id/next_personal_color_select_image"
-            android:backgroundTint="#FFFFFF"
-            android:layout_marginTop="10pt"
-            android:layout_marginRight="10pt"
-            android:layout_marginLeft="10pt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/next"
-            android:textColor="#000000"
-            />
+        
 
 
 
