@@ -89,7 +89,7 @@ public class PersonalTestResultActivity_java extends AppCompatActivity {
         Bitmap bitmap= BitmapFactory.decodeFile(path);
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 
         return stream.toByteArray();
 //        imageview.setImageBitmap(bitmap);
