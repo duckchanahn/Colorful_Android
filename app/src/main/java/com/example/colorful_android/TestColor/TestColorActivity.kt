@@ -1,15 +1,12 @@
 package com.example.colorful_android.TestColor
 
 import android.app.Activity
-import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat.startActivityForResult
 import com.example.colorful_android.R
-import kotlin.math.log
 
 class TestColorActivity : AppCompatActivity(){
 
@@ -22,7 +19,7 @@ class TestColorActivity : AppCompatActivity(){
 
         val move_personalTest_button : Button = findViewById(R.id.personal_color_test_button);
         move_personalTest_button.setOnClickListener {
-            startActivity(Intent(this, TestColorActivity_java::class.java))
+            startActivity(Intent(this, PersonalTestSelectImageActivity_java::class.java))
 //            setContentView(R.layout.personal_color_select_image_layout)
         }
 

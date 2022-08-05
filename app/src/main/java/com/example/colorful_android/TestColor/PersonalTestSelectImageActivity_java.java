@@ -19,7 +19,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
-import com.example.colorful_android.Model.User;
 import com.example.colorful_android.R;
 import com.gun0912.tedpermission.PermissionListener;
 
@@ -32,7 +31,7 @@ import java.util.List;
 
 //import com.bumptech.glide.Glide;
 
-public class TestColorActivity_java extends AppCompatActivity {
+public class PersonalTestSelectImageActivity_java extends AppCompatActivity {
     private final String TAG = this.getClass().getSimpleName();
 
     private final String PROVIDER = "com.example.colorful_android.provider";
@@ -93,7 +92,7 @@ public class TestColorActivity_java extends AppCompatActivity {
             }
 
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(TestColorActivity_java.this, PROVIDER, photoFile);
+                Uri photoURI = FileProvider.getUriForFile(PersonalTestSelectImageActivity_java.this, PROVIDER, photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 launcher_camera.launch(takePictureIntent);
             }
@@ -170,11 +169,11 @@ public class TestColorActivity_java extends AppCompatActivity {
         return permissionlistener = new PermissionListener() {
             @Override
             public void onPermissionGranted() {
-                Toast.makeText(TestColorActivity_java.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PersonalTestSelectImageActivity_java.this, "Permission Granted", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onPermissionDenied(List<String> deniedPermissions) {
-                Toast.makeText(TestColorActivity_java.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(PersonalTestSelectImageActivity_java.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
             }
         };
     }

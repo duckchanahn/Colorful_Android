@@ -38,7 +38,7 @@
             />
 
         <Button
-            android:id="@id/trial_color_test_button"
+            android:id="@id/psy_color_test_button"
             android:backgroundTint="#EF5A74"
             android:layout_marginTop="10pt"
             android:layout_marginRight="10pt"

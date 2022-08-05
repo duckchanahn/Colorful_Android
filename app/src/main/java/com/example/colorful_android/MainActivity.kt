@@ -1,13 +1,11 @@
 package com.example.colorful_android
 
-import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.colorful_android.Model.User
-import com.example.colorful_android.TestColor.TestColorActivity
-import com.example.colorful_android.TestColor.TestColorActivity_java
+import com.example.colorful_android.TestColor.PersonalTestSelectImageActivity_java
+import com.example.colorful_android.TestColor.TestMainActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         val startTestButton : Button = findViewById(R.id.start_test); // permission 확인하기
         startTestButton.setOnClickListener {
-            startActivity(Intent(this, TestColorActivity_java::class.java))
+            startActivity(Intent(this, TestMainActivity::class.java))
         }
 
     }

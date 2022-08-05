@@ -40,8 +40,10 @@
         </activity>
 
         <activity android:name=".TestColor.TestColorActivity"></activity>
-        <activity android:name=".TestColor.TestColorActivity_java"></activity>
+        <activity android:name=".TestColor.TestMainActivity"></activity>
+        <activity android:name=".TestColor.PersonalTestSelectImageActivity_java"></activity>
         <activity android:name=".TestColor.PersonalTestResultActivity_java"></activity>
+        <activity android:name=".TestColor.PsyTestActivity_java"></activity>
 
 
         <provider

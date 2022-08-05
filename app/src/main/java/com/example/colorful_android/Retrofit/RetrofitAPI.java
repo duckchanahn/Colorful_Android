@@ -1,17 +1,26 @@
 package com.example.colorful_android.Retrofit;
 
 import com.example.colorful_android.DTO.PersonalColorTestDTO;
+import com.example.colorful_android.DTO.PsycologicaltestAnswerDTO;
+import com.example.colorful_android.DTO.PsycologicaltestQuestionDTO;
 
 import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface RetrofitAPI {
 
     @POST(Constatnts_url.PERSONAL_COLOR_TEST_URL)
     Call<String> getPersonalColor(@Body PersonalColorTestDTO personalColorTestDTO); //이건 바디 요청시 사용하는거
+
+    @GET(Constatnts_url.PSYCHOLOGICAL_COLOR_TEST_QUESTION_URL)
+    Call<PsycologicaltestQuestionDTO> getPsycologicalTestQuestion(); //이건 바디 요청시 사용하는거
+
+    @GET(Constatnts_url.PSYCHOLOGICAL_COLOR_TEST_ANSWER_URL)
+    Call<PsycologicaltestAnswerDTO> getPsycologicalTestAnswer(); //이건 바디 요청시 사용하는거
 
     //@FormUrlEncoded
     //@POST("/auth/overlapChecker")

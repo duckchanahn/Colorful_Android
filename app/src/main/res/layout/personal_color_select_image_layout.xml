@@ -29,6 +29,7 @@
             />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@id/get_image_camera_button"
             android:layout_width="328sp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/notosanskr_bold"
@@ -38,12 +39,24 @@
             android:textColor="@color/white" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@id/get_image_gallery_button"
             android:layout_width="328sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16sp"
             android:fontFamily="@font/notosanskr_bold"
             android:background="@drawable/personal_color_selet_btn"
             android:text="갤러리에서 가져오기"
+            android:stateListAnimator="@null"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@id/next_personal_color_select_image"
+            android:layout_width="328sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16sp"
+            android:fontFamily="@font/notosanskr_bold"
+            android:background="@drawable/personal_color_selet_btn"
+            android:text="다음"
             android:stateListAnimator="@null"
             android:textColor="@color/white" />
 
