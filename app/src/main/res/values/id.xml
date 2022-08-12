@@ -16,8 +16,12 @@
     <item name="start_test" type="id" />
 
     <!--    psychological_test-->
-    <item name="first" type="id"/>
-    <item name="second" type="id"/>
+    <item name="question" type="id"/>
+    <item name="first_answer" type="id"/>
+    <item name="second_answer" type="id"/>
+    <item name="next_button_psy" type="id"/>
+    <item name="prev_button_psy" type="id"/>
+    <item name="textview_index" type="id"/>
 
 
 

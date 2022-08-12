@@ -32,7 +32,7 @@ public class MyRetrofit  extends Application {
     public static Retrofit create() {
         Gson gson = new GsonBuilder().setLenient().create();
         return new Retrofit.Builder()
-                .baseUrl(Constatnts_url.BASE_URL_MYDEVICE)
+                .baseUrl(Constatnts_url.BASE_URL_EMULATOR)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
     }

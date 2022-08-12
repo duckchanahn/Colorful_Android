@@ -26,6 +26,8 @@
         android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true"
 
+        android:hardwareAccelerated="true"
+        android:largeHeap="true"
         android:name=".Retrofit.MyRetrofit"
 
         >

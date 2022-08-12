@@ -165,13 +165,14 @@
             android:layout_height="wrap_content"
             android:textColor="@color/main_color"
             android:fontFamily="@font/notosanskr_bold"
-            android:textSize="32dp"
+            android:textSize="16dp"
             android:text="Q."
             android:includeFontPadding="false"
             android:layout_marginTop="60dp"
             android:layout_marginStart="0dp"/>
 
         <TextView
+            android:id="@id/question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -179,9 +180,10 @@
             android:layout_marginBottom="0pt"
             android:text="당신의\n여행 스타일은?"
             android:textColor="#424242"
-            android:textSize="32dp" />
+            android:textSize="10dp" />
 
         <TextView
+            android:id="@id/textview_index"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -192,12 +194,12 @@
             android:textSize="16dp" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@id/first"
+            android:id="@id/first_answer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40sp"
             android:fontFamily="@font/notosanskr_medium"
-            android:backgroundTint="@drawable/psy_test_answer_non_select_btn"
+
             android:text="남는건 사진뿐! 돌아다니면서 사진찍기"
             android:stateListAnimator="@null"
             android:shadowColor="#40CACACA"
@@ -205,12 +207,12 @@
             android:textColor="#424242" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@id/second"
+            android:id="@id/second_answer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16sp"
             android:fontFamily="@font/notosanskr_medium"
-            android:backgroundTint="@drawable/psy_test_answer_non_select_btn"
+
             android:text="여행은 힐링이지! 푹 쉴 수 있는 호캉스"
             android:stateListAnimator="@null"
             android:shadowColor="#40CACACA"
@@ -219,7 +221,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="159dp"
+            android:layout_height="19dp"
             />
 
 
@@ -229,38 +231,35 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@id/prev_button_psy"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="이전"
                 android:fontFamily="@font/notosanskr_medium"
                 android:textColor="#777777"
                 android:textSize="16sp"
                 android:layout_marginEnd="12dp"
                 android:enabled="true"
-                style="@style/Widget.AppCompat.Button.Borderless"
                 android:padding="15dp"
-
-
+                android:text="이전"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 tools:ignore="MissingConstraints" />
 
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn"
+                android:id="@id/next_button_psy"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 app:layout_constraintRight_toRightOf="parent"
-                android:text="다음"
-                style="@style/Widget.AppCompat.Button.Borderless"
 
                 android:fontFamily="@font/notosanskr_medium"
                 android:textColor="#777777"
                 android:textSize="16sp"
-                android:enabled="false"
+                android:enabled="true"
                 android:padding="15dp"
-
-
+                android:text="다음"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 tools:ignore="MissingConstraints" />
 
 
