@@ -54,9 +54,6 @@ public class PsyTestActivity_java extends AppCompatActivity {
 
         this.excute_GETQuestions();
 
-//        Log.e("Get question success", this.questions.size()+"");
-//        Log.e("Get answer success", this.answers.size()+"");
-
         setContentView(R.layout.psychological_test_ei);
 
         this.question = findViewById(R.id.question);
@@ -74,51 +71,36 @@ public class PsyTestActivity_java extends AppCompatActivity {
 
         this.firstAnswer.setOnClickListener(v -> {
             this.select = 1;
-            Log.e("FirstButton", "click first! ");
-//            this.firstAnswer.setBackgroundColor(Color.parseColor(String.valueOf(R.color.main_color)));
-//            this.secondAnswer.setBackgroundColor(Color.parseColor(String.valueOf(R.color.black)));
-//            this.firstAnswer.setTextColor(Color.parseColor(String.valueOf(R.color.main_color)));
-//            this.secondAnswer.setTextColor(Color.parseColor(String.valueOf(R.color.black)));
+            this.selectAnswer(select, index);
         });
 
         this.secondAnswer.setOnClickListener(v -> {
             this.select = 2;
-            Log.e("FirstButton", "click second! ");
-//            this.secondAnswer.setBackgroundColor(Color.parseColor(String.valueOf(R.color.main_color)));
-//            this.firstAnswer.setBackgroundColor(Color.parseColor(String.valueOf(R.color.black)));
-//            this.firstAnswer.setTextColor(Color.parseColor(String.valueOf(R.color.black)));
-//            this.secondAnswer.setTextColor(Color.parseColor(String.valueOf(R.color.main_color)));
+            this.selectAnswer(select, index);
         });
 
         this.next_button.setOnClickListener(v -> {
-            Log.e("select : ", select+"");
-            if(select == 11) {
+            if(index == 11) {
                 this.finishPsyTest(user_answers);
             } else {
-                this.setButtonPress(index+1);
-                if (index == -1) {
+                if (user_answers[index] == -1) {
                 Toast.makeText(getBaseContext(), "답변을 선택해주세요!", Toast.LENGTH_SHORT).show();
                     //
                 } else {
                     if (index == 0) {this.prev_button.setVisibility(View.VISIBLE);}
                     index += 1;
-                    nextQuestion(index);
-                    selectAnswer(select, index);
-                    select = -1;
+                    this.nextQuestion(index);
+                    this.setButtonPress(index);
+                    this.select = -1;
                 }
             }
         });
 
         this.prev_button.setOnClickListener(v -> {
-            Log.e("select : ", select+"");
+            if(index == 1) {this.prev_button.setVisibility(View.INVISIBLE);}
 
-            if(index == 1) {
-                this.prev_button.setVisibility(View.INVISIBLE);
-            } else {
-                this.setButtonPress(index-1);
-                index -= 1;
-                nextQuestion(index);
-            }
+            index -= 1;
+            this.nextQuestion(index);
         }) ;
     }
 
@@ -146,38 +128,36 @@ public class PsyTestActivity_java extends AppCompatActivity {
         if(resultMap.get("J") > resultMap.get("P")) {b.append("J");
         } else {b.append("P");}
 
-        Log.e("1", "-------------------------------------");
         Log.e("MBTI :", b.toString());
-        Log.e("1", "-------------------------------------");
     }
 
     private void nextQuestion(int index) {
+        setButtonPress(index);
         int questionId = questionIdList.get(index);
-        Log.e("nextQuestion", "index : " + index + ", questionId : " + questionId + ", connector : " + connector.get(questionId)[0] + " / " + connector.get(questionId)[1]);
         textviewIndex.setText("(" + (index+1) + "/12)");
-        question.setText(questions.get(questionId).getContent());
+        question.setText(questions.get(questionId-1).getContent());
 
 
-        firstAnswer.setText(answers.get(connector.get(questionId)[0]).getContent());
-        secondAnswer.setText(answers.get(connector.get(questionId)[1]).getContent());
+        firstAnswer.setText(answers.get(connector.get(questionId)[0]-1).getContent());
+        secondAnswer.setText(answers.get(connector.get(questionId)[1]-1).getContent());
     }
 
     private void selectAnswer(int select, int index) {
         user_answers[index] = select;
+
+        String answer_select = "";
+        for(int i : user_answers) {
+            answer_select += i + ", ";
+        }
     }
 
-    private int setButtonPress(int index) {
+    private void setButtonPress(int index) {
+
         if(user_answers[index] == 1) {
             this.firstAnswer.callOnClick();
-//            this.firstAnswer.setPressed(true);
-//            this.secondAnswer.setPressed(false);
         } else if(user_answers[index] == 2) {
             this.secondAnswer.callOnClick();
-//            this.firstAnswer.setPressed(false);
-//            this.secondAnswer.setPressed(true);
         }
-
-        return user_answers[index];
     }
 
     private ArrayList<Integer> makeRandomList() {
@@ -187,14 +167,9 @@ public class PsyTestActivity_java extends AppCompatActivity {
         for(int i = 1; i < 5; i++) {
             int max = 5 * i;
             int min = 5 * (i-1) +1;
-            // 5 1 / 10 6 / 15 11
-//            System.out.println("max : " + max + ", min : " + min);
             set = new HashSet<>();
             while(set.size() < 3) {
-//                int temp = (int)(Math.random() * (max - min + 1))+min;
-//                System.out.println("random : " + temp);
                 set.add((int)(Math.random() * (max - min + 1))+min);
-//                set.add(temp);
             }
             Iterator<Integer> it = set.iterator();
             while (it.hasNext()) {
@@ -205,12 +180,12 @@ public class PsyTestActivity_java extends AppCompatActivity {
 
         Collections.shuffle(questionIdList);
 
-        String a = "";
-        for(int x : questionIdList) {
-            a += x+", ";
-        }
-
-        System.out.println("questionIdList : " + a);
+//        String a = "";
+//        for(int x : questionIdList) {
+//            a += x+", ";
+//        }
+//
+//        System.out.println("questionIdList : " + a);
 
         return questionIdList;
     }
@@ -224,28 +199,20 @@ public class PsyTestActivity_java extends AppCompatActivity {
         for(int questionId : questionIdList) {
             int index = 0;
             for(PsycologicaltestAnswerDTO answer : answers) {
-//                Log.e("조건문 : ", answer.getQuestionId() + " == " + questionIndex);
                 if(answer.getQuestionId() == questionId) {
-//                    System.out.println(answer.getAnswerId());
-//                    Log.e("index", index+"");
-//                    System.out.println(connector.get(questionIndex)[0]);
-//                    System.out.println(connector.get(questionIndex)[index]);
                     connector.get(questionId)[index] = answer.getAnswerId();
                     index++;
                 }
             }
 
-//            Log.e("1", "-------------------------------------");
-//            Log.e("1", "questionIndex " + questionIndex + " : "  + connector.get(questionIndex)[0] + ", " + connector.get(questionIndex)[1]);
-//            Log.e("1", "-------------------------------------");
         }
 
-        String a = "";
-        for(int x : questionIdList) {
-            a += " [" + connector.get(x)[0] + ", " + connector.get(x)[1] + "] ";
-        }
-
-        System.out.println("connector : " + a);
+//        String a = "";
+//        for(int x : questionIdList) {
+//            a += " [" + connector.get(x)[0] + ", " + connector.get(x)[1] + "] ";
+//        }
+//
+//        System.out.println("connector : " + a);
 
         return connector;
     }
