@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -54,7 +55,7 @@ public class PsyTestActivity_java extends AppCompatActivity {
 
         this.excute_GETQuestions();
 
-        setContentView(R.layout.psychological_test_ei);
+        setContentView(R.layout.psychologial_test);
 
         this.question = findViewById(R.id.question);
         this.firstAnswer = findViewById(R.id.first_answer);
@@ -73,6 +74,7 @@ public class PsyTestActivity_java extends AppCompatActivity {
             this.select = 1;
             this.selectAnswer(select, index);
         });
+
 
         this.secondAnswer.setOnClickListener(v -> {
             this.select = 2;
