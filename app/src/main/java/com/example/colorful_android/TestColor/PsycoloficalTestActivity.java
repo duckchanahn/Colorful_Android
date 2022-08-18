@@ -1,5 +1,6 @@
 package com.example.colorful_android.TestColor;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.colorful_android.DTO.PsycologicaltestAnswerDTO;
 import com.example.colorful_android.DTO.PsycologicaltestQuestionDTO;
+import com.example.colorful_android.Model.User;
 import com.example.colorful_android.R;
 import com.example.colorful_android.Retrofit.MyRetrofit;
 
@@ -28,7 +30,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PsyTestActivity_java extends AppCompatActivity {
+public class PsycoloficalTestActivity extends AppCompatActivity {
 
     private List<PsycologicaltestQuestionDTO> questions;
     private List<PsycologicaltestAnswerDTO> answers;
@@ -129,6 +131,9 @@ public class PsyTestActivity_java extends AppCompatActivity {
         } else {b.append("P");}
 
         Log.e("MBTI :", b.toString());
+        excute_UpdateResult(this, b.toString());
+
+        finish();
     }
 
     private void nextQuestion(int index) {
@@ -136,7 +141,6 @@ public class PsyTestActivity_java extends AppCompatActivity {
         int questionId = questionIdList.get(index);
         textviewIndex.setText("(" + (index+1) + "/12)");
         question.setText(questions.get(questionId-1).getContent());
-
 
         firstAnswer.setText(answers.get(connector.get(questionId)[0]-1).getContent());
         secondAnswer.setText(answers.get(connector.get(questionId)[1]-1).getContent());
@@ -152,7 +156,6 @@ public class PsyTestActivity_java extends AppCompatActivity {
     }
 
     private void setButtonPress(int index) {
-
         if(user_answers[index] == 1) {
             this.firstAnswer.callOnClick();
         } else if(user_answers[index] == 2) {
@@ -165,27 +168,18 @@ public class PsyTestActivity_java extends AppCompatActivity {
         ArrayList<Integer> questionIdList = new ArrayList<>();
 
         for(int i = 1; i < 5; i++) {
-            int max = 5 * i;
-            int min = 5 * (i-1) +1;
+            int max = 15 * i;
+            int min = 15 * (i-1) +1;
             set = new HashSet<>();
-            while(set.size() < 3) {
-                set.add((int)(Math.random() * (max - min + 1))+min);
-            }
+            while(set.size() < 3) { set.add((int)(Math.random() * (max - min + 1))+min); }
+
             Iterator<Integer> it = set.iterator();
             while (it.hasNext()) {
                 questionIdList.add(it.next());
             }
+
         }
-
-
         Collections.shuffle(questionIdList);
-
-//        String a = "";
-//        for(int x : questionIdList) {
-//            a += x+", ";
-//        }
-//
-//        System.out.println("questionIdList : " + a);
 
         return questionIdList;
     }
@@ -204,33 +198,18 @@ public class PsyTestActivity_java extends AppCompatActivity {
                     index++;
                 }
             }
-
         }
-
-//        String a = "";
-//        for(int x : questionIdList) {
-//            a += " [" + connector.get(x)[0] + ", " + connector.get(x)[1] + "] ";
-//        }
-//
-//        System.out.println("connector : " + a);
 
         return connector;
     }
     private void excute_GETQuestions() {
-        //Retrofit 호출
-
-        Log.e("excute()", "start rest api");
-
         Call<List<PsycologicaltestQuestionDTO>> call_q = MyRetrofit.getApiService().getPsycologicalTestQuestion();
         call_q.enqueue(new Callback<List<PsycologicaltestQuestionDTO>>() {
             @Override
             public void onResponse(Call<List<PsycologicaltestQuestionDTO>> call, Response<List<PsycologicaltestQuestionDTO>> response) {
-                Log.e("excute()", "get question");
-
                 if(!response.isSuccessful()){Log.e("연결이 비정상적 : ", "error code : " + response.code()); return;}
                 questions = response.body();
                 excute_GETAnswer();
-                Log.e("rest api q", questions.size()+"");
             }
             @Override
             public void onFailure(Call<List<PsycologicaltestQuestionDTO>> call, Throwable t) {Log.e("연결실패", t.getMessage());}
@@ -242,23 +221,32 @@ public class PsyTestActivity_java extends AppCompatActivity {
         call_a.enqueue(new Callback<List<PsycologicaltestAnswerDTO>>() {
             @Override
             public void onResponse(Call<List<PsycologicaltestAnswerDTO>> call, Response<List<PsycologicaltestAnswerDTO>> response) {
-                Log.e("excute()", "get answer");
-
                 if(!response.isSuccessful()){Log.e("연결이 비정상적 : ", "error code : " + response.code()); return;}
                 answers = response.body();
-                Log.e("rest api a", answers.size()+"");
 
                 questionIdList = makeRandomList();
                 connector = getConnector(questionIdList);
                 prev_button.setVisibility(View.INVISIBLE);
                 nextQuestion(index);
-//                index++;
             }
             @Override
             public void onFailure(Call<List<PsycologicaltestAnswerDTO>> call, Throwable t) {Log.e("연결실패", t.getMessage());}
         });
-
-        Log.e("excute()", "end rest api");
     }
 
+    private void excute_UpdateResult(PsycoloficalTestActivity psycoloficalTestActivity, String result) {
+        Call<Integer> call_a = MyRetrofit.getApiService().updatePsycologicalResult(User.getInstance().getCustomerId(), result);
+        call_a.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                if(!response.isSuccessful()){Log.e("연결이 비정상적 : ", "error code : " + response.code()); return;}
+
+                Intent next_button_intent = new Intent(psycoloficalTestActivity, PsycologicalTestResult.class);
+                next_button_intent.putExtra("result", result);
+                startActivity(next_button_intent);
+            }
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {Log.e("연결실패", t.getMessage());}
+        });
+    }
 }

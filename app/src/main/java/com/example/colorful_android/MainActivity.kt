@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.colorful_android.TestColor.PersonalTestSelectImageActivity_java
 import com.example.colorful_android.TestColor.TestMainActivity
 
 class MainActivity : AppCompatActivity() {

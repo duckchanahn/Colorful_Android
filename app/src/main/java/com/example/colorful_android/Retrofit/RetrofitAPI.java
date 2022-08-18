@@ -12,6 +12,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface RetrofitAPI {
 
@@ -23,6 +24,9 @@ public interface RetrofitAPI {
 
     @GET(Constatnts_url.PSYCHOLOGICAL_COLOR_TEST_ANSWER_URL)
     Call<List<PsycologicaltestAnswerDTO>> getPsycologicalTestAnswer(); //이건 바디 요청시 사용하는거
+
+    @POST(Constatnts_url.PSYCHOLOGICAL_COLOR_TEST_UPDATE_RESULT_URL)
+    Call<Integer> updatePsycologicalResult(@Query("customerId")int customerId, @Query("result")String result);
 
     //@FormUrlEncoded
     //@POST("/auth/overlapChecker")

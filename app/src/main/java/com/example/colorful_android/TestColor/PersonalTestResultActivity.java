@@ -1,7 +1,10 @@
 package com.example.colorful_android.TestColor;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -16,12 +19,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PersonalTestResultActivity_java extends AppCompatActivity {
+public class PersonalTestResultActivity extends AppCompatActivity {
     private final String TAG = this.getClass().getSimpleName();
 
     private byte[] user_image_binary;
@@ -85,14 +89,53 @@ public class PersonalTestResultActivity_java extends AppCompatActivity {
     }
 
 
-    private byte[] pathToBinary(String path) {
+    private byte[] pathToBinary(String path){
         Bitmap bitmap= BitmapFactory.decodeFile(path);
 
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        try {
+            int orientation = new ExifInterface(filePath).getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);
+            float angle = 0f;
+            if (orientation == ExifInterface.ORIENTATION_ROTATE_90) {
+                angle = 90f;
+            } else if (orientation == ExifInterface.ORIENTATION_ROTATE_180) {
+                angle = 180f;
+            } else if (orientation == ExifInterface.ORIENTATION_ROTATE_270) {
+                angle = 270f;
+            }
 
-        return stream.toByteArray();
+            bitmap = resizeBitmap(bitmap, 900f, angle);
+
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+
+            return stream.toByteArray();
+        } catch (IOException e) { // error handling
+            Intent intent = new Intent(this, PersonalTestResultActivity.class);
+            startActivity(intent);
+        }
+        return null;
 //        imageview.setImageBitmap(bitmap);
+    }
+
+    private Bitmap resizeBitmap(Bitmap src, Float size, Float angle){
+        int width = src.getWidth();
+        int height = src.getHeight();
+        float newWidth = 0f;
+        float newHeight = 0f;
+        if(width > height) {
+            newWidth = size;
+            newHeight = (float)height * (newWidth / (float)width);
+        } else {
+            newHeight = size;
+            newWidth = (float)width * (newHeight / (float)height);
+        }
+        float scaleWidth = (float)newWidth / width;
+        float scaleHeight = (float)newHeight / height;
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        matrix.postScale(scaleWidth, scaleHeight);
+        Bitmap resizedBitmap = Bitmap.createBitmap(src, 0, 0, width, height, matrix, true);
+        return resizedBitmap;
     }
 
 }

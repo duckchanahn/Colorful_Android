@@ -4,15 +4,17 @@ public class User {
 
     private static final User user = new User();
 
+    private int customerId;
     private int userId;
     private String userName;
     private String personalColor;
     private String psychologiclaColor;
 
     public static User getInstance() { // 테스트
+        user.setCustomerId(1);
         user.setUserId(1);
         user.setUserName("이름름");
-        user.setPersonalColor("겨울싱글톤");
+        user.setPersonalColor("롱스톤");
         user.setPsychologiclaColor("ENTP");
 
         return user;
@@ -41,6 +43,10 @@ public class User {
         this.personalColor = personalColor;
         this.psychologiclaColor = psychologiclaColor;
     }
+
+    public int getCustomerId() {return customerId;}
+
+    public void setCustomerId(int customerId) {this.customerId = customerId;}
 
     public int getUserId() {
         return userId;

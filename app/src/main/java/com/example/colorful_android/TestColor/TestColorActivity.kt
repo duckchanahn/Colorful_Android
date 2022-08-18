@@ -19,7 +19,7 @@ class TestColorActivity : AppCompatActivity(){
 
         val move_personalTest_button : Button = findViewById(R.id.personal_color_test_button);
         move_personalTest_button.setOnClickListener {
-            startActivity(Intent(this, PersonalTestSelectImageActivity_java::class.java))
+            startActivity(Intent(this, PersonalTestSelectImageActivity::class.java))
 //            setContentView(R.layout.personal_color_select_image_layout)
         }
 

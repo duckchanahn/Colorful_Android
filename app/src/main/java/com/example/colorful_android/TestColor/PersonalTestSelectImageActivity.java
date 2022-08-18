@@ -2,6 +2,7 @@ package com.example.colorful_android.TestColor;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -31,7 +32,7 @@ import java.util.List;
 
 //import com.bumptech.glide.Glide;
 
-public class PersonalTestSelectImageActivity_java extends AppCompatActivity {
+public class PersonalTestSelectImageActivity extends AppCompatActivity {
     private final String TAG = this.getClass().getSimpleName();
 
     private final String PROVIDER = "com.example.colorful_android.provider";
@@ -68,7 +69,8 @@ public class PersonalTestSelectImageActivity_java extends AppCompatActivity {
             if(filePath == null) {
                 Toast.makeText(getBaseContext(), "사진을 선택해주세요!", Toast.LENGTH_SHORT).show();
             } else {
-                Intent next_button_intent = new Intent(this, PersonalTestResultActivity_java.class);
+                Log.e("nextButton", filePath);
+                Intent next_button_intent = new Intent(this, PersonalTestResultActivity.class);
 //                user_image_binary = new byte['a'];
                 next_button_intent.putExtra("filePath", filePath);
                 startActivity(next_button_intent);
@@ -92,7 +94,7 @@ public class PersonalTestSelectImageActivity_java extends AppCompatActivity {
             }
 
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(PersonalTestSelectImageActivity_java.this, PROVIDER, photoFile);
+                Uri photoURI = FileProvider.getUriForFile(PersonalTestSelectImageActivity.this, PROVIDER, photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 launcher_camera.launch(takePictureIntent);
             }
@@ -141,6 +143,7 @@ public class PersonalTestSelectImageActivity_java extends AppCompatActivity {
 
         File image = File.createTempFile(imageFileName, ".png", storageDir);
         this.filePath = image.getAbsolutePath();
+
         return image;
     }
 
@@ -169,11 +172,11 @@ public class PersonalTestSelectImageActivity_java extends AppCompatActivity {
         return permissionlistener = new PermissionListener() {
             @Override
             public void onPermissionGranted() {
-                Toast.makeText(PersonalTestSelectImageActivity_java.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PersonalTestSelectImageActivity.this, "Permission Granted", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onPermissionDenied(List<String> deniedPermissions) {
-                Toast.makeText(PersonalTestSelectImageActivity_java.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(PersonalTestSelectImageActivity.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
             }
         };
     }

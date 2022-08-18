@@ -17,13 +17,13 @@ public class TestMainActivity extends AppCompatActivity {
 
         Button startPsyTest = findViewById(R.id.psy_color_test_button);
         startPsyTest.setOnClickListener(v -> {
-            Intent next_button_intent = new Intent(this, PsyTestActivity_java.class);
+            Intent next_button_intent = new Intent(this, PsycoloficalTestActivity.class);
             startActivity(next_button_intent);
         }) ;
 
         Button startPersonalTest = findViewById(R.id.personal_color_test_button);
         startPersonalTest.setOnClickListener(v -> {
-            Intent next_button_intent = new Intent(this, PersonalTestSelectImageActivity_java.class);
+            Intent next_button_intent = new Intent(this, PersonalTestSelectImageActivity.class);
             startActivity(next_button_intent);
         }) ;
     }
