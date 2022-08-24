@@ -24,14 +24,36 @@
         <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/color_test_select.xml" value="0.25" />
         <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/psychological_test.xml" value="0.25" />
         <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/xml/file_paths.xml" value="0.1" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/btn_424242_color.xml" value="0.2185" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/btn_google_login.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/btn_kakao_login.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/btn_main_color.xml" value="0.2185" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/btn_naver_login.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/ic_nav_home.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/menu_click_change.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/menu_click_color.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/menu_click_home.xml" value="0.2185" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/menu_click_mypage.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/menu_click_search.xml" value="0.2155" />
         <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/psy_test_answer_button.xml" value="0.2185" />
         <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/psy_test_answer_non_select_btn.xml" value="0.2185" />
         <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/psy_test_answer_select_btn.xml" value="0.2185" />
         <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/psy_test_shape_gray_color.xml" value="0.2185" />
         <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/toolbar_layout_test.xml" value="0.2185" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/activity_login.xml" value="0.30394736842105263" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/activity_main.xml" value="0.3048245614035088" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/activity_navi.xml" value="0.3013157894736842" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/color_test_select.xml" value="0.33" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/fragment_home.xml" value="0.3048245614035088" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/fragment_mypage.xml" value="0.3013157894736842" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/home_main_page.xml" value="0.18" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/personal_color_select_image_layout.xml" value="0.33" />
         <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/psychologial_test.xml" value="0.33" />
         <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/psychological_test_ei.xml" value="0.271875" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/test_main_layout.xml" value="0.3048245614035088" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/toolbar_mainpage.xml" value="0.25" />
         <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/toolbar_testpage.xml" value="0.3609375" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/menu/navi_menu.xml" value="0.3048245614035088" />
       </map>
     </option>
   </component>
