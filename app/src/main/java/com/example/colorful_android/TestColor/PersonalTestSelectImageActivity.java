@@ -1,6 +1,8 @@
 package com.example.colorful_android.TestColor;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.media.ExifInterface;
 import android.net.Uri;
@@ -9,6 +11,7 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -17,10 +20,15 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import com.example.colorful_android.MainActivity;
 import com.example.colorful_android.R;
+import com.google.android.material.snackbar.Snackbar;
 import com.gun0912.tedpermission.PermissionListener;
 
 
@@ -32,8 +40,14 @@ import java.util.List;
 
 //import com.bumptech.glide.Glide;
 
-public class PersonalTestSelectImageActivity extends AppCompatActivity {
+public class PersonalTestSelectImageActivity extends AppCompatActivity
+                implements ActivityCompat.OnRequestPermissionsResultCallback{
+
     private final String TAG = this.getClass().getSimpleName();
+
+    private static final int PERMISSIONS_REQUEST_CODE = 100;
+
+    private String[] REQUIRED_PERMISSIONS;  // 외부 저장
 
     private final String PROVIDER = "com.example.colorful_android.provider";
 
@@ -55,12 +69,40 @@ public class PersonalTestSelectImageActivity extends AppCompatActivity {
 
         Button get_image_camera_button = findViewById(R.id.get_image_camera_button);
         get_image_camera_button.setOnClickListener(v -> {
-            test_getImage_inCamera();
+
+            int permission_camera = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+            int permission_storage = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+            if(permission_camera == PackageManager.PERMISSION_GRANTED && permission_storage == PackageManager.PERMISSION_GRANTED) {
+                test_getImage_inCamera();
+            }else {  //2. 퍼미션 요청을 허용한 적이 없다면 퍼미션 요청이 필요합니다. 2가지 경우(3-1, 4-1)가 있습니다.
+
+                REQUIRED_PERMISSIONS = new String[] {Manifest.permission.CAMERA, // 카메라
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+                ActivityCompat.requestPermissions( PersonalTestSelectImageActivity.this, REQUIRED_PERMISSIONS,
+                        PERMISSIONS_REQUEST_CODE);
+
+            }
+
         }) ;
 
         Button get_image_gallery_button = findViewById(R.id.get_image_gallery_button);
         get_image_gallery_button.setOnClickListener(v -> {
-            test_getImage_inGallery();
+
+            int permission_camera = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+            int permission_storage = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+            if(permission_camera == PackageManager.PERMISSION_GRANTED && permission_storage == PackageManager.PERMISSION_GRANTED) {
+                test_getImage_inGallery();
+            }else {  //2. 퍼미션 요청을 허용한 적이 없다면 퍼미션 요청이 필요합니다. 2가지 경우(3-1, 4-1)가 있습니다.
+
+                REQUIRED_PERMISSIONS = new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+                ActivityCompat.requestPermissions( PersonalTestSelectImageActivity.this, REQUIRED_PERMISSIONS,
+                        PERMISSIONS_REQUEST_CODE);
+
+            }
         }) ;
 
         Button next_button = findViewById(R.id.next_personal_color_select_image);
@@ -180,5 +222,44 @@ public class PersonalTestSelectImageActivity extends AppCompatActivity {
             }
         };
     }
+
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grandResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grandResults);
+        if (requestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
+
+            boolean check_result = true;
+
+            for (int result : grandResults) {
+                if (result != PackageManager.PERMISSION_GRANTED) {
+                    check_result = false;
+                    break;
+                }
+            }
+            if (check_result) {
+
+                if(REQUIRED_PERMISSIONS.length == 1) {test_getImage_inGallery();}
+                else {test_getImage_inCamera();}
+
+            } else {
+                boolean check_rationale = false;
+                for(String s : REQUIRED_PERMISSIONS) {
+                   if(ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])) {
+                       check_rationale = true;
+                   }
+                }
+                if (check_rationale) {
+                    Toast.makeText(getBaseContext(), "권한을 허용하지 않을 경우 테스트가 불가능합니다.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getBaseContext(), "퍼스널컬러 테스트를 위해 앱 설정에서 권한을 허용해주세요.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
+
 
 }

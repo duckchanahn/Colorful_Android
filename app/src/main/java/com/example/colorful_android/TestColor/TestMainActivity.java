@@ -1,5 +1,6 @@
 package com.example.colorful_android.TestColor;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -9,11 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.colorful_android.R;
 
 public class TestMainActivity extends AppCompatActivity {
+    public static Activity testMainActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_main_layout);
+
+        testMainActivity = this;
 
         Button startPsyTest = findViewById(R.id.psy_color_test_button);
         startPsyTest.setOnClickListener(v -> {

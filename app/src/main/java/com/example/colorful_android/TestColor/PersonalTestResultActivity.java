@@ -7,6 +7,7 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -68,16 +69,19 @@ public class PersonalTestResultActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
                     if(!response.isSuccessful()){
+                        Toast.makeText(getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
                         Log.e("연결이 비정상적 : ", "error code : " + response.code());
                         return;
                     }
     //                String checkAlready = response.body();
                     Log.d("연결이 성공적 : ", response.body().toString());
                     result = response.body().toString();
+                    TestMainActivity.testMainActivity.finish();
     //                    return response.body();
                 }
                 @Override
                 public void onFailure(Call<String> call, Throwable t) {
+                    Toast.makeText(getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
                     Log.e("연결실패", t.getMessage());
                 }
             });

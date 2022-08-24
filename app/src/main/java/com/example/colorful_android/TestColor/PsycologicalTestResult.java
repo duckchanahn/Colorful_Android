@@ -1,6 +1,7 @@
 package com.example.colorful_android.TestColor;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +14,7 @@ public class PsycologicalTestResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         String mbti = getIntent().getStringExtra("result");
+        Log.e("result activity", mbti);
         setContentView(R.layout.activity_main); // 결과창 입력
     }
 

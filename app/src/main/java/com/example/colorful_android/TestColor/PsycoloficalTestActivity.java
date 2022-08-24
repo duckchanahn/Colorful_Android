@@ -1,5 +1,6 @@
 package com.example.colorful_android.TestColor;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -33,9 +34,12 @@ import retrofit2.Response;
 
 public class PsycoloficalTestActivity extends AppCompatActivity {
 
+    // questions index = question id - 1
     private List<PsycologicaltestQuestionDTO> questions;
+    // answers index = answer id -1
     private List<PsycologicaltestAnswerDTO> answers;
 
+    // question Id List = question id = index - 1
     private ArrayList<Integer> questionIdList;
     private HashMap<Integer, int[]> connector;
 
@@ -55,7 +59,11 @@ public class PsycoloficalTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.e("oncreate", "start --------");
+
         this.excute_GETQuestions();
+
+        Log.e("oncreate", "end getquestion");
 
         setContentView(R.layout.psychologial_test);
 
@@ -66,10 +74,10 @@ public class PsycoloficalTestActivity extends AppCompatActivity {
         this.next_button = findViewById(R.id.next_button_psy);
         this.prev_button = findViewById(R.id.prev_button_psy);
 
-        this.index = 0;
+        this.index = 1;
         this.select = -1;
 
-        this.user_answers = new int[12];
+        this.user_answers = new int[13];
         Arrays.fill(this.user_answers, -1);
 
         this.firstAnswer.setOnClickListener(v -> {
@@ -84,14 +92,14 @@ public class PsycoloficalTestActivity extends AppCompatActivity {
         });
 
         this.next_button.setOnClickListener(v -> {
-            if(index == 11) {
+            if(index == 12) {
                 this.finishPsyTest(user_answers);
             } else {
                 if (user_answers[index] == -1) {
                 Toast.makeText(getBaseContext(), "답변을 선택해주세요!", Toast.LENGTH_SHORT).show();
                     //
                 } else {
-                    if (index == 0) {this.prev_button.setVisibility(View.VISIBLE);}
+                    if (index == 1) {this.prev_button.setVisibility(View.VISIBLE);}
                     index += 1;
                     this.nextQuestion(index);
                     this.setButtonPress(index);
@@ -101,7 +109,7 @@ public class PsycoloficalTestActivity extends AppCompatActivity {
         });
 
         this.prev_button.setOnClickListener(v -> {
-            if(index == 1) {this.prev_button.setVisibility(View.INVISIBLE);}
+            if(index == 2) {this.prev_button.setVisibility(View.INVISIBLE);}
 
             index -= 1;
             this.nextQuestion(index);
@@ -135,17 +143,18 @@ public class PsycoloficalTestActivity extends AppCompatActivity {
         Log.e("MBTI :", b.toString());
         excute_UpdateResult(this, b.toString());
 
+        TestMainActivity.testMainActivity.finish();
         finish();
     }
 
     private void nextQuestion(int index) {
         setButtonPress(index);
-        int questionId = questionIdList.get(index);
-        textviewIndex.setText("(" + (index+1) + "/12)");
-        question.setText(questions.get(questionId-1).getContent());
+        int questionId = questionIdList.get(index-1);
+        textviewIndex.setText("(" + (index) + "/12)");
+        question.setText(questions.get(questionId).getContent());
 
-        firstAnswer.setText(answers.get(connector.get(questionId)[0]-1).getContent());
-        secondAnswer.setText(answers.get(connector.get(questionId)[1]-1).getContent());
+        firstAnswer.setText(answers.get(connector.get(questionId)[0]).getContent());
+        secondAnswer.setText(answers.get(connector.get(questionId)[1]).getContent());
     }
 
     private void selectAnswer(int select, int index) {
@@ -183,6 +192,9 @@ public class PsycoloficalTestActivity extends AppCompatActivity {
         }
         Collections.shuffle(questionIdList);
 
+        questionIdList.set(0, 1);
+        questionIdList.set(11, 40);
+
         return questionIdList;
     }
 
@@ -209,12 +221,20 @@ public class PsycoloficalTestActivity extends AppCompatActivity {
         call_q.enqueue(new Callback<List<PsycologicaltestQuestionDTO>>() {
             @Override
             public void onResponse(Call<List<PsycologicaltestQuestionDTO>> call, Response<List<PsycologicaltestQuestionDTO>> response) {
-                if(!response.isSuccessful()){Log.e("연결이 비정상적 : ", "error code : " + response.code()); return;}
+                if(!response.isSuccessful()){
+                    Toast.makeText(getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+                    Log.e("연결이 비정상적 : ", "error code : " + response.code());
+                    return;
+                }
                 questions = response.body();
+                Log.e("getQuestion", "questions.size : " + questions.size());
                 excute_GETAnswer();
             }
             @Override
-            public void onFailure(Call<List<PsycologicaltestQuestionDTO>> call, Throwable t) {Log.e("연결실패", t.getMessage());}
+            public void onFailure(Call<List<PsycologicaltestQuestionDTO>> call, Throwable t) {
+                Toast.makeText(getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+                Log.e("연결실패", t.getMessage());
+            }
         });
     }
 
@@ -223,16 +243,32 @@ public class PsycoloficalTestActivity extends AppCompatActivity {
         call_a.enqueue(new Callback<List<PsycologicaltestAnswerDTO>>() {
             @Override
             public void onResponse(Call<List<PsycologicaltestAnswerDTO>> call, Response<List<PsycologicaltestAnswerDTO>> response) {
-                if(!response.isSuccessful()){Log.e("연결이 비정상적 : ", "error code : " + response.code()); return;}
+                if(!response.isSuccessful()){
+                    Toast.makeText(getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+                    Log.e("연결이 비정상적 : ", "error code : " + response.code());
+                    return;
+                }
                 answers = response.body();
 
                 questionIdList = makeRandomList();
                 connector = getConnector(questionIdList);
                 prev_button.setVisibility(View.INVISIBLE);
+
+                Log.e("getAnswer", "questions.size : " + questionIdList.size());
+                Log.e("getAnswer", "connector.size : " + connector.size());
+
+                Log.e("excute", "questions : " + questions.size());
+                Log.e("excute", "answers : " + answers.size());
+                Log.e("excute", "questionIdList : " + questionIdList.size());
+                Log.e("excute", "connector : " + connector.size());
+
                 nextQuestion(index);
             }
             @Override
-            public void onFailure(Call<List<PsycologicaltestAnswerDTO>> call, Throwable t) {Log.e("연결실패", t.getMessage());}
+            public void onFailure(Call<List<PsycologicaltestAnswerDTO>> call, Throwable t) {
+                Toast.makeText(getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+                Log.e("연결실패", t.getMessage());
+            }
         });
     }
 
@@ -241,14 +277,21 @@ public class PsycoloficalTestActivity extends AppCompatActivity {
         call_a.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
-                if(!response.isSuccessful()){Log.e("연결이 비정상적 : ", "error code : " + response.code()); return;}
+                if(!response.isSuccessful()){
+                    Toast.makeText(getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+                    Log.e("연결이 비정상적 : ", "error code : " + response.code());
+                    return;
+                }
 
                 Intent next_button_intent = new Intent(psycoloficalTestActivity, PsycologicalTestResult.class);
                 next_button_intent.putExtra("result", result);
                 startActivity(next_button_intent);
             }
             @Override
-            public void onFailure(Call<Integer> call, Throwable t) {Log.e("연결실패", t.getMessage());}
+            public void onFailure(Call<Integer> call, Throwable t) {
+                Toast.makeText(getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+                Log.e("연결실패", t.getMessage());
+            }
         });
     }
 }
