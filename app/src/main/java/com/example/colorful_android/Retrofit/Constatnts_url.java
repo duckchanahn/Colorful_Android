@@ -8,6 +8,8 @@ public class Constatnts_url {
     public static final String BASE_URL_MYDEVICE = "http://172.30.1.25:7777/";
     public static final String BASE_URL_MYDEVICE_FLASK = "http://172.30.104.131:5000/";
 
+    public static final String BASE_URL_EC2 = "http://13.124.152.109:8080/Colorful/";
+
     // 퍼스널컬러 테스트
     public static final String PERSONAL_COLOR_TEST_URL = "test/personalcolor/";
 
