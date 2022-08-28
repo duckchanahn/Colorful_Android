@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:contentInsetStart="0dp"
+    android:background="@drawable/toolbar_layout_test"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="마이페페이지"
+            android:fontFamily="@font/notosanskr_bold"
+            android:textSize="18dp"
+            android:textColor="@color/gary_21"/>
+
+       <ImageView
+            android:id="@+id/btn_heart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="0dp"
+            android:background="#00FFFFFF"
+            android:paddingStart="17.6dp"
+            android:paddingTop="18.5dp"
+            android:paddingEnd="18.5dp"
+            android:paddingBottom="17.6dp"
+            android:src="@drawable/btn_heart_black"
+            android:layout_toLeftOf="@+id/btn_setting"/>
+
+
+        <ImageView
+            android:id="@+id/btn_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp"
+            android:background="#00FFFFFF"
+            android:paddingStart="17.6dp"
+            android:paddingTop="18.5dp"
+            android:paddingEnd="18.5dp"
+            android:paddingBottom="17.6dp"
+            android:src="@drawable/btn_setting" />
+
+
+    </RelativeLayout>
+
+
+
+</androidx.appcompat.widget.Toolbar>
