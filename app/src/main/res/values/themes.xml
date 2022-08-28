@@ -20,7 +20,12 @@
     <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="chipBackgroundColor">@color/chip_background_color</item>
         <item name="android:textColor">@color/chip_text_color</item>
-
     </style>
+
+    <style name="CustomChipStyle2" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_background_color2</item>
+        <item name="android:textColor">@color/chip_text_color2</item>
+    </style>
+
 
 </resources>
