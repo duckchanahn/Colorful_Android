@@ -13,12 +13,22 @@
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/drawable/psy_test_answer_select_btn.xml" value="0.1225" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/drawable/psy_test_shape_gray_color.xml" value="0.1225" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/drawable/psy_test_shape_main_color.xml" value="0.1225" />
+        <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/activity_home_main.xml" value="0.20820863616930313" />
+        <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/activity_login.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/activity_main.xml" value="0.20126926563916592" />
+        <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/activity_my_page.xml" value="0.20820863616930313" />
+        <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/activity_navi.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/color_test_select.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/personal_color_select_image_layout.xml" value="0.2071622846781505" />
+        <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/psychologial_test.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/psychological_test_ei.xml" value="0.4" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/test_main_layout.xml" value="0.1" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/test_result_personal.xml" value="0.1" />
+        <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/toolbar_detailpage.xml" value="0.20820863616930313" />
+        <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/toolbar_mainpage.xml" value="0.20820863616930313" />
+        <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/toolbar_mypage.xml" value="0.20820863616930313" />
+        <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/toolbar_non.xml" value="0.20820863616930313" />
+        <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/toolbar_testpage.xml" value="0.20820863616930313" />
         <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2955" />
         <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/color_test_select.xml" value="0.25" />
