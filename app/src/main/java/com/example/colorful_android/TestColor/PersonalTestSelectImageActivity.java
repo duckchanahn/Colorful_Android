@@ -105,22 +105,32 @@ public class PersonalTestSelectImageActivity extends AppCompatActivity
             }
         }) ;
 
-        Button next_button = findViewById(R.id.next_personal_color_select_image);
-        next_button.setOnClickListener(v -> {
+//        Button next_button = findViewById(R.id.next_personal_color_select_image);
+//        next_button.setOnClickListener(v -> {
+//
+//            if(filePath == null) {
+//                Toast.makeText(getBaseContext(), "사진을 선택해주세요!", Toast.LENGTH_SHORT).show();
+//            } else {
+//                Log.e("nextButton", filePath);
+//                Intent next_button_intent = new Intent(this, PersonalTestResultActivity.class);
+////                user_image_binary = new byte['a'];
+//                next_button_intent.putExtra("filePath", filePath);
+//                startActivity(next_button_intent);
+//
+//                finish();
+//            }
+//        }) ;
 
-            if(filePath == null) {
-                Toast.makeText(getBaseContext(), "사진을 선택해주세요!", Toast.LENGTH_SHORT).show();
-            } else {
-                Log.e("nextButton", filePath);
-                Intent next_button_intent = new Intent(this, PersonalTestResultActivity.class);
+    }
+
+
+    private void nextPage() {
+        Intent next_button_intent = new Intent(this, PersonalTestResultActivity.class);
 //                user_image_binary = new byte['a'];
-                next_button_intent.putExtra("filePath", filePath);
-                startActivity(next_button_intent);
+        next_button_intent.putExtra("filePath", filePath);
+        startActivity(next_button_intent);
 
-                finish();
-            }
-        }) ;
-
+        finish();
     }
 
 
@@ -157,6 +167,8 @@ public class PersonalTestSelectImageActivity extends AppCompatActivity
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == RESULT_OK) {
                         Log.d(TAG, "success get filePath : " + filePath);
+
+                        nextPage();
                     }
                 }
             });
@@ -171,6 +183,8 @@ public class PersonalTestSelectImageActivity extends AppCompatActivity
                         uri = intent.getData();
                         filePath = getRealPathFromURI(uri);
                         Log.d(TAG, "success get filePath : " + filePath);
+
+                        nextPage();
                     }
                 }
             });

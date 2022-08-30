@@ -5,7 +5,7 @@ public class Constatnts_url {
 //    public static final String BASE_URL = "http://localhost:7777/";
     public static final String BASE_URL_EMULATOR = "http://10.0.2.2:7777/";
     public static final String BASE_URL_MYDEVICE_DH = "http://172.30.104.131:7777/";
-    public static final String BASE_URL_MYDEVICE = "http://172.30.1.25:7777/";
+    public static final String BASE_URL_MYDEVICE = "http://172.30.1.23:7777/";
     public static final String BASE_URL_MYDEVICE_FLASK = "http://172.30.104.131:5000/";
 
     public static final String BASE_URL_EC2 = "http://13.124.152.109:8080/Colorful/";

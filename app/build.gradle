@@ -4,6 +4,7 @@ plugins {
     id'kotlin-android-extensions'
 }
 apply plugin: 'kotlin-android'
+apply plugin: 'com.android.application'
 
 android {
     compileSdk 31
@@ -62,6 +63,15 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
 
 }
+
+// 로그인 dependencies
+dependencies {
+    implementation "com.kakao.sdk:v2-all:2.11.0" // 카카오 로그인
+    implementation 'com.google.android.gms:play-services-auth:20.2.0' // 구글 로그인
+    implementation 'com.navercorp.nid:oauth-jdk8:5.1.1' // 네이버 로그인(jdk 8)
+
+}
+
 
 //Retrofit
 dependencies{

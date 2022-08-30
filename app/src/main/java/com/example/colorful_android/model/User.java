@@ -5,23 +5,17 @@ public class User {
     private static final User user = new User();
 
     private int customerId;
-    private int userId;
-    private String userName;
+    private int userId; // 사용자 고유 ID를 넣는데 사실 customerId에 넣어도 돼서
+    private String userName; // 이름
     private String personalColor;
     private String psychologiclaColor;
 
     public static User getInstance() { // 테스트
-        user.setCustomerId(1);
-        user.setUserId(1);
-        user.setUserName("이름름");
-        user.setPersonalColor("롱스톤");
-        user.setPsychologiclaColor("ENTP");
-
         return user;
     }
 
-    public static User getInstance(int userId, String userName, String personalColor, String psychologiclaColor) {
-        user.setUserId(userId);
+    public static User getInstance(int customerId, String userName, String personalColor, String psychologiclaColor) {
+        user.setCustomerId(customerId);
         user.setUserName(userName);
         user.setPersonalColor(personalColor);
         user.setPsychologiclaColor(psychologiclaColor);

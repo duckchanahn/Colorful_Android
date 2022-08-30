@@ -1,9 +1,14 @@
-package com.example.colorful_android
+package com.example.colorful_android.Fragment
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.example.colorful_android.Fragment.ColorFragment
+import com.example.colorful_android.Fragment.HomeFragment
+import com.example.colorful_android.Fragment.MypageFragment
+import com.example.colorful_android.Fragment.SearchFragment
+import com.example.colorful_android.R
 import com.example.colorful_android.databinding.ActivityNaviBinding
 
 private const val TAG_HOME = "home_fragment"

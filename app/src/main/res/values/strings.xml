@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Colorful_android</string>
+    <string name="KAKAO_NATIVE_APP_KEY">bab3f53d7921ca0e8ac626ca5e7a8ea0</string>
 
     <string name="next">다음</string>
 

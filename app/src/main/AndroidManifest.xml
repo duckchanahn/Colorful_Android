@@ -15,7 +15,7 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
-        android:name=".Retrofit.MyRetrofit"
+        android:name=".GlobalApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -27,7 +27,7 @@
         android:theme="@style/Theme.Colorful_android"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".NaviActivity"
+            android:name=".Fragment.NaviActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -36,14 +36,32 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+
+
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                        <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
+                        <data android:host="oauth"
+                            android:scheme="kakaobab3f53d7921ca0e8ac626ca5e7a8ea0}" />
+            </intent-filter>
+        </activity>
+
+
         <activity android:name=".TestColor.TestColorActivity" />
         <activity android:name=".TestColor.TestMainActivity" />
         <activity android:name=".TestColor.PersonalTestSelectImageActivity" />
         <activity android:name=".TestColor.PersonalTestResultActivity" />
         <activity android:name=".TestColor.PsycoloficalTestActivity" />
         <activity android:name=".TestColor.PsycologicalTestResult" />
+        <activity android:name=".Login.LoginActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

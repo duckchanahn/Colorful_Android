@@ -55,6 +55,8 @@ public class PsycoloficalTestActivity extends AppCompatActivity {
 
     private int[] user_answers;
 
+    private Button[] answerButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,24 +76,34 @@ public class PsycoloficalTestActivity extends AppCompatActivity {
         this.next_button = findViewById(R.id.next_button_psy);
         this.prev_button = findViewById(R.id.prev_button_psy);
 
+//        this.answerButton = new Button[2];
+//        this.answerButton[0] = next_button;
+//        this.answerButton[1] = prev_button;
+
         this.index = 1;
         this.select = -1;
 
         this.user_answers = new int[13];
         Arrays.fill(this.user_answers, -1);
+        this.user_answers[0] = -7;
 
         this.firstAnswer.setOnClickListener(v -> {
+            Log.e("answer click", "firstAnswer : " + index);
             this.select = 1;
             this.selectAnswer(select, index);
         });
 
 
         this.secondAnswer.setOnClickListener(v -> {
+            Log.e("answer click", "secondAnswer : " + index);
             this.select = 2;
             this.selectAnswer(select, index);
         });
 
         this.next_button.setOnClickListener(v -> {
+//            this.setButtonPress(1);
+            if(index == 11) {this.next_button.setText("결과보기");}
+
             if(index == 12) {
                 this.finishPsyTest(user_answers);
             } else {
@@ -110,6 +122,7 @@ public class PsycoloficalTestActivity extends AppCompatActivity {
 
         this.prev_button.setOnClickListener(v -> {
             if(index == 2) {this.prev_button.setVisibility(View.INVISIBLE);}
+            if(index == 12) {this.next_button.setText("다음");}
 
             index -= 1;
             this.nextQuestion(index);
@@ -160,13 +173,33 @@ public class PsycoloficalTestActivity extends AppCompatActivity {
     private void selectAnswer(int select, int index) {
         user_answers[index] = select;
 
+        if(user_answers[index] == 1) {
+            this.firstAnswer.setPressed(true);
+            this.secondAnswer.setPressed(false);
+        } else if(user_answers[index] == 2) {
+            this.firstAnswer.setPressed(false);
+            this.secondAnswer.setPressed(true);
+        } else {
+            this.firstAnswer.setPressed(false);
+            this.secondAnswer.setPressed(false);
+        }
+
         String answer_select = "";
         for(int i : user_answers) {
             answer_select += i + ", ";
         }
+        Log.e("test", "answer_select : " + answer_select + ", index : " + index);
+        Log.e("answer", "first : " + this.firstAnswer.getSolidColor() + ", second : " + this.secondAnswer.getSolidColor());
     }
 
     private void setButtonPress(int index) {
+
+        String userAnswersString = "";
+        for(int i : user_answers) {
+            userAnswersString += i +", ";
+        }
+        Log.e("test", "userAnswersString : " + userAnswersString + ", index : " + index);
+
         if(user_answers[index] == 1) {
             this.firstAnswer.callOnClick();
         } else if(user_answers[index] == 2) {
@@ -192,8 +225,8 @@ public class PsycoloficalTestActivity extends AppCompatActivity {
         }
         Collections.shuffle(questionIdList);
 
-        questionIdList.set(0, 1);
-        questionIdList.set(11, 40);
+//        questionIdList.set(0, 1);
+//        questionIdList.set(11, 40);
 
         return questionIdList;
     }
@@ -254,13 +287,13 @@ public class PsycoloficalTestActivity extends AppCompatActivity {
                 connector = getConnector(questionIdList);
                 prev_button.setVisibility(View.INVISIBLE);
 
-                Log.e("getAnswer", "questions.size : " + questionIdList.size());
-                Log.e("getAnswer", "connector.size : " + connector.size());
-
-                Log.e("excute", "questions : " + questions.size());
-                Log.e("excute", "answers : " + answers.size());
-                Log.e("excute", "questionIdList : " + questionIdList.size());
-                Log.e("excute", "connector : " + connector.size());
+//                Log.e("getAnswer", "questions.size : " + questionIdList.size());
+//                Log.e("getAnswer", "connector.size : " + connector.size());
+//
+//                Log.e("excute", "questions : " + questions.size());
+//                Log.e("excute", "answers : " + answers.size());
+//                Log.e("excute", "questionIdList : " + questionIdList.size());
+//                Log.e("excute", "connector : " + connector.size());
 
                 nextQuestion(index);
             }
