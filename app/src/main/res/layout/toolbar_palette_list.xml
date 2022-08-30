@@ -12,32 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/notosanskr_bold"
-            android:text="마이페이지"
-            android:textColor="@color/gary_21"
-            android:textSize="18dp" />
-
-       <ImageView
-            android:id="@+id/btn_heart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="0dp"
-            android:background="#00FFFFFF"
-            android:paddingStart="17.6dp"
-            android:paddingTop="18.5dp"
-            android:paddingEnd="18.5dp"
-            android:paddingBottom="17.6dp"
-            android:src="@drawable/btn_heart_black"
-            android:layout_toLeftOf="@+id/btn_setting"/>
-
-
         <ImageView
-            android:id="@+id/btn_setting"
+            android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

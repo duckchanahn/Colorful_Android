@@ -26,8 +26,7 @@
 
 
     <item name="원하시는_아이디" type="id" />
-
-
+    <item name="iv_image" type="id">id</item>
 
 
 </resources>
