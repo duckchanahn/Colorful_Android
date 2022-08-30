@@ -46,11 +46,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    app:checkedIconEnabled="false"
                     android:fontFamily="@font/notosanskr_bold"
                     android:minHeight="32dp"
                     android:text="전국"
                     android:textSize="14dp"
+                    app:checkedIconEnabled="false"
                     app:chipEndPadding="12dp"
                     app:chipStartPadding="12dp" />
 
@@ -59,11 +59,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    app:checkedIconEnabled="false"
                     android:fontFamily="@font/notosanskr_bold"
                     android:minHeight="32dp"
                     android:text="서울"
                     android:textSize="14dp"
+                    app:checkedIconEnabled="false"
                     app:chipEndPadding="12dp"
                     app:chipStartPadding="12dp" />
 
@@ -72,11 +72,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    app:checkedIconEnabled="false"
                     android:fontFamily="@font/notosanskr_bold"
                     android:minHeight="32dp"
                     android:text="경기"
                     android:textSize="14dp"
+                    app:checkedIconEnabled="false"
                     app:chipEndPadding="12dp"
                     app:chipStartPadding="12dp" />
 
@@ -85,11 +85,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    app:checkedIconEnabled="false"
                     android:fontFamily="@font/notosanskr_bold"
                     android:minHeight="32dp"
                     android:text="인천"
                     android:textSize="14dp"
+                    app:checkedIconEnabled="false"
                     app:chipEndPadding="12dp"
                     app:chipStartPadding="12dp" />
 
@@ -98,11 +98,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    app:checkedIconEnabled="false"
                     android:fontFamily="@font/notosanskr_bold"
                     android:minHeight="32dp"
                     android:text="부산"
                     android:textSize="14dp"
+                    app:checkedIconEnabled="false"
                     app:chipEndPadding="12dp"
                     app:chipStartPadding="12dp" />
 
@@ -111,11 +111,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    app:checkedIconEnabled="false"
                     android:fontFamily="@font/notosanskr_bold"
                     android:minHeight="32dp"
                     android:text="제주"
                     android:textSize="14dp"
+                    app:checkedIconEnabled="false"
                     app:chipEndPadding="12dp"
                     app:chipStartPadding="12dp" />
 
@@ -124,11 +124,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    app:checkedIconEnabled="false"
                     android:fontFamily="@font/notosanskr_bold"
                     android:minHeight="32dp"
                     android:text="대전"
                     android:textSize="14dp"
+                    app:checkedIconEnabled="false"
                     app:chipEndPadding="12dp"
                     app:chipStartPadding="12dp" />
 
@@ -137,11 +137,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    app:checkedIconEnabled="false"
                     android:fontFamily="@font/notosanskr_bold"
                     android:minHeight="32dp"
                     android:text="세종"
                     android:textSize="14dp"
+                    app:checkedIconEnabled="false"
                     app:chipEndPadding="12dp"
                     app:chipStartPadding="12dp" />
 
@@ -150,11 +150,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    app:checkedIconEnabled="false"
                     android:fontFamily="@font/notosanskr_bold"
                     android:minHeight="32dp"
                     android:text="대구"
                     android:textSize="14dp"
+                    app:checkedIconEnabled="false"
                     app:chipEndPadding="12dp"
                     app:chipStartPadding="12dp" />
 
@@ -163,11 +163,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    app:checkedIconEnabled="false"
                     android:fontFamily="@font/notosanskr_bold"
                     android:minHeight="32dp"
                     android:text="광주"
                     android:textSize="14dp"
+                    app:checkedIconEnabled="false"
                     app:chipEndPadding="12dp"
                     app:chipStartPadding="12dp" />
 
@@ -176,11 +176,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    app:checkedIconEnabled="false"
                     android:fontFamily="@font/notosanskr_bold"
                     android:minHeight="32dp"
                     android:text="울산"
                     android:textSize="14dp"
+                    app:checkedIconEnabled="false"
                     app:chipEndPadding="12dp"
                     app:chipStartPadding="12dp" />
 
@@ -189,11 +189,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    app:checkedIconEnabled="false"
                     android:fontFamily="@font/notosanskr_bold"
                     android:minHeight="32dp"
                     android:text="강원"
                     android:textSize="14dp"
+                    app:checkedIconEnabled="false"
                     app:chipEndPadding="12dp"
                     app:chipStartPadding="12dp" />
 
@@ -202,11 +202,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    app:checkedIconEnabled="false"
                     android:fontFamily="@font/notosanskr_bold"
                     android:minHeight="32dp"
                     android:text="충북"
                     android:textSize="14dp"
+                    app:checkedIconEnabled="false"
                     app:chipEndPadding="12dp"
                     app:chipStartPadding="12dp" />
 
@@ -215,11 +215,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    app:checkedIconEnabled="false"
                     android:fontFamily="@font/notosanskr_bold"
                     android:minHeight="32dp"
                     android:text="충남"
                     android:textSize="14dp"
+                    app:checkedIconEnabled="false"
                     app:chipEndPadding="12dp"
                     app:chipStartPadding="12dp" />
 
@@ -228,11 +228,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    app:checkedIconEnabled="false"
                     android:fontFamily="@font/notosanskr_bold"
                     android:minHeight="32dp"
                     android:text="경북"
                     android:textSize="14dp"
+                    app:checkedIconEnabled="false"
                     app:chipEndPadding="12dp"
                     app:chipStartPadding="12dp" />
 
@@ -241,11 +241,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    app:checkedIconEnabled="false"
                     android:fontFamily="@font/notosanskr_bold"
                     android:minHeight="32dp"
                     android:text="경남"
                     android:textSize="14dp"
+                    app:checkedIconEnabled="false"
                     app:chipEndPadding="12dp"
                     app:chipStartPadding="12dp" />
 
@@ -254,11 +254,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    app:checkedIconEnabled="false"
                     android:fontFamily="@font/notosanskr_bold"
                     android:minHeight="32dp"
                     android:text="전북"
                     android:textSize="14dp"
+                    app:checkedIconEnabled="false"
                     app:chipEndPadding="12dp"
                     app:chipStartPadding="12dp" />
 
@@ -267,11 +267,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    app:checkedIconEnabled="false"
                     android:fontFamily="@font/notosanskr_bold"
                     android:minHeight="32dp"
                     android:text="전남"
                     android:textSize="14dp"
+                    app:checkedIconEnabled="false"
                     app:chipEndPadding="12dp"
                     app:chipStartPadding="12dp" />
 

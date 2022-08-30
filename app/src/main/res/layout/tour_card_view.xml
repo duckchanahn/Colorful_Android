@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:cardCornerRadius="20dp"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/card_img1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/card_blue_re"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/tour_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="24dp"
+                android:fontFamily="@font/notosanskr_bold"
+                android:text="강원도 여행"
+                android:textSize="28dp"
+                android:textColor="@color/gary_21"
+                app:layout_constraintStart_toStartOf="@+id/card_img1"
+                app:layout_constraintTop_toTopOf="@+id/card_img1" />
+
+            <TextView
+                android:id="@+id/tour_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="67dp"
+                android:layout_marginStart="24dp"
+                android:fontFamily="@font/notosanskr_bold"
+                android:textColor="#555555"
+                android:text="22.8.21-22.8.22"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@+id/card_img1"
+                app:layout_constraintTop_toTopOf="@+id/card_img1" />
+
+            <TextView
+                android:id="@+id/tour_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/notosanskr_bold"
+                android:textColor="#555555"
+                android:text="3개"
+                android:textSize="14dp"
+                app:layout_constraintEnd_toEndOf="@+id/card_img1"
+                app:layout_constraintBottom_toBottomOf="@+id/card_img1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

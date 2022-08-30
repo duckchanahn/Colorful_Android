@@ -1,32 +1,22 @@
 package com.example.colorful_android
 
-import android.content.AsyncQueryHandler
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.os.AsyncTask
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.android.volley.toolbox.ImageLoader
-import com.example.colorful_android.TestColor.GetImage_url
 import com.example.colorful_android.TestColor.TestMainActivity
-import com.example.colorful_android.databinding.ActivityMainBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.activity_mypage_pick.*
-import kotlinx.android.synthetic.main.home_bottom_dialog.*
+import kotlinx.android.synthetic.main.color_palette_list.*
 import kotlinx.android.synthetic.main.home_bottom_dialog.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.async
-import java.io.IOException
-import java.net.HttpURLConnection
-import java.net.MalformedURLException
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
@@ -34,7 +24,22 @@ class MainActivity : AppCompatActivity() {
     val IMAGE_URL = "http://tong.visitkorea.or.kr/cms/resource/58/1902758_image2_1.jpg"
     val coroutineScope = CoroutineScope(Dispatchers.Main)
 
-    private lateinit var binding : ActivityMainBinding
+
+    //팔레트 리스트뷰
+    var TourList = arrayListOf<TourInfo>(
+        TourInfo(R.drawable.card_blue_re, "강원도 혼행","22.8.21-22.8.22","3개"),
+        TourInfo(R.drawable.card_green, "예림이랑 여수","22.9.10-22.9.12","2개"),
+        TourInfo(R.drawable.card_pink, "부산 가족여행","22.10.7-22.10.10","4개")
+    )
+
+    //팔레트 디테일 리스트뷰
+    var DetailTourList = arrayListOf<TourInfoDetail>(
+        TourInfoDetail(R.drawable.ex_detail_img, "감성공작소", "강원도 삼척시\n 두줄까지"),
+        TourInfoDetail(R.drawable.ex_detail_img, "낙산 해수욕장", "강원도 양양군\n 두줄까지"),
+        TourInfoDetail(R.drawable.ex_detail_img, "안반데기 마을", "강원도 강릉시\n 두줄까지")
+    )
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +59,17 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, TestMainActivity::class.java))
 
         }
+
+
+        //파레트 리스트뷰
+        var Adapter = ListAdapter(this, TourList)
+        lv.adapter = Adapter
+
+        //파레트 디테일 리스트뷰
+        var DetailAdapter = DetailListAdapter(this, DetailTourList)
+        lv.adapter = DetailAdapter
+
+
 
         //Url 이미지 비트맵전환
         setContentView(R.layout.color_search_page)
