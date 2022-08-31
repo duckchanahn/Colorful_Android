@@ -368,7 +368,7 @@
             \n유일의 기회!
             \n열흘 이상 이어지는 곡성세계장미축제는 매년 30만명 이상이 찾는 대표 꽃 축제이다.
             \n축제장은 늘 다양한 이벤트와 공연, 즐길거리가 가득하여 가족, 친구, 연인들의 발길이 끊이질 않는다.
-            \n75,000㎡를 가득 채운 장미향에 취하고 싶다면 매년 5월 개최되는 <곡성세계장미축제>를 놓치지 말자."
+            \n75,000㎡를 가득 채운 장미향에 취하고 싶다면 매년 5월 개최되는 곡성세계장미축제를 놓치지 말자."
                     android:textColor="#616161"
                     android:textSize="14dp" />
 
@@ -531,7 +531,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/view_More"
-                        android:background="#FF"
+                        android:background="#00FF0000"
                         android:fontFamily="@font/notosanskr_medium"
                         android:textSize="12dp"
                         android:text="자세히보기"

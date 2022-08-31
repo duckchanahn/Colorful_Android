@@ -9,9 +9,9 @@ import android.util.Base64.encodeToString
 import android.util.Log
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.colorful_android.Login.LoginActivity
 import com.example.colorful_android.Model.User
@@ -21,6 +21,8 @@ import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.util.*
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.kakao.sdk.common.KakaoSdk
+import com.navercorp.nid.NaverIdLoginSDK
 import kotlinx.android.synthetic.main.activity_mypage_pick.*
 import kotlinx.android.synthetic.main.color_palette_list.*
 import kotlinx.android.synthetic.main.home_bottom_dialog.view.*
@@ -55,10 +57,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        if(TokenManagerProvider.instance.manager.getToken() == null) {
+
+        if(TokenManagerProvider.instance.manager.getToken() == null && NaverIdLoginSDK.getAccessToken() == null) {
             startActivity(Intent(this, LoginActivity::class.java))
         } else {
-            Log.e("kakao", "kakao auto login complete")
+            Log.e("kakao", "kakao login : " + TokenManagerProvider.instance.manager.getToken()?.refreshToken.toString())
+            Log.e("naver", "naver token : " + NaverIdLoginSDK.getRefreshToken())
         }
         setContentView(R.layout.activity_main)
 
@@ -76,52 +80,52 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        //파레트 리스트뷰
-        var Adapter = ListAdapter(this, TourList)
-        lv.adapter = Adapter
-
-        //파레트 디테일 리스트뷰
-        var DetailAdapter = DetailListAdapter(this, DetailTourList)
-        lv.adapter = DetailAdapter
-
-
-
-        //Url 이미지 비트맵전환
-        setContentView(R.layout.color_search_page)
-        coroutineScope.launch {
-            val originalDeferred = coroutineScope.async(Dispatchers.IO){
-                getOriginalBitmap()
-            }
-
-            val originalBitmap = originalDeferred.await()
-            loadImage(originalBitmap)
-        }
-
-
-        //bottom_dialog
-        setContentView(R.layout.home_bottom_dialog)
-        var sheetBehavior = BottomSheetBehavior.from(view.home_bottom_dialog)
-        sheetBehavior.addBottomSheetCallback(object  : BottomSheetBehavior.BottomSheetCallback(){
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-                when (newState) {
-                    BottomSheetBehavior.STATE_HIDDEN -> {true
-                    }
-                    BottomSheetBehavior.STATE_EXPANDED -> {
-                    }
-                    BottomSheetBehavior.STATE_COLLAPSED -> {
-                    }
-                    BottomSheetBehavior.STATE_DRAGGING -> {
-                    }
-                    BottomSheetBehavior.STATE_SETTLING -> {
-                    }
-                }
-            }
-
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-
-            }
-
-        })
+//        //파레트 리스트뷰
+//        var Adapter = ListAdapter(this, TourList)
+//        lv.adapter = Adapter
+//
+//        //파레트 디테일 리스트뷰
+//        var DetailAdapter = DetailListAdapter(this, DetailTourList)
+//        lv.adapter = DetailAdapter
+//
+//
+//
+//        //Url 이미지 비트맵전환
+//        setContentView(R.layout.color_search_page)
+//        coroutineScope.launch {
+//            val originalDeferred = coroutineScope.async(Dispatchers.IO){
+//                getOriginalBitmap()
+//            }
+//
+//            val originalBitmap = originalDeferred.await()
+//            loadImage(originalBitmap)
+//        }
+//
+//
+//        //bottom_dialog
+//        setContentView(R.layout.home_bottom_dialog)
+//        var sheetBehavior = BottomSheetBehavior.from(view.home_bottom_dialog)
+//        sheetBehavior.addBottomSheetCallback(object  : BottomSheetBehavior.BottomSheetCallback(){
+//            override fun onStateChanged(bottomSheet: View, newState: Int) {
+//                when (newState) {
+//                    BottomSheetBehavior.STATE_HIDDEN -> {true
+//                    }
+//                    BottomSheetBehavior.STATE_EXPANDED -> {
+//                    }
+//                    BottomSheetBehavior.STATE_COLLAPSED -> {
+//                    }
+//                    BottomSheetBehavior.STATE_DRAGGING -> {
+//                    }
+//                    BottomSheetBehavior.STATE_SETTLING -> {
+//                    }
+//                }
+//            }
+//
+//            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+//
+//            }
+//
+//        })
 
 
 
@@ -141,12 +145,5 @@ class MainActivity : AppCompatActivity() {
         imageView.setImageBitmap(bmp)
         imageView.visibility = View.VISIBLE
     }
-
-
-
-
-
-
-
 
 }

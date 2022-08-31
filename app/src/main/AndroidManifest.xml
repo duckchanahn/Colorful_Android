@@ -56,7 +56,6 @@
         </activity>
 
 
-        <activity android:name=".TestColor.TestColorActivity" />
         <activity android:name=".TestColor.TestMainActivity" />
         <activity android:name=".TestColor.PersonalTestSelectImageActivity" />
         <activity android:name=".TestColor.PersonalTestResultActivity" />

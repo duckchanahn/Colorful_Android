@@ -52,7 +52,7 @@
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="0dp"
-            android:background="#FF"
+            android:background="#00FF0000"
             android:text="편집"
             app:layout_constraintEnd_toEndOf="@+id/view"
             tools:ignore="MissingConstraints" />
@@ -64,7 +64,7 @@
         android:verticalSpacing="8dp"
         android:horizontalSpacing="8dp"
         android:layout_margin="16dp"
-        android:numColumss="3"
+        android:columnCount ="3"
         app:layout_constraintTop_toBottomOf="@+id/layout_tapbar">
 
         <ImageView

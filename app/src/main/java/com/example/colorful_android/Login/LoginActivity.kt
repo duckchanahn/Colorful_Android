@@ -112,7 +112,8 @@ class LoginActivity : AppCompatActivity() {
             }
             else if (user != null) {
                 Log.i("kakaoLoginGetInfo", "사용자 정보 요청 성공" +
-                        "\n회원번호: ${user.id}" )
+                        "\n회원번호: ${user.id}" + "\n닉네임: ${user.properties?.get("nickname")}"  + "\n토큰: ${user.properties?.get("nickname")}" )
+
             }
         }
     }

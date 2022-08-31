@@ -107,7 +107,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
-        android:background="#FF"
+        android:background="#00FF0000"
         android:fontFamily="@font/notosanskr_medium"
         android:text="다음에 하기"
         android:textSize="14dp"

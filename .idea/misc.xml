@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1225" />
+        <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/drawable/btn_main_color.xml" value="0.1225" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2515" />
-
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/drawable/login_btn_confirm.xml" value="0.1225" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/drawable/login_btn_non_confirm.xml" value="0.245" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/drawable/personal_color_selet_btn.xml" value="0.1225" />
@@ -17,16 +18,18 @@
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/activity_login.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/activity_main.xml" value="0.20126926563916592" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/activity_my_page.xml" value="0.20820863616930313" />
+        <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/activity_mypage_pick.xml" value="0.536" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/activity_navi.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/color_palette_list.xml" value="0.1" />
+        <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/color_search_page.xml" value="0.11244121419410004" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/color_test_result.xml" value="0.1" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/color_test_select.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/fragment_mypage.xml" value="0.1" />
+        <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/home_bottom_dialog.xml" value="0.264" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/personal_color_select_image_layout.xml" value="0.2071622846781505" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/psychologial_test.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/psychological_test_ei.xml" value="0.4" />
-
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/test_main_layout.xml" value="0.1" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/test_result_personal.xml" value="0.1" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/toolbar_detailpage.xml" value="0.20820863616930313" />
@@ -35,47 +38,60 @@
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/toolbar_non.xml" value="0.20820863616930313" />
         <entry key="..\:/Code/Colorful/Colorful_android/app/src/main/res/layout/toolbar_testpage.xml" value="0.20820863616930313" />
         <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2955" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/drawable/bottom_dialog_bar.xml" value="0.251" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/drawable/bottom_dialog_frame.xml" value="0.252" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/drawable/btn_main_color.xml" value="0.292" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/drawable/division_line.xml" value="0.251" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/drawable/login_btn_non_confirm.xml" value="0.292" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/drawable/personal_color_selet_btn.xml" value="0.2955" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/drawable/psy_test_answer_select_btn.xml" value="0.2955" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/drawable/searchbox_black.xml" value="0.292" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/drawable/toolbar_layout_test.xml" value="0.2915" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/activity_home_main.xml" value="0.25" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/activity_login.xml" value="0.2364258230012826" />
         <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/activity_my_page.xml" value="0.33" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/activity_mypage_pick.xml" value="0.25" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/activity_search_main.xml" value="0.33" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/bottom_dialog_frame.xml" value="0.20222317229585293" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/color_palette_list.xml" value="0.25" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/color_search_page.xml" value="0.18" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/color_test_result.xml" value="0.30055579307396324" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/color_test_select.xml" value="0.22" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/home_bottom_dialog.xml" value="0.33" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/home_bottom_sheet.xml" value="0.3074561403508772" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/home_map_detail.xml" value="0.3074561403508772" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/palette_detail_page.xml" value="0.30833333333333335" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/palette_detail_page2.xml" value="0.30833333333333335" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/palette_detail_page3.xml" value="0.30833333333333335" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/personal_color_select_image_layout.xml" value="0.18495013599274707" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/psychologial_test.xml" value="0.30833333333333335" />
+        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/color_test_select.xml" value="0.25" />
         <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/psychological_test.xml" value="0.25" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/psychological_test_ei.xml" value="0.33" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/test_main_layout.xml" value="0.18495013599274707" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/toolbar_mainpage.xml" value="0.3048245614035088" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/toolbar_mypage.xml" value="0.2364258230012826" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/toolbar_mypage_pick.xml" value="0.25" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/toolbar_non.xml" value="0.3048245614035088" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/toolbar_platte_list.xml" value="0.3048245614035088" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/toolbar_searchpage.xml" value="0.33" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/toolbar_testpage.xml" value="0.2364258230012826" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/tour_card_view.xml" value="0.30394736842105263" />
-        <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/layout/tour_detail_card_view.xml" value="0.25" />
         <entry key="..\:/Colorful/Colorful_Android/app/src/main/res/xml/file_paths.xml" value="0.1" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/btn_424242_color.xml" value="0.2185" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/btn_google_login.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/btn_kakao_login.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/btn_main_color.xml" value="0.2185" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/btn_naver_login.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/btn_refresh_mypage.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/chip_check_color.xml" value="0.209" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/chips_main_color.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/ic_nav_home.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/menu_click_change.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/menu_click_color.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/menu_click_home.xml" value="0.2185" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/menu_click_mypage.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/menu_click_search.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/numbering_main_color.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/psy_test_answer_button.xml" value="0.2185" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/psy_test_answer_non_select_btn.xml" value="0.2185" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/psy_test_answer_select_btn.xml" value="0.2185" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/psy_test_shape_gray_color.xml" value="0.2185" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/psy_test_shape_main_color.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/searchbox_black.xml" value="0.2155" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/drawable/toolbar_layout_test.xml" value="0.2185" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/activity_home_main.xml" value="0.33" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/activity_login.xml" value="0.30394736842105263" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/activity_main.xml" value="0.3048245614035088" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/activity_my_page.xml" value="0.25" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/activity_navi.xml" value="0.3013157894736842" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/activity_search_main.xml" value="0.33" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/color_palette_list.xml" value="0.33" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/color_test_result.xml" value="0.3048245614035088" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/color_test_select.xml" value="0.33" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/fragment_color.xml" value="0.3048245614035088" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/fragment_home.xml" value="0.3048245614035088" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/fragment_mypage.xml" value="0.3013157894736842" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/home_main_page.xml" value="0.18" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/palette_detail_page.xml" value="0.3048245614035088" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/palette_detail_page2.xml" value="0.30394736842105263" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/palette_detail_page3.xml" value="0.3048245614035088" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/personal_color_select_image_layout.xml" value="0.25" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/psy_color_test_result.xml" value="0.33" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/psychologial_test.xml" value="0.33" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/psychological_test_ei.xml" value="0.271875" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/test_main_layout.xml" value="0.3048245614035088" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/test_result_personal.xml" value="0.3048245614035088" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/toolbar_detailpage.xml" value="0.3048245614035088" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/toolbar_mainpage.xml" value="0.25" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/toolbar_mypage.xml" value="0.3048245614035088" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/toolbar_non.xml" value="0.30394736842105263" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/layout/toolbar_testpage.xml" value="0.3609375" />
+        <entry key="..\:/Yerim/Colorful_Android/app/src/main/res/menu/navi_menu.xml" value="0.3048245614035088" />
       </map>
     </option>
   </component>
