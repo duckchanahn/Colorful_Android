@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="328dp"
+    android:layout_height="240dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/psy_test_answer_non_select_btn">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/textLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/layout_btn">
+
+        <TextView
+            android:id="@+id/tour_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="삭제하시겠습니까?"
+            android:fontFamily="@font/notosanskr_bold"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            tools:ignore="MissingConstraints" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="136dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_424242_color"
+            android:text="취소"
+            android:fontFamily="@font/notosanskr_bold"
+            android:padding="4dp"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_confirm"
+            android:layout_width="136dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_checkable_confrim"
+            android:fontFamily="@font/notosanskr_bold"
+            android:padding="4dp"
+            android:text="삭제"
+            android:textColor="@drawable/text_checkable_cofirm"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
