@@ -6,9 +6,11 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.colorful_android.Model.User
+import com.example.colorful_android.DTO.Customer
 import com.example.colorful_android.R
-import com.gun0912.tedpermission.provider.TedPermissionProvider.context
+import com.example.colorful_android.Retrofit.MyRetrofit
+import com.example.colorful_android.TestColor.TestMainActivity
+import com.kakao.sdk.auth.TokenManagerProvider
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
@@ -18,16 +20,25 @@ import com.navercorp.nid.oauth.NidOAuthLogin
 import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.navercorp.nid.profile.NidProfileCallback
 import com.navercorp.nid.profile.data.NidProfileResponse
-import kotlinx.android.synthetic.main.activity_login.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
+
+    override fun onBackPressed() {
+        // 뒤로가기 멈춰!
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val btn_kakako : Button = findViewById(R.id.btn_kakako)
+
+
+        val btn_kakako : Button = findViewById(R.id.btn_kakao)
         val btn_naver : Button = findViewById(R.id.btn_naver)
-        val btn_google : Button = findViewById(R.id.btn_google)
+//        val btn_google : Button = findViewById(R.id.btn_google)
 
         btn_kakako.setOnClickListener {
             // 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
@@ -68,7 +79,11 @@ class LoginActivity : AppCompatActivity() {
                     NidOAuthLogin().callProfileApi(object : NidProfileCallback<NidProfileResponse> {
                         override fun onSuccess(response: NidProfileResponse) {
                             Log.e("navergetUserInfo","response" + "$response")
-
+                            Customer.getInstance().setInstance(0, NaverIdLoginSDK.getRefreshToken(), response.profile?.name, response.profile?.id, "", "", "네이버")
+                            signup()
+//                            response.profile?.id
+//                            response.profile?.name
+//                            NaverIdLoginSDK.getRefreshToken()
                         }
                         override fun onFailure(httpStatus: Int, message: String) {
                             val errorCode = NaverIdLoginSDK.getLastErrorCode().code
@@ -112,9 +127,45 @@ class LoginActivity : AppCompatActivity() {
             }
             else if (user != null) {
                 Log.i("kakaoLoginGetInfo", "사용자 정보 요청 성공" +
-                        "\n회원번호: ${user.id}" + "\n닉네임: ${user.properties?.get("nickname")}"  + "\n토큰: ${user.properties?.get("nickname")}" )
-
+                        "\n토큰 : " + TokenManagerProvider.instance.manager.getToken()?.refreshToken.toString() )
+                Customer.getInstance().setInstance(0, TokenManagerProvider.instance.manager.getToken()?.refreshToken.toString(), user.properties?.get("nickname"), user.id.toString(), "", "", "카카오")
+                signup()
             }
         }
+    }
+
+    fun signup() {
+//        Customer.getInstance().setInstance(customerId, customerName, userId, "", "", loginType)
+        excute_signup()
+
+    }
+
+    private fun excute_signup() {
+        val call_a: Call<Customer> = MyRetrofit.getApiService().signup(Customer.getInstance());
+        call_a.enqueue(object : Callback<Customer> {
+            override fun onResponse(call: Call<Customer>, response: Response<Customer>) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText( getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+                    Log.e("연결이 비정상적 : ", "error code : " + response.code());
+                    return;
+                }
+
+                // 이게 돼?
+                Customer.getInstance().setInstance(response.body())
+                Log.e("customer", response.body()?.token + ",  " + response.body()?.customerName + ",  " + response.body()?.userId + ",  " + response.body()?.personalColor + ",  " + response.body()?.psycologicalColor + ",  " + response.body()?.loginType)
+
+                finish()
+                // 홈으로 이동
+//                Intent next_button_intent = new Intent(psycoloficalTestActivity, PsycologicalTestResult.class);
+//                next_button_intent.putExtra("result", result);
+//                startActivity(next_button_intent);
+            }
+
+            override fun onFailure(call: Call<Customer>, t: Throwable) {
+                Toast.makeText(getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+                Log.e("연결실패", t.message + "");
+            }
+
+        });
     }
 }

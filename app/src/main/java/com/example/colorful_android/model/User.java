@@ -14,6 +14,7 @@ public class User {
         return user;
     }
 
+
     public static User getInstance(int customerId, String userName, String personalColor, String psychologiclaColor) {
         user.setCustomerId(customerId);
         user.setUserName(userName);

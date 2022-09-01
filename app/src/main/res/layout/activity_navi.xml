@@ -4,22 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NaviActivity">
+    tools:context=".Fragment.NaviActivity">
 
-    <FrameLayout
+    <ListView
         android:id="@+id/mainFramLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:labelVisibilityMode="unlabeled"
-        app:menu="@menu/navi_menu"/>
+        <GridLayout
+            android:id="@+id/nav_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFFFF"
+            android:columnCount="4"
+            app:labelVisibilityMode="unlabeled">
 
+            <Button
+                android:id="@+id/homeFragment"
+                android:background="@drawable/ic_nav_home"
+                android:title="" />
 
+            <Button
+                android:id="@+id/searchFragment"
+                android:background="@drawable/menu_click_search"
+                android:title="" />
+
+            <Button
+                android:id="@+id/colorFragment"
+                android:background="@drawable/menu_click_color"
+                android:title="" />
+
+            <Button
+                android:id="@+id/mypageFragment"
+                android:background="@drawable/menu_click_mypage"
+                android:title="" />
+
+        </GridLayout>
+    </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

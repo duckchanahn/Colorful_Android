@@ -1,10 +1,14 @@
 package com.example.colorful_android.Fragment
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.colorful_android.Color.ColorActivity
+import com.example.colorful_android.MainActivity
 import com.example.colorful_android.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -35,7 +39,12 @@ class ColorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_color, container, false)
+        Log.e("colorFrag", "oncreateView")
+        val view = inflater.inflate(R.layout.color_palette_list, null)
+        val intent = Intent(context, ColorActivity::class.java)
+        startActivity(intent)
+//        activity?.finish()
+        return view
     }
 
     companion object {

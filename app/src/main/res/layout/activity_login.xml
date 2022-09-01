@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_kakako"
+        android:id="@+id/btn_kakao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -32,24 +32,6 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         app:layout_constraintTop_toBottomOf="@+id/logo_hangeul" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_google"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:paddingStart="24dp"
-        android:padding="4dp"
-        android:background="@drawable/btn_google_login"
-        android:drawableLeft="@drawable/icon_google"
-        android:text="구글 계정으로 로그인"
-        android:textColor="#212121"
-        android:fontFamily="@font/notosanskr_regular"
-        android:textSize="16dp"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        app:layout_constraintTop_toBottomOf="@+id/btn_kakako" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_naver"
@@ -68,7 +50,7 @@
         android:fontFamily="@font/notosanskr_regular"
         android:textSize="16dp"
         style="@style/Widget.AppCompat.Button.Borderless"
-        app:layout_constraintTop_toBottomOf="@+id/btn_google" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_kakao" />
 
 
     <ImageView

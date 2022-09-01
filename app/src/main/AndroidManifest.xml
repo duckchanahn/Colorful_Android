@@ -27,9 +27,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Colorful_android"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".Fragment.NaviActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".MainActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -56,12 +56,17 @@
         </activity>
 
 
+        <activity android:name=".Home.HomeMainDialog" android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name=".Color.ColorActivity" />
         <activity android:name=".TestColor.TestMainActivity" />
         <activity android:name=".TestColor.PersonalTestSelectImageActivity" />
         <activity android:name=".TestColor.PersonalTestResultActivity" />
         <activity android:name=".TestColor.PsycoloficalTestActivity" />
         <activity android:name=".TestColor.PsycologicalTestResult" />
         <activity android:name=".Login.LoginActivity" />
+
+<!--        <activity android:name="."android:theme="@android:style/Theme.Dialog"/>-->
+
 
         <provider
             android:name="androidx.core.content.FileProvider"

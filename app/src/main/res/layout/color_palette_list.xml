@@ -47,12 +47,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ListView
-            android:id="@+id/lv"
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="#00FFFFFF"
-            android:dividerHeight="24dp"/>
+            android:dividerHeight="24dp"
+            android:orientation="vertical" />
 
 
     </ScrollView>
@@ -60,7 +61,14 @@
 
 
 
-
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/navi_menu"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -6,7 +13,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/image_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
@@ -56,7 +63,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="0dp"
@@ -74,7 +81,7 @@
             android:text=" 님,"
             android:textColor="@color/white"
             android:textSize="32dp"
-            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintStart_toEndOf="@+id/user_name"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -88,7 +95,7 @@
             android:textColor="@color/white"
             android:textSize="32dp"
             app:layout_constraintBottom_toBottomOf="@+id/layout_text"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/user_name"
             app:layout_constraintVertical_bias="0.0"
             tools:layout_editor_absoluteX="0dp"
             tools:ignore="MissingConstraints" />
@@ -109,7 +116,7 @@
         android:src="@drawable/icon_location" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tour_spot_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/notosanskr_medium"
@@ -130,13 +137,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toBottomOf="@+id/tour_spot_name">
 
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/view_More"
             android:background="#00FF0000"
             android:fontFamily="@font/notosanskr_medium"
             android:textSize="12dp"
@@ -153,6 +160,7 @@
             android:layout_weight="1"/>
 
         <ImageButton
+            android:id="@+id/star"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_heart"/>
@@ -160,10 +168,15 @@
 
     </LinearLayout>
 
-
-
-
-
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/navi_menu"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
