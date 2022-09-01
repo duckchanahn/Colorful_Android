@@ -14,7 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.colorful_android.DTO.Palette;
 import com.example.colorful_android.R;
 
-public class TourCardView extends ConstraintLayout {
+public class TourCardView {
 
     private TextView tourName;
     private TextView tourDate;
@@ -27,11 +27,12 @@ public class TourCardView extends ConstraintLayout {
     private LayoutInflater layoutInflater;
 
     public TourCardView(@NonNull Context context, Palette palette) {
-        super(context);
 
         this.palette = palette;
         layoutInflater = LayoutInflater.from(context);
+        this.card = (ConstraintLayout)layoutInflater.inflate(R.layout.tour_card_view, null, false);
         init(context);
+
 
 //        this.setOnClickListener(v -> {
 //            Intent intent = new Intent(context, ColorDetailActivity.class);
@@ -42,9 +43,6 @@ public class TourCardView extends ConstraintLayout {
 
     private void init(Context context){
 //        ConstraintLayout inflater =(ConstraintLayout)context.getSystemService(Context.);
-        card = (ConstraintLayout)layoutInflater.inflate(R.layout.tour_card_view, null, false);
-
-//        card.set
 
         this.tourName = card.findViewById(R.id.tour_name);
         this.tourName.setText(this.palette.getName());
@@ -57,16 +55,9 @@ public class TourCardView extends ConstraintLayout {
         Log.e("palette", "name : " + this.palette.getName() + ", due : " + this.palette.getDue() + ", img : " );
 //        this.tourName.setText(palette.);
 
-
     }
 
-    public View getCard(Context context) {
-        this.card.setOnClickListener(v -> {
-            Log.e("click card", "click!! (palette id : " + this.palette.getPaletteId() + ")");
-            Intent intent = new Intent(context, ColorDetailActivity.class);
-            intent.putExtra("palette", palette);
-            context.startActivity(intent);
-        });
-        return card;
+    public ConstraintLayout getCard() {
+        return (ConstraintLayout)card;
     }
 }

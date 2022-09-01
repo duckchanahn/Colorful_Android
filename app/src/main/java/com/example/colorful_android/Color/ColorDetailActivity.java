@@ -9,9 +9,11 @@ import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.colorful_android.DTO.Palette;
 import com.example.colorful_android.DTO.TourSpot;
+import com.example.colorful_android.Home.HomeMainDialog;
 import com.example.colorful_android.R;
 import com.example.colorful_android.Retrofit.MyRetrofit;
 
@@ -36,6 +38,8 @@ public class ColorDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Palette palette = (Palette) intent.getSerializableExtra("palette");
 
+        Log.e("palette id", "id : " + palette.getPaletteId());
+
         excute(palette.getPaletteId());
     }
 
@@ -53,7 +57,13 @@ public class ColorDetailActivity extends AppCompatActivity {
                 tourSpotList = response.body();
                 for(TourSpot tourSpot : tourSpotList) {
                     TourCardDetailView cardView = new TourCardDetailView(getApplicationContext(), tourSpot);
-                    listView.addView(cardView);
+                    ConstraintLayout card = cardView.getCard();
+                    card.findViewById(R.id.card_layout).setOnClickListener(v -> {
+                        Intent intent = new Intent(getApplicationContext(), HomeMainDialog.class);
+                        intent.putExtra("tourspot", tourSpot);
+                        getApplicationContext().startActivity(intent);
+                    });
+                    listView.addView(card);
                 }
             }
             @Override

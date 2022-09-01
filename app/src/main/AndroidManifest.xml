@@ -58,6 +58,12 @@
 
         <activity android:name=".Home.HomeMainDialog" android:theme="@android:style/Theme.Dialog"/>
         <activity android:name=".Color.ColorActivity" />
+        <activity android:name=".Color.ColorDetailActivity" />
+
+        <activity android:name=".Search.SerachActivity" />
+
+        <activity android:name=".Mypage.MypageActivity" />
+
         <activity android:name=".TestColor.TestMainActivity" />
         <activity android:name=".TestColor.PersonalTestSelectImageActivity" />
         <activity android:name=".TestColor.PersonalTestResultActivity" />

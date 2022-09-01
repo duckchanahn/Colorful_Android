@@ -23,7 +23,7 @@ class ListAdapter(val context: Context, val TourList: ArrayList<TourInfo>) : Bas
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view : View = LayoutInflater.from(context).inflate(R.layout.tour_card_view, null)
-        val cardimg = view.findViewById<ImageView>(R.id.card_img1)
+        val cardimg = view.findViewById<ImageView>(R.id.card_img)
         val tourname = view.findViewById<TextView>(R.id.tour_name)
         val tourdate = view.findViewById<TextView>(R.id.tour_date)
         val tourcount = view.findViewById<TextView>(R.id.tour_count)

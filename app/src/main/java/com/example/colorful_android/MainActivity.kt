@@ -5,17 +5,21 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.colorful_android.Color.ColorActivity
 import com.example.colorful_android.DTO.Customer
 import com.example.colorful_android.DTO.TourSpot
-import com.example.colorful_android.Fragment.*
+import com.example.colorful_android.Fragment.NaviActivity
 import com.example.colorful_android.Home.HomeMainDialog
 import com.example.colorful_android.Login.LoginActivity
+import com.example.colorful_android.Mypage.MypageActivity
 import com.example.colorful_android.Retrofit.MyRetrofit
-import com.example.colorful_android.TestColor.TestMainActivity
+import com.example.colorful_android.Search.SerachActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kakao.sdk.auth.TokenManagerProvider
 import com.navercorp.nid.NaverIdLoginSDK
@@ -42,18 +46,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var detailButton :Button
     lateinit var starButton :ImageButton
 
-    lateinit var homeFrag : Button
-    lateinit var searchFrag : Button
-    lateinit var colorFrag : Button
-    lateinit var mypageFrag : Button
-
     lateinit var navigation : BottomNavigationView
-
-
-
-
-
-
 
     private val TAG_HOME = "home_fragment"
     private val TAG_SEARCH = "search_fragment"
@@ -72,13 +65,7 @@ class MainActivity : AppCompatActivity() {
             excute_login(token = NaverIdLoginSDK.getRefreshToken().toString())
         }
 
-
-
-
         setContentView(R.layout.activity_home_main)
-
-//        excute_home()
-
 
         this.userName = findViewById(R.id.user_name)
         this.backgroundImage = findViewById(R.id.image_background)
@@ -86,21 +73,15 @@ class MainActivity : AppCompatActivity() {
         this.detailButton = findViewById(R.id.detail)
         this.starButton = findViewById(R.id.star)
 
-//        this.homeFrag = findViewById(R.id.homeFragment)
-//        this.searchFrag = findViewById(R.id.searchFragment)
-//        this.colorFrag = findViewById(R.id.colorFragment)
-//        this.mypageFrag = findViewById(R.id.mypageFragment)
         this.navigation = findViewById(R.id.nav_main)
 
         val NaviActivity = NaviActivity()
         navigation.setOnItemSelectedListener { item ->
             when(item.itemId){
-                R.id.homeFragment ->
-                    NaviActivity.setFragment(TAG_HOME, HomeFragment())
-                R.id.searchFragment -> NaviActivity.setFragment(TAG_SEARCH, SearchFragment())
-                R.id.colorFragment -> selected_navi()
-
-                R.id.mypageFragment-> NaviActivity.setFragment(TAG_MYPAGE, MypageFragment())
+//                R.id.homeFragment ->selected_navi(TAG_HOME)
+                R.id.searchFragment -> selected_navi(TAG_SEARCH)
+                R.id.colorFragment -> selected_navi(TAG_COLOR)
+                R.id.mypageFragment-> selected_navi(TAG_MYPAGE)
             }
             true
         }
@@ -122,50 +103,36 @@ class MainActivity : AppCompatActivity() {
             swipeRefreshLayout.isRefreshing = false // 새로고침을 완료하면 아이콘을 없앤다.
         }
 
-//        this.laysetOnRefreshListener {
-//            excute_home()
-//            refresh_layout.isRefreshing = false // 새로고침을 완료하면 아이콘을 없앤다.
-//        }
+    }
+
+    fun selected_navi(TAG : String) {
+
+        if(TAG == TAG_HOME){
+//            startActivity(Intent(this, ColorActivity::class.java))
+//            overridePendingTransition(0, 0); //애니메이션 없애기
+
+//            intent = new Intent(getApplicationContext(), SerachActivity.class);
+            return
+        }
+        else if(TAG == TAG_SEARCH){
+            startActivity(Intent(this, SerachActivity::class.java))
+            overridePendingTransition(0, 0); //애니메이션 없애기
+        }
+        else if(TAG == TAG_COLOR){
+            startActivity(Intent(this, ColorActivity::class.java))
+            overridePendingTransition(0, 0); //애니메이션 없애기
+        }
+        else if(TAG == TAG_MYPAGE){
+            startActivity(Intent(this, MypageActivity::class.java))
+            overridePendingTransition(0, 0); //애니메이션 없애기
+        }
 
     }
 
-    fun selected_navi() {
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-        startActivity(Intent(this, ColorActivity::class.java))
-        overridePendingTransition(0, 0); //애니메이션 없애기
+    override fun onBackPressed() {
+        finish()
+        overridePendingTransition(0, 0) //애니메이션 없애기
     }
-
-//        //파레트 리스트뷰
-//        var Adapter = ListAdapter(this, TourList)
-//        lv.adapter = Adapter
-//
-//        //파레트 디테일 리스트뷰
-//        var DetailAdapter = DetailListAdapter(this, DetailTourList)
-//        lv.adapter = DetailAdapter
-//
-//
-//
-//        //Url 이미지 비트맵전환
-//        setContentView(R.layout.color_search_page)
-//        coroutineScope.launch {
-//            val originalDeferred = coroutineScope.async(Dispatchers.IO){
-//                getOriginalBitmap()
-//            }
-//
-//            val originalBitmap = originalDeferred.await()
-//            loadImage(originalBitmap)
-//        }
-//
-//
-
-//
-//            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-//
-//            }
-//
-//        })
-
-
 
     //Url 이미지 비트맵전환
     private fun getOriginalBitmap(urlString : String) {

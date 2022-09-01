@@ -33,8 +33,9 @@ public class TourCardDetailView extends ConstraintLayout {
         super(context);
 
         this.tourspot = tourspot;
-        layoutInflater = LayoutInflater.from(context);
-        init(context);
+        this.layoutInflater = LayoutInflater.from(context);
+        this.card = (ConstraintLayout)layoutInflater.inflate(R.layout.tour_detail_card_view, null, false);
+        this.init(context);
 
         this.setOnClickListener(v -> {
             Log.e("click tour card", "move tourSpot Detail!!");
@@ -45,8 +46,6 @@ public class TourCardDetailView extends ConstraintLayout {
     }
 
     private void init(Context context){
-//        ConstraintLayout inflater =(ConstraintLayout)context.getSystemService(Context.);
-        card = (ConstraintLayout)layoutInflater.inflate(R.layout.tour_card_view, null, false);
 
         this.tourSpotName = card.findViewById(R.id.detail_name);
         this.tourSpotName.setText(this.tourspot.getName());
@@ -54,12 +53,11 @@ public class TourCardDetailView extends ConstraintLayout {
         this.tourSpotAddress.setText(this.tourspot.getAddress());
 
         this.cardImg = card.findViewById(R.id.detail_img);
-//        this.cardImg.setText(this.tourspot.getName());
 
-        this.card.setOnClickListener(v -> {
-            Intent intent = new Intent(context, HomeMainDialog.class);
-            intent.putExtra("tourspot", tourspot);
-            context.startActivity(intent);
-        });
+
+    }
+
+    public ConstraintLayout getCard() {
+        return (ConstraintLayout)card;
     }
 }

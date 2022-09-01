@@ -298,6 +298,13 @@
     </GridLayout>
 
 
-
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/navi_menu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

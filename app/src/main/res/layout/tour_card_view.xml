@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
@@ -16,7 +16,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true">
 
@@ -37,8 +37,8 @@
                 android:text="강원도 여행"
                 android:textSize="28dp"
                 android:textColor="@color/gary_21"
-                app:layout_constraintStart_toStartOf="@+id/card_img1"
-                app:layout_constraintTop_toTopOf="@+id/card_img1" />
+                app:layout_constraintStart_toStartOf="@+id/card_img"
+                app:layout_constraintTop_toTopOf="@+id/card_img" />
 
             <TextView
                 android:id="@+id/tour_date"
@@ -50,8 +50,8 @@
                 android:textColor="#555555"
                 android:text="22.8.21-22.8.22"
                 android:textSize="14dp"
-                app:layout_constraintStart_toStartOf="@+id/card_img1"
-                app:layout_constraintTop_toTopOf="@+id/card_img1" />
+                app:layout_constraintStart_toStartOf="@+id/card_img"
+                app:layout_constraintTop_toTopOf="@+id/card_img" />
 
             <TextView
                 android:id="@+id/tour_count"
@@ -63,8 +63,8 @@
                 android:textColor="#555555"
                 android:text="3개"
                 android:textSize="14dp"
-                app:layout_constraintEnd_toEndOf="@+id/card_img1"
-                app:layout_constraintBottom_toBottomOf="@+id/card_img1" />
+                app:layout_constraintEnd_toEndOf="@+id/card_img"
+                app:layout_constraintBottom_toBottomOf="@+id/card_img" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

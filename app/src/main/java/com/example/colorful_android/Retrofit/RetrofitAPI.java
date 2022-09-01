@@ -52,7 +52,7 @@ public interface RetrofitAPI {
     @GET(Constatnts_url.PALETTE_DETAIL)
     Call<Palette> paletteDetail(int paletteId);
     @GET(Constatnts_url.PALETTE_TOURSPOT)
-    Call<List<TourSpot>> paletteTourspot(int paletteId);
+    Call<List<TourSpot>> paletteTourspot(@Query("paletteId")int paletteId);
     @GET(Constatnts_url.PALETTE_LIST)
     Call<List<Palette>> paletteList(@Path("customerId") int customerId);
     @POST(Constatnts_url.ADD_PALETTE)
