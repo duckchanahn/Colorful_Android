@@ -23,7 +23,7 @@
             android:paddingTop="18.5dp"
             android:paddingEnd="18.5dp"
             android:paddingBottom="17.6dp"
-            android:src="@drawable/btn_setting" />
+            android:src="@drawable/options_vertical" />
 
 
     </RelativeLayout>
