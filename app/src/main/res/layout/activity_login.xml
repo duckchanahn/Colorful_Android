@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/logo_hangeul"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="279dp"
+        android:src="@drawable/logo_hangeul"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitEnd"
+        android:src="@drawable/background_login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_kakao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="16dp"
+        android:paddingStart="24dp"
+        android:padding="4dp"
+        android:background="@drawable/btn_kakao_login"
+        android:drawableLeft="@drawable/icon_kakao"
+        android:text="카카오 아이디로 로그인"
+        android:textColor="#212121"
+        android:fontFamily="@font/notosanskr_regular"
+        android:textSize="16dp"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        app:layout_constraintBottom_toTopOf="@+id/btn_naver" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_naver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingStart="24dp"
+        android:padding="4dp"
+        android:background="@drawable/btn_naver_login"
+        android:drawableLeft="@drawable/icon_naver_white"
+        android:text="네이버 아이디로 로그인"
+        android:textColor="#767678"
+        android:fontFamily="@font/notosanskr_regular"
+        android:textSize="16dp"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.colorful_android">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Always include this permission -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Include only if your app benefits from precise location access. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
+
+
+
+
+    <application
+        android:name=".GlobalApplication"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Colorful_android"
+        android:usesCleartextTraffic="true">
+<!--        <activity-->
+<!--            android:name=".MainActivity"-->
+<!--            android:exported="false" />-->
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+
+            </intent-filter>
+        </activity>
+
+
+        <!--SplashActivity 등록록-->
+        <activity android:name=".SplashActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+
+
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                        <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
+                        <data android:host="oauth"
+                            android:scheme="kakaobab3f53d7921ca0e8ac626ca5e7a8ea0}" />
+            </intent-filter>
+        </activity>
+
+
+        <activity android:name=".Home.HomeMainDialog" android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name=".Color.ColorActivity" />
+        <activity android:name=".Color.ColorDetailActivity" />
+
+        <activity android:name=".Search.SerachActivity" />
+
+        <activity android:name=".Mypage.MypageActivity" />
+
+        <activity android:name=".TestColor.TestMainActivity" />
+        <activity android:name=".TestColor.PersonalTestSelectImageActivity" />
+        <activity android:name=".TestColor.PersonalTestResultActivity" />
+        <activity android:name=".TestColor.PsycoloficalTestActivity" />
+        <activity android:name=".TestColor.PsycologicalTestResult" />
+        <activity android:name=".Login.LoginActivity" />
+
+<!--        <activity android:name="."android:theme="@android:style/Theme.Dialog"/>-->
+
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.colorful_android.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>
