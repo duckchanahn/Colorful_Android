@@ -44,16 +44,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent">
 
-                <ImageButton
-                    android:id="@+id/imageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="#00FFFFFF"
-                    android:src="@drawable/btn_reorder"
-                    app:layout_constraintEnd_toEndOf="@id/text_layout"
-                    app:layout_constraintTop_toTopOf="@id/text_layout" />
-
                 <TextView
                     android:id="@+id/detail_name"
                     android:layout_width="wrap_content"

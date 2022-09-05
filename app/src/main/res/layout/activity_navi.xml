@@ -22,21 +22,25 @@
             <Button
                 android:id="@+id/homeFragment"
                 android:background="@drawable/ic_nav_home"
+                app:itemIconTint="@color/bottom_nav_color"
                 android:title="" />
 
             <Button
                 android:id="@+id/searchFragment"
-                android:background="@drawable/menu_click_search"
+                android:background="@drawable/ic_nav_search"
+                app:itemIconTint="@color/bottom_nav_color"
                 android:title="" />
 
             <Button
                 android:id="@+id/colorFragment"
-                android:background="@drawable/menu_click_color"
+                android:background="@drawable/ic_nav_color"
+                app:itemIconTint="@color/bottom_nav_color"
                 android:title="" />
 
             <Button
                 android:id="@+id/mypageFragment"
-                android:background="@drawable/menu_click_mypage"
+                android:background="@drawable/ic_nav_mypage"
+                app:itemIconTint="@color/bottom_nav_color"
                 android:title="" />
 
         </GridLayout>

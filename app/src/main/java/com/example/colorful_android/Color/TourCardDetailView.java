@@ -1,10 +1,15 @@
 package com.example.colorful_android.Color;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,7 +21,7 @@ import com.example.colorful_android.DTO.TourSpot;
 import com.example.colorful_android.Home.HomeMainDialog;
 import com.example.colorful_android.R;
 
-public class TourCardDetailView extends ConstraintLayout {
+public class TourCardDetailView extends Activity {
 
     private TextView tourSpotName;
     private TextView tourSpotAddress;
@@ -30,19 +35,19 @@ public class TourCardDetailView extends ConstraintLayout {
     private LayoutInflater layoutInflater;
 
     public TourCardDetailView(@NonNull Context context, TourSpot tourspot) {
-        super(context);
-
         this.tourspot = tourspot;
         this.layoutInflater = LayoutInflater.from(context);
         this.card = (ConstraintLayout)layoutInflater.inflate(R.layout.tour_detail_card_view, null, false);
         this.init(context);
 
-        this.setOnClickListener(v -> {
-            Log.e("click tour card", "move tourSpot Detail!!");
+
+
+//        this.setOnClickListener(v -> {
+//            Log.e("click tour card", "move tourSpot Detail!!");
 //            Intent intent = new Intent(context, ColorDetailActivity.class);
 //            intent.putExtra("palette", tourspot);
 //            context.startActivity(intent);
-        });
+//        });
     }
 
     private void init(Context context){
@@ -60,4 +65,5 @@ public class TourCardDetailView extends ConstraintLayout {
     public ConstraintLayout getCard() {
         return (ConstraintLayout)card;
     }
+    public ImageView getImageView() {return cardImg;}
 }

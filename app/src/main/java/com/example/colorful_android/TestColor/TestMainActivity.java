@@ -17,9 +17,9 @@ public class TestMainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if(Customer.getInstance().getPersonalColor().equals("") && Customer.getInstance().getPsycologicalColor().equals("")) {
-            finish();
-        } else {
             Toast.makeText(this, "테스트를 완료해주세요!", Toast.LENGTH_SHORT);
+        } else {
+            finish();
         }
     }
 

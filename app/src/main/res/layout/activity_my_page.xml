@@ -23,10 +23,12 @@
         app:singleSelection="true">
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/personal_chip"
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
+            android:checkable="true"
             android:fontFamily="@font/notosanskr_bold"
             android:minHeight="32dp"
             android:text="퍼스널"
@@ -35,10 +37,12 @@
             app:chipStartPadding="12dp" />
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/psy_chip"
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="false"
+            android:checkable="true"
             android:minHeight="32dp"
             android:fontFamily="@font/notosanskr_bold"
             android:text="심리"
@@ -49,7 +53,7 @@
     </com.google.android.material.chip.ChipGroup>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -65,7 +69,7 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -76,7 +80,7 @@
         android:textSize="32dp"
         android:textColor="@color/gary_21"
         android:text="끈기왕 여행가"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -86,11 +90,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:src="@drawable/eclipse_mypage"
-        app:layout_constraintTop_toBottomOf="@id/textView2"
+        app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/retry_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="55dp"

@@ -2,6 +2,7 @@ package com.example.colorful_android
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -23,13 +24,15 @@ import com.example.colorful_android.Search.SerachActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kakao.sdk.auth.TokenManagerProvider
 import com.navercorp.nid.NaverIdLoginSDK
+import kotlinx.android.synthetic.main.activity_my_page.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.InputStream
+import java.io.IOException
 import java.net.HttpURLConnection
+import java.net.MalformedURLException
 import java.net.URL
 
 
@@ -78,7 +81,7 @@ class MainActivity : AppCompatActivity() {
         val NaviActivity = NaviActivity()
         navigation.setOnItemSelectedListener { item ->
             when(item.itemId){
-//                R.id.homeFragment ->selected_navi(TAG_HOME)
+                R.id.homeFragment ->selected_navi(TAG_HOME)
                 R.id.searchFragment -> selected_navi(TAG_SEARCH)
                 R.id.colorFragment -> selected_navi(TAG_COLOR)
                 R.id.mypageFragment-> selected_navi(TAG_MYPAGE)
@@ -106,6 +109,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun selected_navi(TAG : String) {
+        Log.e("home", TAG)
 
         if(TAG == TAG_HOME){
 //            startActivity(Intent(this, ColorActivity::class.java))
@@ -126,8 +130,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, MypageActivity::class.java))
             overridePendingTransition(0, 0); //애니메이션 없애기
         }
-
+        finish()
     }
+
 
     override fun onBackPressed() {
         finish()
@@ -136,21 +141,34 @@ class MainActivity : AppCompatActivity() {
 
     //Url 이미지 비트맵전환
     private fun getOriginalBitmap(urlString : String) {
-        val url = URL(urlString)
+        var background : Bitmap? = null;
+        val mThread: Thread = object : Thread() {
+            override fun run() {
+                try {
+                    val url = URL(urlString)
 
-        // web에서 이미지를 가져와 ImageView에 저장할 Bitmap을 만든다.
+                    // Web에서 이미지를 가져온 뒤
+                    // ImageView에 지정할 Bitmap을 만든다
+                    val conn = url.openConnection() as HttpURLConnection
+                    conn.doInput = true // 서버로 부터 응답 수신
+                    conn.connect()
+                    val input = conn.inputStream // InputStream 값 가져오기
+                    background = BitmapFactory.decodeStream(input) // Bitmap으로 변환
+                } catch (e: MalformedURLException) {
+                    e.printStackTrace()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
+        }
 
-        // web에서 이미지를 가져와 ImageView에 저장할 Bitmap을 만든다.
-        val conn: HttpURLConnection = url.openConnection() as HttpURLConnection
-        conn.setDoInput(true) // 서버로부터 응답 수신
+        mThread.start(); // Thread 실행
 
-        conn.connect() //연결된 곳에 접속할 때 (connect() 호출해야 실제 통신 가능함)
-
-
-        val input: InputStream = conn.getInputStream() //inputStream 값 가져오기
-
-        runOnUiThread {
-//            backgroundImage.setImageBitmap(BitmapFactory.decodeStream(input)) // Bitmap으로 변환
+        try {
+            mThread.join()
+            backgroundImage.setImageBitmap(background)
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
         }
     }
 
@@ -226,9 +244,9 @@ class MainActivity : AppCompatActivity() {
 
                 userName.setText(Customer.getInstance().customerName)
 
-                Thread {
+//                Thread {
                     getOriginalBitmap(tourSpot.images)
-                }.start()
+//                }.start()
 
                 tourSpotName.setText(tourSpot.name)
 

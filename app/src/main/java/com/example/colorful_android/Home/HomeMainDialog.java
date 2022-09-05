@@ -4,21 +4,45 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.colorful_android.Color.ColorDetailActivity;
+import com.example.colorful_android.Color.PopupCreatePaletteDue;
+import com.example.colorful_android.Color.PopupDeletePalette;
+import com.example.colorful_android.Color.TourCardView;
+import com.example.colorful_android.DTO.Customer;
+import com.example.colorful_android.DTO.Palette;
 import com.example.colorful_android.DTO.TourSpot;
 import com.example.colorful_android.R;
+import com.example.colorful_android.Retrofit.MyRetrofit;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeMainDialog extends Activity {
 
@@ -32,12 +56,75 @@ public class HomeMainDialog extends Activity {
     private Button addPalette;
     private ImageView addStar;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.home_bottom_dialog);
 
+
+
+        AppBarLayout app = findViewById(R.id.appbar);
+        app.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+
+                Log.d("app", "recycler_view current offset: "+verticalOffset);
+            }
+        });
+
+        app.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+                Log.e("app", "position : " + i + ", " + i1 + ", " + i2 + ", " + i3);
+            }
+        });
+
+        app.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View view, DragEvent dragEvent) {
+                Log.e("app", "drag : " + dragEvent);
+                return false;
+            }
+        });
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+
+        recyclerView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+                Log.e("recyclerView", "position : " + i + ", " + i1 + ", " + i2 + ", " + i3);
+            }
+        });
+
+        recyclerView.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View view, DragEvent dragEvent) {
+                Log.e("recyclerView", "drag : " + dragEvent);
+                return false;
+            }
+        });
+
+        CoordinatorLayout coordinatorLayout = findViewById(R.id.home_bottom_dialog);
+        coordinatorLayout.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+                Log.e("coordinatorLayout", "position : " + i + ", " + i1 + ", " + i2 + ", " + i3);
+            }
+        });
+
+        coordinatorLayout.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View view, DragEvent dragEvent) {
+                Log.e("coordinatorLayout", "drag : " + dragEvent);
+                return false;
+            }
+        });
+
+        coordinatorLayout.setOnClickListener( v -> {
+            Log.e("coordinatorLayout", "click : ");
+        });
 
         Intent intent = getIntent();
         TourSpot tourSpot = (TourSpot) intent.getSerializableExtra("TourSpot");
@@ -85,5 +172,182 @@ public class HomeMainDialog extends Activity {
 //        getWindow().getAttributes().height = height;
 
     }
+
+
+
+    /////////////////////////////////////////////////////////////////
+    // 팔레트 생성
+    /////////////////////////////////////////////////////////////////
+
+
+//    private Palette newPalette;
+//    ActivityResultLauncher<Intent> startactivityCreatePaletteName = registerForActivityResult(
+//            new ActivityResultContracts.StartActivityForResult(),
+//            new ActivityResultCallback<ActivityResult>() {
+//                @Override
+//                public void onActivityResult(ActivityResult result) {
+//                    newPalette = new Palette();
+//                    if (result.getResultCode() == Activity.RESULT_OK) {
+//                        if (result.getData().getBooleanExtra("result", true)) {
+//                            newPalette.setName(result.getData().getStringExtra("paletteName"));
+////                            Log.e("newPalette", result.getData().getStringExtra("paletteName"));
+//                            Intent intentPopup = new Intent(getBaseContext(), PopupCreatePaletteDue.class);
+//                            startactivityCreatePaletteDue.launch(intentPopup);
+//                        }
+//                    }
+//
+//                }
+//            });
+//
+//    ActivityResultLauncher<Intent> startactivityCreatePaletteDue = registerForActivityResult(
+//            new ActivityResultContracts.StartActivityForResult(),
+//            new ActivityResultCallback<ActivityResult>() {
+//                @Override
+//                public void onActivityResult(ActivityResult result) {
+////                    Palette palette = new Palette();
+//                    if (result.getResultCode() == Activity.RESULT_OK) {
+//                        if (result.getData().getBooleanExtra("result", true)) {
+//                            newPalette.setDue(result.getData().getStringExtra("paletteDue"));
+//                            newPalette.setCustomerId(Customer.getInstance().getCustomerId());
+//                            excute_createPalette();
+//                        }
+//                    }
+//
+//                }
+//            });
+//
+//    private void excute_createPalette() {
+//        Call<Palette> call = MyRetrofit.getApiService().addPalette(newPalette);
+//        call.enqueue(new Callback<Palette>() {
+//            @Override
+//            public void onResponse(Call<Palette> call, Response<Palette> response) {
+//                if (!response.isSuccessful()) {
+//                    Toast.makeText(getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+//                    Log.e("연결이 비정상적 : ", "error code : " + response.code());
+//                    return;
+//                }
+//                Log.d("연결이 성공적 : ", response.body().toString());
+////                tourList.add(response.body());
+//
+//                TourCardView cardView = new TourCardView(getApplicationContext(), response.body());
+//                cardView.getCard().setId(response.body().getPaletteId());
+//
+//                cardView.getDeleteButton().setOnClickListener( v -> {
+////                Intent intent = new Intent(getBaseContext(), PopupDeletePalette.class);
+////                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // 1줄 추가함
+////                    intent.putExtra("cardView", cardView);
+////                startActivityForResult(intent, 1);
+//                    selectCardId = cardView.getCard().getId();
+//                    Intent intentPopup = new Intent(getBaseContext(), PopupDeletePalette.class);
+//                    startactivityDeletePalette.launch(intentPopup);
+//                });
+//
+//                ConstraintLayout card = cardView.getCard();
+//                card.findViewById(R.id.card_img).setOnClickListener(v -> {
+//                    Intent intent = new Intent(getApplicationContext(), ColorDetailActivity.class);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // 1줄 추가함
+//                    intent.putExtra("palette", response.body());
+//                    getApplicationContext().startActivity(intent);
+//                });
+//                cardList.add(cardView);
+////                    listView.notifyAll();
+//                listView.addView(card);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Palette> call, Throwable t) {
+//                Toast.makeText(getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+//                Log.e("연결실패", t.getMessage());
+//            }
+//        });
+//    }
+//
+//    ActivityResultLauncher<Intent> startactivityDeletePalette = registerForActivityResult(
+//            new ActivityResultContracts.StartActivityForResult(),
+//            new ActivityResultCallback<ActivityResult>() {
+//                @Override
+//                public void onActivityResult(ActivityResult result) {
+//                    if (result.getResultCode() == Activity.RESULT_OK) {
+//                        if (result.getData().getBooleanExtra("result", true)) {
+//                            menuDelete();
+//                            deletePaletteEnd();
+//                        } else {
+//                            deletePaletteEnd();
+//                        }
+//                    }
+//
+//                }
+//            });
+//
+//
+//
+//    private int selectCardId;
+//    private void menuRefresh() {
+////        int id = 1;
+//        for(Palette palette : tourList) {
+//            TourCardView cardView = new TourCardView(getApplicationContext(), palette);
+//            cardView.getCard().setId(palette.getPaletteId());
+////            id++;
+//
+//            cardView.getDeleteButton().setOnClickListener( v -> {
+////                Intent intent = new Intent(getBaseContext(), PopupDeletePalette.class);
+////                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // 1줄 추가함
+////                    intent.putExtra("cardView", cardView);
+////                startActivityForResult(intent, 1);
+//                selectCardId = cardView.getCard().getId();
+//                Intent intentPopup = new Intent(this, PopupDeletePalette.class);
+//                startactivityDeletePalette.launch(intentPopup);
+//            });
+//
+//            ConstraintLayout card = cardView.getCard();
+//            card.findViewById(R.id.card_img).setOnClickListener(v -> {
+//                Intent intent = new Intent(getApplicationContext(), ColorDetailActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // 1줄 추가함
+//                intent.putExtra("palette", palette);
+//                getApplicationContext().startActivity(intent);
+//            });
+//            cardList.add(cardView);
+////                    listView.notifyAll();
+//            listView.addView(card);
+//        }
+//    }
+//
+//    private void menuDelete() {
+//        for(TourCardView cv : cardList) {
+//            if(cv.getCard().getId() == selectCardId) {
+//                listView.removeView(cv.getCard());
+//                excute_deletePalette(selectCardId);
+////                        cardList.remove(cardView);
+//            }
+//        }
+//    }
+//
+//    private void deletePaletteEnd() {
+//        for (TourCardView card : cardList) {
+//            card.getDeleteButton().setVisibility(View.GONE);
+//        }
+//    }
+//
+//    private void excute_deletePalette(int selectCardId) {
+//        Call<Integer> call = MyRetrofit.getApiService().deletePalette(selectCardId);
+//        call.enqueue(new Callback<Integer>() {
+//            @Override
+//            public void onResponse(Call<Integer> call, Response<Integer> response) {
+//                if (!response.isSuccessful()) {
+//                    Toast.makeText(getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+//                    Log.e("연결이 비정상적 : ", "error code : " + response.code());
+//                    return;
+//                }
+//                Log.d("연결이 성공적 : ", response.body().toString());
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Integer> call, Throwable t) {
+//                Toast.makeText(getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+//                Log.e("연결실패", t.getMessage());
+//            }
+//        });
+//    }
 
 }

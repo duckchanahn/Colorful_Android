@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn1"
+        android:id="@+id/withdrawal"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,12 +41,12 @@
         android:background="@drawable/psy_test_answer_non_select_btn"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn2"
+        android:id="@+id/logout"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn1"
+        app:layout_constraintTop_toBottomOf="@+id/withdrawal"
         android:text="로그아웃"
         android:fontFamily="@font/notosanskr_medium"
         android:textSize="14dp"
@@ -57,12 +57,12 @@
         android:background="@drawable/psy_test_answer_non_select_btn"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn3"
+        android:id="@+id/policy"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn2"
+        app:layout_constraintTop_toBottomOf="@+id/logout"
         android:text="개인정보처리방침 및 이용약관"
         android:fontFamily="@font/notosanskr_medium"
         android:textSize="14dp"
@@ -73,12 +73,12 @@
         android:background="@drawable/psy_test_answer_non_select_btn"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn4"
+        android:id="@+id/license"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn3"
+        app:layout_constraintTop_toBottomOf="@+id/policy"
         android:text="오픈 라이선스"
         android:fontFamily="@font/notosanskr_medium"
         android:textSize="14dp"

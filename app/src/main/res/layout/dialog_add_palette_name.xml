@@ -53,6 +53,7 @@
             tools:ignore="MissingConstraints" />
 
         <EditText
+            android:id="@+id/palette_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
@@ -61,7 +62,7 @@
             android:background="#00FFFFFF"
             app:layout_constraintStart_toStartOf="@id/edit_text"
             app:layout_constraintEnd_toEndOf="@id/edit_text"
-            android:layout_paddingStart="13.66dp"
+
             android:hint="새로운 팔레트 이름"
             android:fontFamily="@font/notosanskr_regular"
             android:textSize="14dp"
@@ -86,6 +87,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/btn_424242_color"
             android:text="취소"
+            android:gravity="center"
             android:fontFamily="@font/notosanskr_bold"
             android:padding="4dp"
             android:textColor="@color/white"
@@ -101,6 +103,7 @@
             android:fontFamily="@font/notosanskr_bold"
             android:padding="4dp"
             android:text="확인"
+            android:gravity="center"
             android:textColor="@drawable/text_checkable_cofirm"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="parent"

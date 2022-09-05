@@ -73,8 +73,8 @@ class LoginActivity : AppCompatActivity() {
             val oauthLoginCallback = object : OAuthLoginCallback {
                 override fun onSuccess() {
                     // 네이버 로그인 인증이 성공했을 때 수행할 코드 추가
-                    Log.i("naverLoginTry", "access token : " + NaverIdLoginSDK.getAccessToken())
-                    Log.i("naverLoginTry", "refresh token : " + NaverIdLoginSDK.getRefreshToken())
+//                    Log.i("naverLoginTry", "access token : " + NaverIdLoginSDK.getAccessToken())
+//                    Log.i("naverLoginTry", "refresh token : " + NaverIdLoginSDK.getRefreshToken())
 
                     NidOAuthLogin().callProfileApi(object : NidProfileCallback<NidProfileResponse> {
                         override fun onSuccess(response: NidProfileResponse) {

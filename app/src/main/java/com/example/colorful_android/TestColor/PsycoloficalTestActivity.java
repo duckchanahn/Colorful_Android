@@ -172,40 +172,45 @@ public class PsycoloficalTestActivity extends AppCompatActivity {
 
     private void selectAnswer(int select, int index) {
         user_answers[index] = select;
+        setStrokeInAnswer(index);
 
-        if(user_answers[index] == 1) {
-            this.firstAnswer.setPressed(true);
-            this.secondAnswer.setPressed(false);
-        } else if(user_answers[index] == 2) {
-            this.firstAnswer.setPressed(false);
-            this.secondAnswer.setPressed(true);
-        } else {
-            this.firstAnswer.setPressed(false);
-            this.secondAnswer.setPressed(false);
-        }
-
-        String answer_select = "";
-        for(int i : user_answers) {
-            answer_select += i + ", ";
-        }
-        Log.e("test", "answer_select : " + answer_select + ", index : " + index);
-        Log.e("answer", "first : " + this.firstAnswer.getSolidColor() + ", second : " + this.secondAnswer.getSolidColor());
+//        String answer_select = "";
+//        for(int i : user_answers) {
+//            answer_select += i + ", ";
+//        }
+//        Log.e("test", "answer_select : " + answer_select + ", index : " + index);
+//        Log.e("answer", "first : " + this.firstAnswer.getSolidColor() + ", second : " + this.secondAnswer.getSolidColor());
     }
 
     private void setButtonPress(int index) {
 
-        String userAnswersString = "";
-        for(int i : user_answers) {
-            userAnswersString += i +", ";
-        }
-        Log.e("test", "userAnswersString : " + userAnswersString + ", index : " + index);
+//        String userAnswersString = "";
+//        for(int i : user_answers) {
+//            userAnswersString += i +", ";
+//        }
+//        Log.e("test", "userAnswersString : " + userAnswersString + ", index : " + index);
 
+        setStrokeInAnswer(index);
         if(user_answers[index] == 1) {
             this.firstAnswer.callOnClick();
         } else if(user_answers[index] == 2) {
             this.secondAnswer.callOnClick();
         }
     }
+
+    private void setStrokeInAnswer(int index) {
+        if(user_answers[index] == 1) {
+            this.firstAnswer.setBackground(getResources().getDrawable(R.drawable.psy_test_answer_select_btn));
+            this.secondAnswer.setBackground(getResources().getDrawable(R.drawable.psy_test_answer_non_select_btn));
+        } else if(user_answers[index] == 2) {
+            this.firstAnswer.setBackground(getResources().getDrawable(R.drawable.psy_test_answer_non_select_btn));
+            this.secondAnswer.setBackground(getResources().getDrawable(R.drawable.psy_test_answer_select_btn));
+        } else {
+            this.firstAnswer.setBackground(getResources().getDrawable(R.drawable.psy_test_answer_non_select_btn));
+            this.secondAnswer.setBackground(getResources().getDrawable(R.drawable.psy_test_answer_non_select_btn));
+        }
+    }
+
 
     private ArrayList<Integer> makeRandomList() {
         HashSet<Integer> set;
