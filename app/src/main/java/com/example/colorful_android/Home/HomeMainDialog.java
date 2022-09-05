@@ -14,7 +14,9 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,13 +40,14 @@ import com.example.colorful_android.DTO.TourSpot;
 import com.example.colorful_android.R;
 import com.example.colorful_android.Retrofit.MyRetrofit;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeMainDialog extends Activity {
+public class HomeMainDialog extends AppCompatActivity {
 
     private TextView tourName;
     private TextView address;
@@ -54,82 +57,71 @@ public class HomeMainDialog extends Activity {
     private TextView park;
     private TextView content;
     private Button addPalette;
+    private ImageButton prevButton;
     private ImageView addStar;
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    private boolean start;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.home_bottom_dialog);
 
-
-
         AppBarLayout app = findViewById(R.id.appbar);
+        prevButton = findViewById(R.id.prev_button);
+        prevButton.setVisibility(View.INVISIBLE);
+        LinearLayout toolbar = findViewById(R.id.toolbar);
+        int minHeight = findViewById(R.id.tour_name).getHeight();
+        Log.e("minHeight", "minHeight : "+ minHeight);
+
+        toolbar.setMinimumHeight(minHeight);
+//        CollapsingToolbarLayout cool = findViewById(R.id.collapsing_toolbar);
+//
+//        int minHeight = toolbar.getHeight();
+//        toolbar.setMinimumHeight(minHeight);
+//        cool.setMinimumHeight(minHeight);
+//        app.setMinimumHeight(minHeight);
+//        cool.offsetTopAndBottom(-500);
+
+
+        app.offsetTopAndBottom(500);
+        DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
+        int width = (int) (dm.heightPixels); // Display 사이즈의 90%
+        Log.e("app", "width: "+width);
+
+        start = false;
         app.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
 
                 Log.d("app", "recycler_view current offset: "+verticalOffset);
+                if(verticalOffset < 0) {
+                    Log.e("app", "start!!");
+                    start = true;
+                }
+
+                if(verticalOffset == 0 && start) {
+                    Log.e("app", "bottom!!");
+                    finish();
+                }
+
+                if (Math.abs(verticalOffset) > getApplicationContext().getResources().getDisplayMetrics().heightPixels) {
+                    Log.e("app", "top!!");
+                    prevButton.setVisibility(View.VISIBLE);
+                } else {
+                    prevButton.setVisibility(View.INVISIBLE);
+                }
             }
         });
-
-        app.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View view, int i, int i1, int i2, int i3) {
-                Log.e("app", "position : " + i + ", " + i1 + ", " + i2 + ", " + i3);
-            }
-        });
-
-        app.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View view, DragEvent dragEvent) {
-                Log.e("app", "drag : " + dragEvent);
-                return false;
-            }
-        });
-
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-
-        recyclerView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View view, int i, int i1, int i2, int i3) {
-                Log.e("recyclerView", "position : " + i + ", " + i1 + ", " + i2 + ", " + i3);
-            }
-        });
-
-        recyclerView.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View view, DragEvent dragEvent) {
-                Log.e("recyclerView", "drag : " + dragEvent);
-                return false;
-            }
-        });
-
-        CoordinatorLayout coordinatorLayout = findViewById(R.id.home_bottom_dialog);
-        coordinatorLayout.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View view, int i, int i1, int i2, int i3) {
-                Log.e("coordinatorLayout", "position : " + i + ", " + i1 + ", " + i2 + ", " + i3);
-            }
-        });
-
-        coordinatorLayout.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View view, DragEvent dragEvent) {
-                Log.e("coordinatorLayout", "drag : " + dragEvent);
-                return false;
-            }
-        });
-
-        coordinatorLayout.setOnClickListener( v -> {
-            Log.e("coordinatorLayout", "click : ");
-        });
+;
 
         Intent intent = getIntent();
         TourSpot tourSpot = (TourSpot) intent.getSerializableExtra("TourSpot");
 
         Log.e("dialog", String.valueOf(tourSpot));
+
+//        ConstraintLayout homeDial = findViewById(R.id.dialog_home_main);
 
         this.tourName = findViewById(R.id.tour_name);
         this.tourName.setText(tourSpot.getName());
@@ -160,9 +152,9 @@ public class HomeMainDialog extends Activity {
 
         });
 
-        Window window = this.getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        Window window = this.getWindow();
+//        window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+//        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
 
 //        DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
