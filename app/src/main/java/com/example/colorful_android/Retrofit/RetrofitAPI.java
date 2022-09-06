@@ -49,6 +49,8 @@ public interface RetrofitAPI {
     Call<List<TourSpotSummary>> recommendPsycolor(String psy);
     @GET(Constatnts_url.RECOMMEND_PERSONALCOLOR)
     Call<List<TourSpotSummary>> recommendPersonalColor(String personal);
+    @GET(Constatnts_url.RANDOM_TOURSPOT)
+    Call<List<TourSpot>> randomTourSpot();
     @GET(Constatnts_url.PALETTE_DETAIL)
     Call<Palette> paletteDetail(int paletteId);
     @GET(Constatnts_url.PALETTE_TOURSPOT)
@@ -58,15 +60,17 @@ public interface RetrofitAPI {
     @POST(Constatnts_url.ADD_PALETTE)
     Call<Palette> addPalette(@Body Palette palette);
     @POST(Constatnts_url.DELETE_PALETTE)
-    Call<Integer> deletePalette(int paletteId);
+    Call<Integer> deletePalette(@Query("paletteId") int paletteId);
     @POST(Constatnts_url.PALETTE_ADD)
     Call<Integer> paletteAdd();
     @POST(Constatnts_url.PALETTE_DELETE)
     Call<Integer> paletteDelete();
     @POST(Constatnts_url.STAR_ADD)
-    Call<Star> starAdd();
+    Call<Star> starAdd(@Query("customerId")int customerId, @Query("tourSpotId")int tourSpotId);
     @POST(Constatnts_url.STAR_DELETE)
-    Call<Integer> starDelete();
+    Call<Integer> starDelete(@Query("starId")int starId);
+    @GET(Constatnts_url.STAR_CHECK)
+    Call<Star> starCheck(@Query("customerId")int customerId, @Query("tourSpotId")int tourSpotId);
     @POST(Constatnts_url.STAR_TOURSPOTLIST)
     Call<List<TourSpotSummary>> starTourspotList();
 

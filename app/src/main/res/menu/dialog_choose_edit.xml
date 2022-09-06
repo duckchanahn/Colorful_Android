@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/palette_create"
+
+        android:title="생성" />
+
+    <item
+        android:id="@+id/palette_delete"
+        android:title="삭제"/>
+
+    <item
+        android:id="@+id/palette_update"
+        android:title="편집"/>
+
+</menu>

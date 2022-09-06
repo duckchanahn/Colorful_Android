@@ -22,18 +22,18 @@
             android:textColor="@color/gary_21"
             android:textSize="18dp" />
 
-       <ImageView
+        <ImageView
             android:id="@+id/btn_heart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="0dp"
+            android:layout_toLeftOf="@+id/btn_setting"
             android:background="#00FFFFFF"
             android:paddingStart="17.6dp"
             android:paddingTop="18.5dp"
             android:paddingEnd="18.5dp"
             android:paddingBottom="17.6dp"
-            android:src="@drawable/btn_heart_black"
-            android:layout_toLeftOf="@+id/btn_setting"/>
+            android:src="@drawable/btn_heart_black" />
 
 
         <ImageView

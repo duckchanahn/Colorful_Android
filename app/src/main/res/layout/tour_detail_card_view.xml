@@ -53,7 +53,6 @@
                     android:src="@drawable/btn_reorder"
                     app:layout_constraintEnd_toEndOf="@id/text_layout"
                     app:layout_constraintTop_toTopOf="@id/text_layout" />
-
                 <TextView
                     android:id="@+id/detail_name"
                     android:layout_width="wrap_content"

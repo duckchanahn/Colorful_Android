@@ -2,17 +2,16 @@ package com.example.colorful_android
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.colorful_android.Color.ColorActivity
 import com.example.colorful_android.DTO.Customer
+import com.example.colorful_android.DTO.Star
 import com.example.colorful_android.DTO.TourSpot
 import com.example.colorful_android.Fragment.NaviActivity
 import com.example.colorful_android.Home.HomeMainDialog
@@ -28,8 +27,9 @@ import kotlinx.coroutines.Dispatchers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.InputStream
+import java.io.IOException
 import java.net.HttpURLConnection
+import java.net.MalformedURLException
 import java.net.URL
 
 
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     val IMAGE_URL = "http://tong.visitkorea.or.kr/cms/resource/58/1902758_image2_1.jpg"
     val coroutineScope = CoroutineScope(Dispatchers.Main)
 
-    val tourSpot = TourSpot()
+    lateinit var tourSpot : TourSpot
 
     lateinit var userName :TextView
     lateinit var backgroundImage :ImageView
@@ -52,6 +52,8 @@ class MainActivity : AppCompatActivity() {
     private val TAG_SEARCH = "search_fragment"
     private val TAG_COLOR = "color_fragment"
     private val TAG_MYPAGE = "mypage_fragment"
+
+    private lateinit var star : Star
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -67,18 +69,20 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_home_main)
 
+        tourSpot = TourSpot()
+
         this.userName = findViewById(R.id.user_name)
         this.backgroundImage = findViewById(R.id.image_background)
         this.tourSpotName = findViewById(R.id.tour_spot_name)
         this.detailButton = findViewById(R.id.detail)
-        this.starButton = findViewById(R.id.star)
+        this.starButton = findViewById(R.id.star_button)
 
         this.navigation = findViewById(R.id.nav_main)
 
         val NaviActivity = NaviActivity()
         navigation.setOnItemSelectedListener { item ->
             when(item.itemId){
-//                R.id.homeFragment ->selected_navi(TAG_HOME)
+                R.id.homeFragment ->selected_navi(TAG_HOME)
                 R.id.searchFragment -> selected_navi(TAG_SEARCH)
                 R.id.colorFragment -> selected_navi(TAG_COLOR)
                 R.id.mypageFragment-> selected_navi(TAG_MYPAGE)
@@ -94,6 +98,17 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        this.starButton = findViewById<ImageButton>(R.id.star_button)
+        excute_starCheck(tourSpot.tourSpotId)
+        this.starButton.setOnClickListener(View.OnClickListener { v: View? ->
+            Log.e("star", "start!! bool : $result")
+            if (result) {
+                excute_deleteStar(star.getStarId())
+            } else {
+                excute_addStar(tourSpot.tourSpotId)
+            }
+        })
+
 
 
         val swipeRefreshLayout: SwipeRefreshLayout
@@ -106,6 +121,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun selected_navi(TAG : String) {
+        Log.e("home", TAG)
 
         if(TAG == TAG_HOME){
 //            startActivity(Intent(this, ColorActivity::class.java))
@@ -126,8 +142,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, MypageActivity::class.java))
             overridePendingTransition(0, 0); //애니메이션 없애기
         }
-
+        finish()
     }
+
 
     override fun onBackPressed() {
         finish()
@@ -136,21 +153,34 @@ class MainActivity : AppCompatActivity() {
 
     //Url 이미지 비트맵전환
     private fun getOriginalBitmap(urlString : String) {
-        val url = URL(urlString)
+        var background : Bitmap? = null;
+        val mThread: Thread = object : Thread() {
+            override fun run() {
+                try {
+                    val url = URL(urlString)
 
-        // web에서 이미지를 가져와 ImageView에 저장할 Bitmap을 만든다.
+                    // Web에서 이미지를 가져온 뒤
+                    // ImageView에 지정할 Bitmap을 만든다
+                    val conn = url.openConnection() as HttpURLConnection
+                    conn.doInput = true // 서버로 부터 응답 수신
+                    conn.connect()
+                    val input = conn.inputStream // InputStream 값 가져오기
+                    background = BitmapFactory.decodeStream(input) // Bitmap으로 변환
+                } catch (e: MalformedURLException) {
+                    e.printStackTrace()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
+        }
 
-        // web에서 이미지를 가져와 ImageView에 저장할 Bitmap을 만든다.
-        val conn: HttpURLConnection = url.openConnection() as HttpURLConnection
-        conn.setDoInput(true) // 서버로부터 응답 수신
+        mThread.start(); // Thread 실행
 
-        conn.connect() //연결된 곳에 접속할 때 (connect() 호출해야 실제 통신 가능함)
-
-
-        val input: InputStream = conn.getInputStream() //inputStream 값 가져오기
-
-        runOnUiThread {
-//            backgroundImage.setImageBitmap(BitmapFactory.decodeStream(input)) // Bitmap으로 변환
+        try {
+            mThread.join()
+            backgroundImage.setImageBitmap(background)
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
         }
     }
 
@@ -226,11 +256,14 @@ class MainActivity : AppCompatActivity() {
 
                 userName.setText(Customer.getInstance().customerName)
 
-                Thread {
+//                Thread {
                     getOriginalBitmap(tourSpot.images)
-                }.start()
+//                }.start()
 
                 tourSpotName.setText(tourSpot.name)
+
+
+                excute_starCheck(tourSpot.tourSpotId)
 
             }
 
@@ -240,5 +273,91 @@ class MainActivity : AppCompatActivity() {
             }
 
         });
+    }
+
+
+    /////////////////////////////////////////////////////////////////
+    // 찜하기 + 찜 체크 + 찜 삭제
+    /////////////////////////////////////////////////////////////////
+
+    /////////////////////////////////////////////////////////////////
+    // 찜하기 + 찜 체크 + 찜 삭제
+    /////////////////////////////////////////////////////////////////
+    private fun excute_addStar(tourSpotId: Int) {
+        val call = MyRetrofit.getApiService().starAdd(Customer.getInstance().customerId, tourSpotId)
+        call.enqueue(object : Callback<Star> {
+            override fun onResponse(call: Call<Star>, response: Response<Star>) {
+                if (!response.isSuccessful) {
+                    Toast.makeText(baseContext, "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT)
+                    Log.e("연결이 비정상적 : ", "error code : " + response.code())
+                    return
+                }
+                Log.d("연결이 성공적 : ", response.body().toString())
+                starButton.background = resources.getDrawable(R.drawable.btn_heart_fill_home, null)
+                result = true
+                //                starButton.setBackground(R.drawable.heart);
+            }
+
+            override fun onFailure(call: Call<Star>, t: Throwable) {
+                Toast.makeText(baseContext, "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT)
+                Log.e("연결실패", t.message!!)
+            }
+        })
+    }
+
+    private fun excute_deleteStar(starId: Int) {
+        val call = MyRetrofit.getApiService().starDelete(starId)
+        call.enqueue(object : Callback<Int> {
+            override fun onResponse(call: Call<Int>, response: Response<Int>) {
+                if (!response.isSuccessful) {
+                    Toast.makeText(baseContext, "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT)
+                    Log.e("연결이 비정상적 : ", "error code : " + response.code())
+                    return
+                }
+                Log.d("연결이 성공적 : ", response.body().toString())
+                starButton.background = resources.getDrawable(R.drawable.btn_heart_home, null)
+                result = false
+                //                starButton.setBackground(R.drawable.heart);
+            }
+
+            override fun onFailure(call: Call<Int>, t: Throwable) {
+                Toast.makeText(baseContext, "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT)
+                Log.e("연결실패", t.message!!)
+            }
+        })
+    }
+
+    var result = false
+    private fun excute_starCheck(tourSpotId: Int): Boolean {
+        result = false
+        val call =
+            MyRetrofit.getApiService().starCheck(Customer.getInstance().customerId, tourSpotId)
+        call.enqueue(object : Callback<Star> {
+            override fun onResponse(call: Call<Star>, response: Response<Star>) {
+                if (!response.isSuccessful) {
+                    Toast.makeText(baseContext, "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT)
+                    Log.e("연결이 비정상적 : ", "excute_starCheck, error code : " + response.code())
+                    return
+                }
+                Log.d("연결이 성공적 : ", response.body()?.starId.toString())
+                if (response.body()!!.starId != -1) {
+                    result = true
+                    star = response.body()!!
+                    starButton.background = resources.getDrawable(R.drawable.btn_heart_fill_home, null)
+                }
+
+//                starButton.setBackground(R.drawable.heart);
+            }
+
+            override fun onFailure(call: Call<Star>, t: Throwable) {
+                Toast.makeText(
+                    baseContext,
+                    "excute_starCheck, D연결 상태가 좋지 않습니다. 다시 시도해주세요",
+                    Toast.LENGTH_SHORT
+                )
+                Log.e("연결실패", t.message!!)
+            }
+        })
+        return result
     }
 }

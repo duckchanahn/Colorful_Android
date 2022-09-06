@@ -6,6 +6,7 @@
         android:name="android.hardware.camera"
         android:required="true" />
 
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -13,11 +14,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Include only if your app benefits from precise location access. -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-
-
-
-
 
 
     <application
@@ -60,7 +56,6 @@
         </activity>
 
 
-
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
@@ -74,14 +69,20 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".Home.HomeMainDialog"/>
+        <activity android:name=".Home.PopupTourSpotPalette" android:theme="@android:style/Theme.Dialog"/>
 
-        <activity android:name=".Home.HomeMainDialog" android:theme="@android:style/Theme.Dialog"/>
         <activity android:name=".Color.ColorActivity" />
         <activity android:name=".Color.ColorDetailActivity" />
+        <activity android:name=".Color.PaletteSetting" />
+        <activity android:name=".Color.PopupDeletePalette" android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name=".Color.PopupCreatePaletteDue" android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name=".Color.PopupCreatePaletteName" android:theme="@android:style/Theme.Dialog"/>
 
         <activity android:name=".Search.SerachActivity" />
 
         <activity android:name=".Mypage.MypageActivity" />
+        <activity android:name=".Mypage.MyPageTouSpotListActivity" />
 
         <activity android:name=".TestColor.TestMainActivity" />
         <activity android:name=".TestColor.PersonalTestSelectImageActivity" />
@@ -90,7 +91,9 @@
         <activity android:name=".TestColor.PsycologicalTestResult" />
         <activity android:name=".Login.LoginActivity" />
 
-<!--        <activity android:name="."android:theme="@android:style/Theme.Dialog"/>-->
+        <activity android:name=".Setting.SettingActivity" />
+        <activity android:name=".Setting.PolicyActivity" />
+        <activity android:name=".Setting.LicenseActivity" />
 
 
         <provider

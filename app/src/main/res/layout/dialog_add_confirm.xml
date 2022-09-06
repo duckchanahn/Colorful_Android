@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="328dp"
-    android:layout_height="318dp"
+    android:layout_height="300dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/psy_test_answer_non_select_btn">
 
@@ -10,10 +10,10 @@
         android:id="@+id/textLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="66dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btn_move">
+        app:layout_constraintBottom_toTopOf="@+id/btn_confirm">
 
         <TextView
             android:id="@+id/tour_name"
@@ -66,23 +66,6 @@
             tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_move"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/btn_424242_color"
-        android:text="팔레트에서 보기"
-        android:fontFamily="@font/notosanskr_bold"
-        android:padding="4dp"
-        android:textColor="@color/white"
-        android:textSize="14dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btn_confirm"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_confirm"

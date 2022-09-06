@@ -3,14 +3,11 @@ package com.example.colorful_android.Color;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,7 +16,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.colorful_android.DTO.Palette;
 import com.example.colorful_android.R;
 
-public class TourCardView  extends Activity {
+import java.io.Serializable;
+
+public class TourCardView implements Serializable {
 
     private TextView tourName;
     private TextView tourDate;
@@ -29,18 +28,15 @@ public class TourCardView  extends Activity {
     private Palette palette;
     private View card;
 
+    private ImageView deleteButton;
+
     private LayoutInflater layoutInflater;
 
     public TourCardView(@NonNull Context context, Palette palette) {
-
         this.palette = palette;
-        layoutInflater = LayoutInflater.from(context);
+        this.layoutInflater = LayoutInflater.from(context);
         this.card = (ConstraintLayout)layoutInflater.inflate(R.layout.tour_card_view, null, false);
         init(context);
-
-        Window window = this.getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
 
 //        this.setOnClickListener(v -> {
@@ -57,9 +53,11 @@ public class TourCardView  extends Activity {
         this.tourName.setText(this.palette.getName());
         this.tourDate = card.findViewById(R.id.tour_date);
         this.tourDate.setText(this.palette.getDue());
-        this.tourCount = card.findViewById(R.id.tour_count);
-        this.tourCount.setText("3");
+//        this.tourCount = card.findViewById(R.id.tour_count);
+//        this.tourCount.setText("3");
         this.cardImg = card.findViewById(R.id.card_img);
+
+        this.deleteButton = card.findViewById(R.id.btn_delete);
 
         Log.e("palette", "name : " + this.palette.getName() + ", due : " + this.palette.getDue() + ", img : " );
 //        this.tourName.setText(palette.);
@@ -69,4 +67,5 @@ public class TourCardView  extends Activity {
     public ConstraintLayout getCard() {
         return (ConstraintLayout)card;
     }
+    public ImageView getDeleteButton() {return deleteButton;}
 }

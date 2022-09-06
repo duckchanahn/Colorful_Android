@@ -61,7 +61,7 @@
             android:background="#00FFFFFF"
             app:layout_constraintStart_toStartOf="@id/edit_text"
             app:layout_constraintEnd_toEndOf="@id/edit_text"
-            android:layout_paddingStart="13.66dp"
+
             android:hint="새로운 팔레트 이름"
             android:text="기존 팔레트 이름"
             android:fontFamily="@font/notosanskr_regular"
