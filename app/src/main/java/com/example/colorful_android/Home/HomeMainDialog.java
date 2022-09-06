@@ -36,12 +36,16 @@ import com.example.colorful_android.Color.PopupDeletePalette;
 import com.example.colorful_android.Color.TourCardView;
 import com.example.colorful_android.DTO.Customer;
 import com.example.colorful_android.DTO.Palette;
+import com.example.colorful_android.DTO.Star;
 import com.example.colorful_android.DTO.TourSpot;
 import com.example.colorful_android.R;
 import com.example.colorful_android.Retrofit.MyRetrofit;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -73,7 +77,7 @@ public class HomeMainDialog extends AppCompatActivity {
         prevButton.setVisibility(View.INVISIBLE);
         LinearLayout toolbar = findViewById(R.id.toolbar);
         int minHeight = findViewById(R.id.tour_name).getHeight();
-        Log.e("minHeight", "minHeight : "+ minHeight);
+        Log.e("minHeight", "minHeight : " + minHeight);
 
         toolbar.setMinimumHeight(minHeight);
 //        CollapsingToolbarLayout cool = findViewById(R.id.collapsing_toolbar);
@@ -88,20 +92,20 @@ public class HomeMainDialog extends AppCompatActivity {
         app.offsetTopAndBottom(500);
         DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
         int width = (int) (dm.heightPixels); // Display 사이즈의 90%
-        Log.e("app", "width: "+width);
+        Log.e("app", "width: " + width);
 
         start = false;
         app.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
 
-                Log.d("app", "recycler_view current offset: "+verticalOffset);
-                if(verticalOffset < 0) {
+                Log.d("app", "recycler_view current offset: " + verticalOffset);
+                if (verticalOffset < 0) {
                     Log.e("app", "start!!");
                     start = true;
                 }
 
-                if(verticalOffset == 0 && start) {
+                if (verticalOffset == 0 && start) {
                     Log.e("app", "bottom!!");
                     finish();
                 }
@@ -114,7 +118,7 @@ public class HomeMainDialog extends AppCompatActivity {
                 }
             }
         });
-;
+        ;
 
         Intent intent = getIntent();
         TourSpot tourSpot = (TourSpot) intent.getSerializableExtra("TourSpot");
@@ -132,25 +136,68 @@ public class HomeMainDialog extends AppCompatActivity {
         this.homepage = findViewById(R.id.homepage);
         this.homepage.setText(tourSpot.getHomepage());
 
+        ConstraintLayout hoursTitle = findViewById(R.id.hours_title);
         this.hours = findViewById(R.id.hours);
-        if (tourSpot.getHours() == null) {this.hours.setVisibility(View.GONE);}
-        else {this.hours.setText(tourSpot.getHours());}
+        if (tourSpot.getHours() == null) {
+            hoursTitle.setVisibility(View.GONE);
+            this.hours.setVisibility(View.GONE);
+        } else {
+            this.hours.setText(tourSpot.getHours());
+        }
 
+        ConstraintLayout parkingTitle = findViewById(R.id.parking_title);
         this.park = findViewById(R.id.park);
-        if (tourSpot.getParking() == null) {this.park.setVisibility(View.GONE);}
-        else {this.park.setText(tourSpot.getParking());}
+        if (tourSpot.getParking() == null) {
+            parkingTitle.setVisibility(View.GONE);
+            this.park.setVisibility(View.GONE);
+        } else {
+            this.park.setText(tourSpot.getParking());
+        }
 
         this.content = findViewById(R.id.content);
         this.content.setText(tourSpot.getContent());
+
 
         this.addPalette = findViewById(R.id.add_palette);
         this.addPalette.setOnClickListener(v -> {
 
         });
+
         this.addStar = findViewById(R.id.add_star);
         this.addStar.setOnClickListener(v -> {
-
+            excute_addStar(tourSpot.getTourSpotId());
         });
+
+    }
+
+        /////////////////////////////////////////////////////////////////
+        // 팔레트 생성
+        /////////////////////////////////////////////////////////////////
+
+    private void excute_addStar(int tourSpotId) {
+        Call<Star> call = MyRetrofit.getApiService().starAdd(Customer.getInstance().getCustomerId(), tourSpotId);
+        call.enqueue(new Callback<Star>() {
+            @Override
+            public void onResponse(Call<Star> call, Response<Star> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+                    Log.e("연결이 비정상적 : ", "error code : " + response.code());
+                    return;
+                }
+                Log.d("연결이 성공적 : ", response.body().toString());
+
+                ImageButton starButton = findViewById(R.id.star_button);
+                
+            }
+
+            @Override
+            public void onFailure(Call<Star> call, Throwable t) {
+                Toast.makeText(getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+                Log.e("연결실패", t.getMessage());
+            }
+        });
+    }
+
 
 //        Window window = this.getWindow();
 //        window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
@@ -342,4 +389,4 @@ public class HomeMainDialog extends AppCompatActivity {
 //        });
 //    }
 
-}
+//}

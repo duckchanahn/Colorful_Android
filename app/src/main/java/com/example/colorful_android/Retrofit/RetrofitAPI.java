@@ -66,7 +66,7 @@ public interface RetrofitAPI {
     @POST(Constatnts_url.PALETTE_DELETE)
     Call<Integer> paletteDelete();
     @POST(Constatnts_url.STAR_ADD)
-    Call<Star> starAdd();
+    Call<Star> starAdd(@Query("customerId")int customerId, @Query("tourSpotId")int tourSpotId);
     @POST(Constatnts_url.STAR_DELETE)
     Call<Integer> starDelete();
     @POST(Constatnts_url.STAR_TOURSPOTLIST)

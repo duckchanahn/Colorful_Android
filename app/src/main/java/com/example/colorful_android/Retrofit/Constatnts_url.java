@@ -4,7 +4,7 @@ public class Constatnts_url {
 
 //    public static final String BASE_URL = "http://localhost:7777/";
     public static final String BASE_URL_EMULATOR = "http://10.0.2.2:7777/";
-    public static final String BASE_URL_MYDEVICE_DH = "http://172.30.1.29:7777/";
+    public static final String BASE_URL_MYDEVICE_DH = "http://172.30.1.17:7777/";
     public static final String BASE_URL_MYDEVICE = "http://172.30.1.59:7777/";
     public static final String BASE_URL_MYDEVICE_FLASK = "http://172.30.104.131:5000/";
 
