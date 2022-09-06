@@ -6,14 +6,12 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.colorful_android.Color.ColorActivity
 import com.example.colorful_android.DTO.Customer
+import com.example.colorful_android.DTO.Star
 import com.example.colorful_android.DTO.TourSpot
 import com.example.colorful_android.Fragment.NaviActivity
 import com.example.colorful_android.Home.HomeMainDialog
@@ -24,7 +22,6 @@ import com.example.colorful_android.Search.SerachActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kakao.sdk.auth.TokenManagerProvider
 import com.navercorp.nid.NaverIdLoginSDK
-import kotlinx.android.synthetic.main.activity_my_page.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import retrofit2.Call
@@ -41,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     val IMAGE_URL = "http://tong.visitkorea.or.kr/cms/resource/58/1902758_image2_1.jpg"
     val coroutineScope = CoroutineScope(Dispatchers.Main)
 
-    val tourSpot = TourSpot()
+    lateinit var tourSpot : TourSpot
 
     lateinit var userName :TextView
     lateinit var backgroundImage :ImageView
@@ -55,6 +52,8 @@ class MainActivity : AppCompatActivity() {
     private val TAG_SEARCH = "search_fragment"
     private val TAG_COLOR = "color_fragment"
     private val TAG_MYPAGE = "mypage_fragment"
+
+    private lateinit var star : Star
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -70,11 +69,13 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_home_main)
 
+        tourSpot = TourSpot()
+
         this.userName = findViewById(R.id.user_name)
         this.backgroundImage = findViewById(R.id.image_background)
         this.tourSpotName = findViewById(R.id.tour_spot_name)
         this.detailButton = findViewById(R.id.detail)
-        this.starButton = findViewById(R.id.star)
+        this.starButton = findViewById(R.id.star_button)
 
         this.navigation = findViewById(R.id.nav_main)
 
@@ -96,6 +97,17 @@ class MainActivity : AppCompatActivity() {
             Log.e("home", tourSpot.name)
             startActivity(intent)
         }
+
+        this.starButton = findViewById<ImageButton>(R.id.star_button)
+        excute_starCheck(tourSpot.tourSpotId)
+        this.starButton.setOnClickListener(View.OnClickListener { v: View? ->
+            Log.e("star", "start!! bool : $result")
+            if (result) {
+                excute_deleteStar(star.getStarId())
+            } else {
+                excute_addStar(tourSpot.tourSpotId)
+            }
+        })
 
 
 
@@ -250,6 +262,9 @@ class MainActivity : AppCompatActivity() {
 
                 tourSpotName.setText(tourSpot.name)
 
+
+                excute_starCheck(tourSpot.tourSpotId)
+
             }
 
             override fun onFailure(call: Call<TourSpot>, t: Throwable) {
@@ -258,5 +273,91 @@ class MainActivity : AppCompatActivity() {
             }
 
         });
+    }
+
+
+    /////////////////////////////////////////////////////////////////
+    // 찜하기 + 찜 체크 + 찜 삭제
+    /////////////////////////////////////////////////////////////////
+
+    /////////////////////////////////////////////////////////////////
+    // 찜하기 + 찜 체크 + 찜 삭제
+    /////////////////////////////////////////////////////////////////
+    private fun excute_addStar(tourSpotId: Int) {
+        val call = MyRetrofit.getApiService().starAdd(Customer.getInstance().customerId, tourSpotId)
+        call.enqueue(object : Callback<Star> {
+            override fun onResponse(call: Call<Star>, response: Response<Star>) {
+                if (!response.isSuccessful) {
+                    Toast.makeText(baseContext, "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT)
+                    Log.e("연결이 비정상적 : ", "error code : " + response.code())
+                    return
+                }
+                Log.d("연결이 성공적 : ", response.body().toString())
+                starButton.background = resources.getDrawable(R.drawable.btn_heart_fill_home, null)
+                result = true
+                //                starButton.setBackground(R.drawable.heart);
+            }
+
+            override fun onFailure(call: Call<Star>, t: Throwable) {
+                Toast.makeText(baseContext, "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT)
+                Log.e("연결실패", t.message!!)
+            }
+        })
+    }
+
+    private fun excute_deleteStar(starId: Int) {
+        val call = MyRetrofit.getApiService().starDelete(starId)
+        call.enqueue(object : Callback<Int> {
+            override fun onResponse(call: Call<Int>, response: Response<Int>) {
+                if (!response.isSuccessful) {
+                    Toast.makeText(baseContext, "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT)
+                    Log.e("연결이 비정상적 : ", "error code : " + response.code())
+                    return
+                }
+                Log.d("연결이 성공적 : ", response.body().toString())
+                starButton.background = resources.getDrawable(R.drawable.btn_heart_home, null)
+                result = false
+                //                starButton.setBackground(R.drawable.heart);
+            }
+
+            override fun onFailure(call: Call<Int>, t: Throwable) {
+                Toast.makeText(baseContext, "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT)
+                Log.e("연결실패", t.message!!)
+            }
+        })
+    }
+
+    var result = false
+    private fun excute_starCheck(tourSpotId: Int): Boolean {
+        result = false
+        val call =
+            MyRetrofit.getApiService().starCheck(Customer.getInstance().customerId, tourSpotId)
+        call.enqueue(object : Callback<Star> {
+            override fun onResponse(call: Call<Star>, response: Response<Star>) {
+                if (!response.isSuccessful) {
+                    Toast.makeText(baseContext, "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT)
+                    Log.e("연결이 비정상적 : ", "excute_starCheck, error code : " + response.code())
+                    return
+                }
+                Log.d("연결이 성공적 : ", response.body()?.starId.toString())
+                if (response.body()!!.starId != -1) {
+                    result = true
+                    star = response.body()!!
+                    starButton.background = resources.getDrawable(R.drawable.btn_heart_fill_home, null)
+                }
+
+//                starButton.setBackground(R.drawable.heart);
+            }
+
+            override fun onFailure(call: Call<Star>, t: Throwable) {
+                Toast.makeText(
+                    baseContext,
+                    "excute_starCheck, D연결 상태가 좋지 않습니다. 다시 시도해주세요",
+                    Toast.LENGTH_SHORT
+                )
+                Log.e("연결실패", t.message!!)
+            }
+        })
+        return result
     }
 }

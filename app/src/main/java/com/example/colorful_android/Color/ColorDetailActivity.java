@@ -70,7 +70,8 @@ public class ColorDetailActivity extends AppCompatActivity {
                     ConstraintLayout card = cardView.getCard();
                     card.findViewById(R.id.card_layout).setOnClickListener(v -> {
                         Intent intent = new Intent(getApplicationContext(), HomeMainDialog.class);
-                        intent.putExtra("tourspot", tourSpot);
+                        intent.putExtra("TourSpot", tourSpot);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         getApplicationContext().startActivity(intent);
                     });
                     getOriginalBitmap(tourSpot.getImages(), cardView.getImageView());

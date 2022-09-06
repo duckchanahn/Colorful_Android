@@ -41,6 +41,7 @@ public class Constatnts_url {
     public static final String STAR_ADD = "tourspot/star/add/";
     public static final String STAR_DELETE = "tourspot/star/delete/";
     public static final String STAR_TOURSPOTLIST = "tourspot/tourspotlist/";
+    public static final String STAR_CHECK = "tourspot/star/check/";
 
 }
 

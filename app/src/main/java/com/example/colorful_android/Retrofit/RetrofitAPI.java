@@ -68,7 +68,9 @@ public interface RetrofitAPI {
     @POST(Constatnts_url.STAR_ADD)
     Call<Star> starAdd(@Query("customerId")int customerId, @Query("tourSpotId")int tourSpotId);
     @POST(Constatnts_url.STAR_DELETE)
-    Call<Integer> starDelete();
+    Call<Integer> starDelete(@Query("starId")int starId);
+    @GET(Constatnts_url.STAR_CHECK)
+    Call<Star> starCheck(@Query("customerId")int customerId, @Query("tourSpotId")int tourSpotId);
     @POST(Constatnts_url.STAR_TOURSPOTLIST)
     Call<List<TourSpotSummary>> starTourspotList();
 

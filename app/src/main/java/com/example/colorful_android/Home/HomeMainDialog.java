@@ -66,6 +66,8 @@ public class HomeMainDialog extends AppCompatActivity {
 
     private boolean start;
 
+    private Star star;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,7 +103,7 @@ public class HomeMainDialog extends AppCompatActivity {
 
                 Log.d("app", "recycler_view current offset: " + verticalOffset);
                 if (verticalOffset < 0) {
-                    Log.e("app", "start!!");
+//                    Log.e("app", "start!!");
                     start = true;
                 }
 
@@ -164,14 +166,21 @@ public class HomeMainDialog extends AppCompatActivity {
         });
 
         this.addStar = findViewById(R.id.add_star);
+        excute_starCheck(tourSpot.getTourSpotId());
         this.addStar.setOnClickListener(v -> {
-            excute_addStar(tourSpot.getTourSpotId());
+            Log.e("star", "start!! bool : " + result);
+            if (result) {
+                excute_deleteStar(star.getStarId());
+            } else {
+                excute_addStar(tourSpot.getTourSpotId());
+            }
         });
+
 
     }
 
         /////////////////////////////////////////////////////////////////
-        // 팔레트 생성
+        // 찜하기 + 찜 체크 + 찜 삭제
         /////////////////////////////////////////////////////////////////
 
     private void excute_addStar(int tourSpotId) {
@@ -186,8 +195,10 @@ public class HomeMainDialog extends AppCompatActivity {
                 }
                 Log.d("연결이 성공적 : ", response.body().toString());
 
-                ImageButton starButton = findViewById(R.id.star_button);
-                
+                ImageButton starButton = findViewById(R.id.add_star);
+                starButton.setBackground(getResources().getDrawable(R.drawable.btn_heart_fill, null));
+                result = true;
+//                starButton.setBackground(R.drawable.heart);
             }
 
             @Override
@@ -196,6 +207,65 @@ public class HomeMainDialog extends AppCompatActivity {
                 Log.e("연결실패", t.getMessage());
             }
         });
+    }
+
+    private void excute_deleteStar(int starId) {
+        Call<Integer> call = MyRetrofit.getApiService().starDelete(starId);
+        call.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+                    Log.e("연결이 비정상적 : ", "error code : " + response.code());
+                    return;
+                }
+                Log.d("연결이 성공적 : ", response.body().toString());
+
+                ImageButton starButton = findViewById(R.id.add_star);
+                starButton.setBackground(getResources().getDrawable(R.drawable.btn_heart_black, null));
+                result = false;
+//                starButton.setBackground(R.drawable.heart);
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+                Toast.makeText(getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+                Log.e("연결실패", t.getMessage());
+            }
+        });
+    }
+
+    boolean result;
+    private void excute_starCheck(int tourSpotId) {
+        result = false;
+
+        Call<Star> call = MyRetrofit.getApiService().starCheck(Customer.getInstance().getCustomerId(), tourSpotId);
+        call.enqueue(new Callback<Star>() {
+            @Override
+            public void onResponse(Call<Star> call, Response<Star> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(getBaseContext(), "연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+                    Log.e("연결이 비정상적 : ", "excute_starCheck, error code : " + response.code());
+                    return;
+                }
+                Log.d("연결이 성공적 : ", response.body().toString());
+
+                if(response.body().getStarId() != -1) {
+                    result = true;
+                    star = response.body();
+                    ImageButton starButton = findViewById(R.id.add_star);
+                    starButton.setBackground(getResources().getDrawable(R.drawable.btn_heart_fill, null));
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Star> call, Throwable t) {
+                Toast.makeText(getBaseContext(), "excute_starCheck, D연결 상태가 좋지 않습니다. 다시 시도해주세요", Toast.LENGTH_SHORT);
+                Log.e("연결실패", t.getMessage());
+            }
+        });
+
     }
 
 
