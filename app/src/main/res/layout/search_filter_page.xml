@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_testpage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/page_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/notosanskr_bold"
+        android:textColor="@color/gary_21"
+        android:textSize="16dp"
+        android:text="키워드 검색"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/chip_group1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginTop="14dp"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:textSize="16dp"
+                    android:textColor="#424242"
+                    android:text="색상"
+                    tools:ignore="MissingConstraints" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:chipSpacingHorizontal="16dp"
+
+                    app:layout_constraintTop_toBottomOf="@id/textView1"
+                    app:singleSelection="false">
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="빨강"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="주황"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="노랑"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="민트"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="청록"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="연두"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="초록"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="카키"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="하늘"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="파랑"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="네이비"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="보라"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="그레이"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="분홍"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="레몬"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+                </com.google.android.material.chip.ChipGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/chip_group2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginTop="22dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chip_group1">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:textSize="16dp"
+                    android:textColor="#424242"
+                    android:text="지역"
+                    tools:ignore="MissingConstraints" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:chipSpacingHorizontal="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/textView2"
+                    app:singleSelection="false">
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="서울"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="부산"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="대구"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="인천"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="광주"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="대전"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="울산"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="세종"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="경기"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="강원"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="충청도"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="전라도"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="경상도"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="제주"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                </com.google.android.material.chip.ChipGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/chip_group3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginTop="22dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chip_group2">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:textSize="16dp"
+                    android:textColor="#424242"
+                    android:text="키워드"
+                    tools:ignore="MissingConstraints" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:chipSpacingHorizontal="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/textView3"
+                    app:singleSelection="false">
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="바다"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="해수욕장"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="계곡"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="일출"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="폭포"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="꽃구경"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="인생샷"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="포토존"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="여름휴가"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="캠핑"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="공원"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="낚시"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="나들이"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/CustomChipStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:minHeight="32dp"
+                        android:text="호캉스"
+                        android:textSize="14dp"
+                        app:checkedIconEnabled="false" />
+
+                </com.google.android.material.chip.ChipGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/down_layout"
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@id/personal_color_test_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_424242_color"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="16dp"
+            android:text="적용하기"
+            android:fontFamily="@font/notosanskr_bold"
+            android:padding="4dp"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

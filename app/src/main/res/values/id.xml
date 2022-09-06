@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--    personal_color_select_image_layout-->
+    <item name="get_image_camera_button" type="id" />
+    <item name="get_image_gallery_button"  type="id" />
+    <item name="test_user_imageview" type="id" />
+    <item name="next_personal_color_select_image" type="id" />
+
+
+    <!--    test_main_layout-->
+    <item name="personal_color_test_button" type="id" />
+    <item name="psy_color_test_button" type="id" />
+
+    <!--    activity_main-->
+    <item name="start_test" type="id" />
+
+    <!--    psychological_test-->
+    <item name="question" type="id"/>
+    <item name="first_answer" type="id"/>
+    <item name="second_answer" type="id"/>
+    <item name="next_button_psy" type="id"/>
+    <item name="prev_button_psy" type="id"/>
+    <item name="textview_index" type="id"/>
+
+
+
+    <item name="원하시는_아이디" type="id" />
+    <item name="iv_image" type="id"/>
+
+
+</resources>

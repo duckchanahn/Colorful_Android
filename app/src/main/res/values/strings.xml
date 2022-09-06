@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Colorful_android</string>
+    <string name="KAKAO_NATIVE_APP_KEY">bab3f53d7921ca0e8ac626ca5e7a8ea0</string>
+
+    <string name="next">다음</string>
+
+
+    <!--    personal_color_select_image_layout-->
+    <string name="personal_select_description">보다 더 정확한 퍼스널 컬러 측정을 위해 \n흰색 배경 앞에서 촬영한 얼굴 사진을 \n준비해주세요.</string>
+    <string name="personal_select_getCamera">카메라에서 가져오기</string>
+    <string name="personal_select_getGallery">갤러리에서 가져오기</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!--    test_main_layout-->
+
+
+    <!--    activity_main-->
+
+
+</resources>

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include
+        android:id="@+id/toolbar_testpage"
+        layout="@layout/toolbar_testpage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/notosanskr_bold"
+        android:textSize="16dp"
+        android:text="퍼스널컬러테스트"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/pic_guide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:src="@drawable/select_pic_guide"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_testpage"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_first"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pic_guide">
+
+        <TextView
+            android:id="@+id/num_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:textStyle="normal"
+            android:gravity="center"
+            android:background="@drawable/numbering_main_color"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/text_first_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="-10dp"
+            android:text="세로방향"
+            android:textColor="@color/main_color"
+            android:fontFamily="@font/notosanskr_medium"
+            android:textSize="14dp"
+            app:layout_constraintStart_toEndOf="@+id/num_one"
+            app:layout_constraintTop_toTopOf="@id/layout_first"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+            android:text="의 사진을 준비해주세요."
+            android:textColor="@color/gary_21"
+            android:fontFamily="@font/notosanskr_regular"
+            android:textSize="14dp"
+            app:layout_constraintStart_toEndOf="@+id/text_first_one"
+            app:layout_constraintTop_toTopOf="@id/layout_first"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_second"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_first">
+
+        <TextView
+            android:id="@+id/num_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:textStyle="normal"
+            android:gravity="center"
+            android:background="@drawable/numbering_main_color"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/text_second_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="-10dp"
+            android:text="흰색배경"
+            android:textColor="@color/main_color"
+            android:fontFamily="@font/notosanskr_medium"
+            android:textSize="14dp"
+            app:layout_constraintStart_toEndOf="@id/num_two"
+            app:layout_constraintTop_toTopOf="@+id/layout_second"/>
+
+        <TextView
+            android:id="@+id/text_second_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+            android:text="에서 "
+            android:textColor="@color/gary_21"
+            android:fontFamily="@font/notosanskr_regular"
+            android:textSize="14dp"
+            app:layout_constraintStart_toEndOf="@id/text_second_one"
+            app:layout_constraintTop_toTopOf="@+id/layout_second"/>
+
+        <TextView
+            android:id="@+id/text_second_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+            android:text="눈썹이 보이게 "
+            android:textColor="@color/main_color"
+            android:fontFamily="@font/notosanskr_medium"
+            android:textSize="14dp"
+            app:layout_constraintStart_toEndOf="@id/text_second_two"
+            app:layout_constraintTop_toTopOf="@+id/layout_second"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+            android:text="촬영해 주세요."
+            android:textColor="@color/gary_21"
+            android:fontFamily="@font/notosanskr_regular"
+            android:textSize="14dp"
+            app:layout_constraintStart_toEndOf="@id/text_second_three"
+            app:layout_constraintTop_toTopOf="@+id/layout_second"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_third"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_second">
+
+        <TextView
+            android:id="@+id/num_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:textStyle="normal"
+            android:gravity="center"
+            android:background="@drawable/numbering_main_color"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/text_third_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="-10dp"
+            android:text="얼굴을 가리는 "
+            android:textColor="@color/gary_21"
+            android:fontFamily="@font/notosanskr_regular"
+            android:textSize="14dp"
+            app:layout_constraintStart_toEndOf="@id/num_three"
+            app:layout_constraintTop_toTopOf="@+id/layout_third"/>
+
+        <TextView
+            android:id="@+id/text_third_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+            android:text="액세서리와 안경"
+            android:textColor="@color/main_color"
+            android:fontFamily="@font/notosanskr_medium"
+            android:textSize="14dp"
+            app:layout_constraintStart_toEndOf="@id/text_third_one"
+            app:layout_constraintTop_toTopOf="@+id/layout_third"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+            android:text="은 벗어주세요."
+            android:textColor="@color/gary_21"
+            android:fontFamily="@font/notosanskr_regular"
+            android:textSize="14dp"
+            app:layout_constraintStart_toEndOf="@id/text_third_two"
+            app:layout_constraintTop_toTopOf="@+id/layout_third"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_fourth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_third">
+
+        <TextView
+            android:id="@+id/num_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:textStyle="normal"
+            android:gravity="center"
+            android:background="@drawable/numbering_main_color"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/text_fourth_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="-10dp"
+            android:text="밝은 색 머리"
+            android:textColor="@color/main_color"
+            android:fontFamily="@font/notosanskr_medium"
+            android:textSize="14dp"
+            app:layout_constraintStart_toEndOf="@+id/num_four"
+            app:layout_constraintTop_toTopOf="@id/layout_fourth"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+            android:text="는 정확한 퍼스널 컬러 측정을 방해할 수"
+            android:textColor="@color/gary_21"
+            android:fontFamily="@font/notosanskr_regular"
+            android:textSize="14dp"
+            app:layout_constraintStart_toEndOf="@+id/text_fourth_one"
+            app:layout_constraintTop_toTopOf="@id/layout_fourth"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="-18dp"
+            android:text="있어요."
+            android:textColor="@color/gary_21"
+            android:fontFamily="@font/notosanskr_regular"
+            android:textSize="14dp"
+            app:layout_constraintStart_toEndOf="@+id/num_four"
+            app:layout_constraintTop_toBottomOf="@id/text_fourth_one"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@id/get_image_camera_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_424242_color"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="카메라로 찍기"
+        android:fontFamily="@font/notosanskr_bold"
+        android:padding="6dp"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/get_image_gallery_button"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@id/get_image_gallery_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/btn_424242_color"
+        android:text="갤러리에서 선택하기"
+        android:padding="6dp"
+        android:fontFamily="@font/notosanskr_bold"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
