@@ -28,14 +28,14 @@ public class TourCardDetailView extends Activity {
     private TextView tourCount;
     private ImageView cardImg;
 
-    private TourSpot tourspot;
+    private TourSpot palette;
 
     private View card;
 
     private LayoutInflater layoutInflater;
 
-    public TourCardDetailView(@NonNull Context context, TourSpot tourspot) {
-        this.tourspot = tourspot;
+    public TourCardDetailView(@NonNull Context context, TourSpot palette) {
+        this.palette = palette;
         this.layoutInflater = LayoutInflater.from(context);
         this.card = (ConstraintLayout)layoutInflater.inflate(R.layout.tour_detail_card_view, null, false);
         this.init(context);
@@ -45,7 +45,7 @@ public class TourCardDetailView extends Activity {
 //        this.setOnClickListener(v -> {
 //            Log.e("click tour card", "move tourSpot Detail!!");
 //            Intent intent = new Intent(context, ColorDetailActivity.class);
-//            intent.putExtra("palette", tourspot);
+//            intent.putExtra("palette", palette);
 //            context.startActivity(intent);
 //        });
     }
@@ -53,9 +53,9 @@ public class TourCardDetailView extends Activity {
     private void init(Context context){
 
         this.tourSpotName = card.findViewById(R.id.detail_name);
-        this.tourSpotName.setText(this.tourspot.getName());
+        this.tourSpotName.setText(this.palette.getName());
         this.tourSpotAddress = card.findViewById(R.id.detail_adress);
-        this.tourSpotAddress.setText(this.tourspot.getAddress());
+        this.tourSpotAddress.setText(this.palette.getAddress());
 
         this.cardImg = card.findViewById(R.id.detail_img);
 

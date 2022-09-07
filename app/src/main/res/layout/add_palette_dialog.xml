@@ -7,7 +7,7 @@
     android:background="@drawable/psy_test_answer_non_select_btn">
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -22,13 +22,14 @@
         android:text="곡성 세계장미축제"/>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:visibility="invisible"
         android:id="@+id/new_palette"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#00FFFFFF"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView1"
+        app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintStart_toStartOf="@id/parent_layout"
         android:fontFamily="@font/notosanskr_medium"
         android:textSize="14dp"
@@ -43,13 +44,13 @@
         android:layout_marginEnd="24dp"
         app:layout_constraintTop_toBottomOf="@+id/new_palette">
 
-        <ListView
-            android:id="@+id/lv"
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:divider="#00FFFFFF"
-            android:dividerHeight="16dp"/>
+            android:divider="#FFFFFF"
+            android:dividerHeight="24dp"
+            android:orientation="vertical" />
 
     </ScrollView>
 
@@ -69,6 +70,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/btn_424242_color"
             android:text="취소"
+            android:gravity="center"
             android:fontFamily="@font/notosanskr_bold"
             android:padding="4dp"
             android:textColor="@color/white"
@@ -84,6 +86,7 @@
             android:fontFamily="@font/notosanskr_bold"
             android:padding="4dp"
             android:text="확인"
+            android:gravity="center"
             android:textColor="@drawable/text_checkable_cofirm"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="parent"

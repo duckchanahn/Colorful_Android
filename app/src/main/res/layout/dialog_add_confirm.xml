@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textLayout1">
 
         <TextView
-            android:id="@+id/tour_list"
+            android:id="@+id/palette_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="어디어디"
@@ -62,10 +62,11 @@
             android:fontFamily="@font/notosanskr_medium"
             android:textSize="16dp"
             android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/tour_list"
+            app:layout_constraintStart_toEndOf="@+id/palette_name"
             tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_confirm"

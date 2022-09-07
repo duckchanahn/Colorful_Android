@@ -51,7 +51,7 @@ public class MypageActivity extends AppCompatActivity {
         initialize();
 
         star.setOnClickListener( v -> {
-            this.startActivity(new Intent(this, MyPageTouSpotListActivity.class));
+            this.startActivity(new Intent(this, StarListActivity.class));
         });
 
         config.setOnClickListener( v -> {

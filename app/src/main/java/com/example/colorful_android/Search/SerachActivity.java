@@ -5,21 +5,32 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.colorful_android.Color.ColorActivity;
 import com.example.colorful_android.DTO.TourSpot;
+import com.example.colorful_android.Home.HomeMainDialog;
 import com.example.colorful_android.MainActivity;
 import com.example.colorful_android.Mypage.MypageActivity;
 import com.example.colorful_android.R;
@@ -39,6 +50,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import net.daum.mf.map.api.MapView;
 
 public class SerachActivity extends AppCompatActivity {
 
@@ -49,24 +61,37 @@ public class SerachActivity extends AppCompatActivity {
 
     private ChipGroup chipGroup;
     private GridLayout gridLayout;
+    private LinearLayout linearLayoutTop;
 
-    private List<TourSpot> tourSpotList;
+    private ArrayList<TourSpot> tourSpotList;
 
+    private ChipGroup chipGroup_filter;
     private List<ImageView> imageViewList;
     private int page;
+
+    private boolean position_flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.color_search_page);
 
-        this.chipGroup = findViewById(R.id.chip_group);
-        this.gridLayout = findViewById(R.id.gridview);
+//        this.chipGroup = findViewById(R.id.chip_group);
+//        this.gridLayout = findViewById(R.id.gridview);
+        this.linearLayoutTop = findViewById(R.id.linearLayout);
 
         this.imageViewList = new ArrayList<>();
         this.page = 0;
 
+
         excute_getTourList();
+
+        Button filter = findViewById(R.id.btn_filter);
+        filter.setOnClickListener( v -> {
+            Intent filterIntent = new Intent(this, SearchFilterActivity.class);
+            filterIntent.putExtra("tourSpot", tourSpotList);
+            this.startActivity(filterIntent);
+        });
 
 //        SwipeRefreshLayout swipeRefreshLayout;
 //        swipeRefreshLayout = findViewById(R.id.swipeLayout);
@@ -74,11 +99,30 @@ public class SerachActivity extends AppCompatActivity {
 //            @Override
 //            public void onRefresh() {
 //                loadList();
+//                loadList();
+//                loadList();
 //                swipeRefreshLayout.setRefreshing(false);
 ////                swipeRefreshLayout.isRefreshing() = false;
 //             }
 //        });
 
+        ScrollView scrollView = findViewById(R.id.scrollView);
+        scrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+             @Override
+             public void onScrollChange(View v, int i, int i1, int i2, int i3) {
+                if (position_flag) {
+                    if(!v.canScrollVertically(1)) {
+                        Log.e("scroll event!!", "최하단!!");
+                        if(page > 36) page = 0;
+                        loadList();
+                    }
+                    position_flag = false;
+                } else {
+                    position_flag = true;
+                }
+             }
+
+         });
 
         BottomNavigationView navigation = findViewById(R.id.nav_main);
 
@@ -134,6 +178,7 @@ public class SerachActivity extends AppCompatActivity {
             }
         }
 
+
     }
 
     /////////////////////////////////////////////////////////////////
@@ -153,7 +198,9 @@ public class SerachActivity extends AppCompatActivity {
                 Log.d("연결이 성공적 : ", response.body().toString());
 
                 Log.e("searchActivity", "api result size : " + response.body().size());
-                tourSpotList = response.body();
+                tourSpotList = (ArrayList<TourSpot>) response.body();
+                loadList();
+                loadList();
                 loadList();
             }
 
@@ -165,51 +212,184 @@ public class SerachActivity extends AppCompatActivity {
         });
     }
 
+
+
     //
+
     private void loadList() {
-        Log.e("page", "page num : " + page);
+        Log.e("page", "page num : " + page + " tourSpotList size : " + tourSpotList.size());
 
+        DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
+        int width = (int) (dm.widthPixels); // Display 사이즈의 90%
+        List<ImageView> imageList = new ArrayList<>();
         for (int i = page; i < page + 9; i++) {
-            ImageView imageView = new ImageView(getBaseContext());
-            imageView.setId(i);
-            getOriginalBitmap(tourSpotList.get(i).getImages(), imageView);
+            ImageView imageView1 = new ImageView(getBaseContext());
+            imageView1.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
-            imageView.setOnClickListener( v -> {
-                Log.e("select image", "id : " + imageView.getId() + ", url : " + tourSpotList.get(imageView.getId()).getImages());
+            imageView1.setLayoutParams(new LinearLayoutCompat.LayoutParams(width / 3, width / 3));
+            imageView1.setPadding(20, 10, 20, 10);
+            imageView1.setCropToPadding(true);
+
+            TourSpot tourSpot = tourSpotList.get(i);
+            getOriginalBitmap(tourSpotList.get(i).getImages(), imageView1);
+
+            imageView1.setOnClickListener( v -> {
+                Intent imageViewIntent = new Intent(this, HomeMainDialog.class);
+                imageViewIntent.putExtra("TourSpot", tourSpot);
+                imageViewIntent.putExtra("prevPage", "SearchActivity");
+                this.startActivity(imageViewIntent);
             });
+            imageList.add(imageView1);
+        }
 
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageViewList.add(imageView);
+        LinearLayout linear = findViewById(R.id.linearLayout);
 
-            GridLayout.LayoutParams params = new GridLayout.LayoutParams(gridLayout.getLayoutParams());
+        LinearLayout linearLine = new LinearLayout(getBaseContext());
+        linearLine.setOrientation(LinearLayout.HORIZONTAL);
+        linearLine.addView(imageList.get(0));
+        linearLine.addView(imageList.get(1));
+        linearLine.addView(imageList.get(2));
+        linear.addView(linearLine);
 
-            Log.e("gird", "i%3 : " + i%3 + ", i/3 : " + i/3);
-            GridLayout.Spec rowSpec;
-            GridLayout.Spec columnSpec;
-//            if((page-i) == 2 || (page-i) == 7) {
-//                rowSpec = GridLayout.spec(i/3, 3); //   btn
-//                columnSpec = GridLayout.spec(i%3, 3);//   btn
+        linearLine = new LinearLayout(getBaseContext());
+        linearLine.setOrientation(LinearLayout.HORIZONTAL);
+        linearLine.addView(imageList.get(3));
+        linearLine.addView(imageList.get(4));
+        linearLine.addView(imageList.get(5));
+        linear.addView(linearLine);
+
+        linearLine = new LinearLayout(getBaseContext());
+        linearLine.setOrientation(LinearLayout.HORIZONTAL);
+        linearLine.addView(imageList.get(6));
+        linearLine.addView(imageList.get(7));
+        linearLine.addView(imageList.get(8));
+        linear.addView(linearLine);
+
+
+
+//        for (int i = page; i < page + 9; i++) {
+
+
+
+//            LayoutInflater layoutInflater = LayoutInflater.from(getBaseContext());
+//            ConstraintLayout linearLayout = (ConstraintLayout)layoutInflater.inflate(R.layout.search_page_grid, null, false);
+//
+//            ImageView imageView1 = linearLayout.findViewById(R.id.image1);
+//            imageView1.setX(width/3);
+//            imageView1.setY(width/3);
+////            imageView1.setLayoutParams(new LinearLayoutCompat.LayoutParams(width/3, width/3));
+//            getOriginalBitmap(tourSpotList.get(page).getImages(), imageView1);
+//            Log.e("select image", "page : " + page + "id : " + tourSpotList.get(page).getTourSpotId() + ", url : " + tourSpotList.get(page).getImages());
+//            imageView1.setOnClickListener( v -> {
+//                Log.e("select image", "id : " + imageView1.getId() + ", url : " + tourSpotList.get(imageView1.getId()).getImages());
+//            });
+//            ImageView imageView2 = linearLayout.findViewById(R.id.image2);
+//        imageView2.setX(width/3);
+//        imageView2.setY(width/3);
+//            getOriginalBitmap(tourSpotList.get(page+1).getImages(), imageView2);
+//        Log.e("select image", "page1 : " + page + "id : " + tourSpotList.get(page).getTourSpotId() + ", url : " + tourSpotList.get(page+1).getImages());
+//            imageView2.setOnClickListener( v -> {
+//
+//            });
+//            ImageView imageView3 = linearLayout.findViewById(R.id.image3);
+//        imageView3.setX(width/3);
+//        imageView3.setY(width/3);
+//            getOriginalBitmap(tourSpotList.get(page+2).getImages(), imageView3);
+//        Log.e("select image", "page2 : " + page + "id : " + tourSpotList.get(page).getTourSpotId() + ", url : " + tourSpotList.get(page+2).getImages());
+//            imageView3.setOnClickListener( v -> {
+//
+//            });
+//            ImageView imageView4 = linearLayout.findViewById(R.id.image4);
+//        imageView4.setX(width/3);
+//        imageView4.setY(width/3);
+//            getOriginalBitmap(tourSpotList.get(page+3).getImages(), imageView4);
+//        Log.e("select image", "page3 : " + page + "id : " + tourSpotList.get(page).getTourSpotId() + ", url : " + tourSpotList.get(page+3).getImages());
+//            imageView4.setOnClickListener( v -> {
+//
+//            });
+//            ImageView imageView5 = linearLayout.findViewById(R.id.image5);
+//        imageView5.setX(width/3);
+//        imageView5.setY(width/3);
+//            getOriginalBitmap(tourSpotList.get(page+4).getImages(), imageView5);
+//            imageView5.setOnClickListener( v -> {
+//
+//            });
+//            ImageView imageView6 = linearLayout.findViewById(R.id.image6);
+//        imageView6.setX(width/3);
+//        imageView6.setY(width/3);
+//            getOriginalBitmap(tourSpotList.get(page+5).getImages(), imageView6);
+//            imageView6.setOnClickListener( v -> {
+//
+//            });
+//            ImageView imageView7 = linearLayout.findViewById(R.id.image7);
+//        imageView7.setX(width/3);
+//        imageView7.setY(width/3);
+//            getOriginalBitmap(tourSpotList.get(page+6).getImages(), imageView7);
+//            imageView7.setOnClickListener( v -> {
+//
+//            });
+//            ImageView imageView8 = linearLayout.findViewById(R.id.image8);
+//        imageView8.setX(width/3);
+//        imageView8.setY(width/3);
+//            getOriginalBitmap(tourSpotList.get(page+7).getImages(), imageView8);
+//            imageView8.setOnClickListener( v -> {
+//
+//            });
+//            ImageView imageView9 = linearLayout.findViewById(R.id.image9);
+//        imageView9.setX(width/3);
+//        imageView9.setY(width/3);
+//            getOriginalBitmap(tourSpotList.get(page+8).getImages(), imageView9);
+//            imageView9.setOnClickListener( v -> {
+//
+//            });
+//
+//            Log.e("linearLayoutTop", "start add !! ");
+//            linearLayoutTop.addView(linearLayout);
+//            Log.e("linearLayoutTop", "start end !! ");
+
+
+
+
+//            ImageView imageView = new ImageView(getBaseContext());
+//            imageView.setId(i);
+//            getOriginalBitmap(tourSpotList.get(i).getImages(), imageView);
+//
+//            imageView.setOnClickListener( v -> {
+//                Log.e("select image", "id : " + imageView.getId() + ", url : " + tourSpotList.get(imageView.getId()).getImages());
+//            });
+//
+//            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//            imageViewList.add(imageView);
+
+//            GridLayout.LayoutParams params = new GridLayout.LayoutParams(gridLayout.getLayoutParams());
+//
+//            Log.e("gird", "i%3 : " + i%3 + ", i/3 : " + i/3);
+//            GridLayout.Spec rowSpec;
+//            GridLayout.Spec columnSpec;
+////            if((page-i) == 2 || (page-i) == 7) {
+////                rowSpec = GridLayout.spec(i/3, 3); //   btn
+////                columnSpec = GridLayout.spec(i%3, 3);//   btn
+////                params = new GridLayout.LayoutParams(rowSpec, columnSpec);
+//////                params.width = (gridLayout.getWidth() / 3 )* 2; //  btn
+////                params.width = (gridLayout.getWidth()  ); //  btn
+////                params.height = params.width;//  btn
+////                params.setMargins(5, 0, 5, 10);//  btn
+////                params.setGravity(Gravity.FILL);//  btn  （  ）
+////            } else {
+//                rowSpec = GridLayout.spec(i / 3); //   btn
+//                columnSpec = GridLayout.spec(i % 3);//   btn
 //                params = new GridLayout.LayoutParams(rowSpec, columnSpec);
-////                params.width = (gridLayout.getWidth() / 3 )* 2; //  btn
-//                params.width = (gridLayout.getWidth()  ); //  btn
+//                params.width = gridLayout.getWidth() / 3; //  btn
 //                params.height = params.width;//  btn
 //                params.setMargins(5, 0, 5, 10);//  btn
-//                params.setGravity(Gravity.FILL);//  btn  （  ）
-//            } else {
-                rowSpec = GridLayout.spec(i / 3); //   btn
-                columnSpec = GridLayout.spec(i % 3);//   btn
-                params = new GridLayout.LayoutParams(rowSpec, columnSpec);
-                params.width = gridLayout.getWidth() / 3; //  btn
-                params.height = params.width;//  btn
-                params.setMargins(5, 0, 5, 10);//  btn
-                params.setGravity(Gravity.LEFT);//  btn  （  ）
-//            }
-
-//            gridLayout.setLayoutParams(params);
-            gridLayout.addView(imageView, params);
+//                params.setGravity(Gravity.LEFT);//  btn  （  ）
+////            }
+//
+////            gridLayout.setLayoutParams(params);
+//            gridLayout.addView(imageView, params);
 
 //            gridLayout.addView(imageView, layoutParams);
-        }
+//        }
         page += 9;
     }
 
@@ -219,6 +399,8 @@ public class SerachActivity extends AppCompatActivity {
 
     private Bitmap bitmap;
     private void getOriginalBitmap(String urlString, ImageView imageView) {
+        Log.e("select image", "tourSpot : " + " url : " + urlString);
+
         Thread mThread = new Thread() {
             @Override
             public void run() {

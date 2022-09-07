@@ -56,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
                         // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인 시도
                         UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
                     } else if (token != null) {
-                        Log.i("kakaoLoginTry", "카카오톡으로 로그인 성공 ${token.accessToken}")
+//                        Log.i("kakaoLoginTry", "카카오톡으로 로그인 성공 ${token.accessToken}")
                         getUserInfoKakao()
                     }
                 }
@@ -78,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
 
                     NidOAuthLogin().callProfileApi(object : NidProfileCallback<NidProfileResponse> {
                         override fun onSuccess(response: NidProfileResponse) {
-                            Log.e("navergetUserInfo","response" + "$response")
+//                            Log.e("navergetUserInfo","response" + "$response")
                             Customer.getInstance().setInstance(0, NaverIdLoginSDK.getRefreshToken(), response.profile?.name, response.profile?.id, "", "", "네이버")
                             signup()
 //                            response.profile?.id
@@ -113,7 +113,8 @@ class LoginActivity : AppCompatActivity() {
         if (error != null) {
             Log.e("kakaoLoginTry", "카카오계정으로 로그인 실패", error)
         } else if (token != null) {
-            Log.i("kakaoLoginTry", "카카오계정으로 로그인 성공 ${token.accessToken}")
+//            Log.i("kakaoLoginTry", "카카오계정으로 로그인 성공 ${token.accessToken}")
+            getUserInfoKakao()
 
         }
     }
@@ -126,8 +127,8 @@ class LoginActivity : AppCompatActivity() {
                 Log.e("kakaoLoginGetInfo", "사용자 정보 요청 실패", error)
             }
             else if (user != null) {
-                Log.i("kakaoLoginGetInfo", "사용자 정보 요청 성공" +
-                        "\n토큰 : " + TokenManagerProvider.instance.manager.getToken()?.refreshToken.toString() )
+//                Log.i("kakaoLoginGetInfo", "사용자 정보 요청 성공" +
+//                        "\n토큰 : " + TokenManagerProvider.instance.manager.getToken()?.refreshToken.toString() )
                 Customer.getInstance().setInstance(0, TokenManagerProvider.instance.manager.getToken()?.refreshToken.toString(), user.properties?.get("nickname"), user.id.toString(), "", "", "카카오")
                 signup()
             }

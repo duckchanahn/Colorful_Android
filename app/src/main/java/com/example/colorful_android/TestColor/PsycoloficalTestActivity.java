@@ -200,14 +200,14 @@ public class PsycoloficalTestActivity extends AppCompatActivity {
 
     private void setStrokeInAnswer(int index) {
         if(user_answers[index] == 1) {
-            this.firstAnswer.setBackground(getResources().getDrawable(R.drawable.psy_test_answer_select_btn));
-            this.secondAnswer.setBackground(getResources().getDrawable(R.drawable.psy_test_answer_non_select_btn));
+            this.firstAnswer.setBackground(getResources().getDrawable(R.drawable.psy_test_answer_select_btn, null));
+            this.secondAnswer.setBackground(getResources().getDrawable(R.drawable.psy_test_answer_non_select_btn, null));
         } else if(user_answers[index] == 2) {
-            this.firstAnswer.setBackground(getResources().getDrawable(R.drawable.psy_test_answer_non_select_btn));
-            this.secondAnswer.setBackground(getResources().getDrawable(R.drawable.psy_test_answer_select_btn));
+            this.firstAnswer.setBackground(getResources().getDrawable(R.drawable.psy_test_answer_non_select_btn, null));
+            this.secondAnswer.setBackground(getResources().getDrawable(R.drawable.psy_test_answer_select_btn, null));
         } else {
-            this.firstAnswer.setBackground(getResources().getDrawable(R.drawable.psy_test_answer_non_select_btn));
-            this.secondAnswer.setBackground(getResources().getDrawable(R.drawable.psy_test_answer_non_select_btn));
+            this.firstAnswer.setBackground(getResources().getDrawable(R.drawable.psy_test_answer_non_select_btn, null));
+            this.secondAnswer.setBackground(getResources().getDrawable(R.drawable.psy_test_answer_non_select_btn, null));
         }
     }
 

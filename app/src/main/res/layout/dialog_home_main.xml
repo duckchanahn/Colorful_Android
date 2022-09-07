@@ -454,7 +454,7 @@
                         android:background="#00FF0000"
                         android:fontFamily="@font/notosanskr_medium"
                         android:textSize="12dp"
-                        android:text="자세히보기"
+                        android:text="지도 보기"
                         android:textColor="#616161"
                         app:layout_constraintBottom_toBottomOf="@id/layout"
                         app:layout_constraintStart_toStartOf="@id/layout"
@@ -462,14 +462,10 @@
 
                 </LinearLayout>
 
-                <ImageView
+                <RelativeLayout
+                    android:id="@+id/map_view"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ex_map_img"/>
+                    android:layout_height="match_parent" />
 
                 <View
                     android:layout_width="wrap_content"
@@ -524,6 +520,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
+                    android:visibility="gone"
                     android:id="@+id/share_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

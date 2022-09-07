@@ -27,6 +27,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Colorful_android"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:usesCleartextTraffic="true">
 <!--        <activity-->
 <!--            android:name=".MainActivity"-->
@@ -65,12 +66,17 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                         <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
                         <data android:host="oauth"
-                            android:scheme="kakaobab3f53d7921ca0e8ac626ca5e7a8ea0}" />
+                            android:scheme="kakaobab3f53d7921ca0e8ac626ca5e7a8ea0" />
+
             </intent-filter>
         </activity>
 
+        <activity android:name=".MapView.BaseMapview"/>
+
         <activity android:name=".Home.HomeMainDialog"/>
         <activity android:name=".Home.PopupTourSpotPalette" android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name=".Home.DialogAddConfirm" android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name=".Home.AddTourSpotInPalette" android:theme="@android:style/Theme.Dialog"/>
 
         <activity android:name=".Color.ColorActivity" />
         <activity android:name=".Color.ColorDetailActivity" />
@@ -80,9 +86,11 @@
         <activity android:name=".Color.PopupCreatePaletteName" android:theme="@android:style/Theme.Dialog"/>
 
         <activity android:name=".Search.SerachActivity" />
+        <activity android:name=".Search.SearchFilterActivity" />
 
         <activity android:name=".Mypage.MypageActivity" />
-        <activity android:name=".Mypage.MyPageTouSpotListActivity" />
+        <activity android:name=".Mypage.StarListActivity" />
+        <activity android:name=".Mypage.MyPageTourSpotListActivity" />
 
         <activity android:name=".TestColor.TestMainActivity" />
         <activity android:name=".TestColor.PersonalTestSelectImageActivity" />
@@ -105,6 +113,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <meta-data android:name="com.kakao.sdk.AppKey" android:value="bab3f53d7921ca0e8ac626ca5e7a8ea0"/>
     </application>
 
 </manifest>

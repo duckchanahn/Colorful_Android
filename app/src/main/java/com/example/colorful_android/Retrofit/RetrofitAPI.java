@@ -36,9 +36,9 @@ public interface RetrofitAPI {
     @POST(Constatnts_url.LOGIN_URL)
     Call<Customer> login(@Query("token") String token);
     @POST(Constatnts_url.LOGOUT_URL)
-    Call<Integer> logout(String customerId);
+    Call<Integer> logout(@Query("customerId") int customerId);
     @POST(Constatnts_url.WITHDRAWAL_URL)
-    Call<Integer> withdrawal(String customerId);
+    Call<Integer> withdrawal(@Query("customerId") int customerId);
 
     // 여행지
     @GET(Constatnts_url.TOURSPOT_DETAIL)
@@ -62,7 +62,7 @@ public interface RetrofitAPI {
     @POST(Constatnts_url.DELETE_PALETTE)
     Call<Integer> deletePalette(@Query("paletteId") int paletteId);
     @POST(Constatnts_url.PALETTE_ADD)
-    Call<Integer> paletteAdd();
+    Call<Integer> paletteAdd(@Query("paletteId")int paletteId, @Query("tourSpotId")int tourSpotId);
     @POST(Constatnts_url.PALETTE_DELETE)
     Call<Integer> paletteDelete();
     @POST(Constatnts_url.STAR_ADD)
@@ -72,7 +72,7 @@ public interface RetrofitAPI {
     @GET(Constatnts_url.STAR_CHECK)
     Call<Star> starCheck(@Query("customerId")int customerId, @Query("tourSpotId")int tourSpotId);
     @POST(Constatnts_url.STAR_TOURSPOTLIST)
-    Call<List<TourSpotSummary>> starTourspotList();
+    Call<List<TourSpot>> starTourspotList(@Query("customerId")int customerId);
 
     //@FormUrlEncoded
     //@POST("/auth/overlapChecker")

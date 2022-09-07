@@ -40,6 +40,7 @@
             >
 
             <TextView
+                android:id="@+id/text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -47,7 +48,7 @@
                 android:fontFamily="@font/notosanskr_medium"
                 android:textSize="14dp"
                 android:textColor="#424242"
-                android:text="여기다가\n쓰시면됩니다"/>
+                android:text="여기다가 쓰시면됩니다"/>
 
 
         </LinearLayout>

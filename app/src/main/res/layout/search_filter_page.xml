@@ -37,6 +37,7 @@
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:visibility="gone"
                 android:id="@+id/chip_group1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -216,7 +217,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/chip_group2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -236,6 +236,7 @@
                     tools:ignore="MissingConstraints" />
 
                 <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chip_group_area"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:chipSpacingHorizontal="16dp"
@@ -243,6 +244,7 @@
                     app:singleSelection="false">
 
                     <com.google.android.material.chip.Chip
+                        android:id="@+id/seoul"
                         style="@style/CustomChipStyle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -253,6 +255,7 @@
                         app:checkedIconEnabled="false" />
 
                     <com.google.android.material.chip.Chip
+                        android:id="@+id/busan"
                         style="@style/CustomChipStyle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -263,6 +266,7 @@
                         app:checkedIconEnabled="false" />
 
                     <com.google.android.material.chip.Chip
+                        android:id="@+id/daegu"
                         style="@style/CustomChipStyle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -273,6 +277,7 @@
                         app:checkedIconEnabled="false" />
 
                     <com.google.android.material.chip.Chip
+                        android:id="@+id/incheon"
                         style="@style/CustomChipStyle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -283,6 +288,8 @@
                         app:checkedIconEnabled="false" />
 
                     <com.google.android.material.chip.Chip
+
+                        android:id="@+id/gwangju"
                         style="@style/CustomChipStyle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -293,6 +300,7 @@
                         app:checkedIconEnabled="false" />
 
                     <com.google.android.material.chip.Chip
+                        android:id="@+id/daejeon"
                         style="@style/CustomChipStyle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -303,6 +311,7 @@
                         app:checkedIconEnabled="false" />
 
                     <com.google.android.material.chip.Chip
+                        android:id="@+id/ulsan"
                         style="@style/CustomChipStyle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -313,6 +322,7 @@
                         app:checkedIconEnabled="false" />
 
                     <com.google.android.material.chip.Chip
+                        android:id="@+id/sejong"
                         style="@style/CustomChipStyle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -323,6 +333,7 @@
                         app:checkedIconEnabled="false" />
 
                     <com.google.android.material.chip.Chip
+                        android:id="@+id/gyunggi"
                         style="@style/CustomChipStyle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -333,6 +344,7 @@
                         app:checkedIconEnabled="false" />
 
                     <com.google.android.material.chip.Chip
+                        android:id="@+id/gangwon"
                         style="@style/CustomChipStyle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -343,6 +355,7 @@
                         app:checkedIconEnabled="false" />
 
                     <com.google.android.material.chip.Chip
+                        android:id="@+id/chungcheongdo"
                         style="@style/CustomChipStyle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -353,6 +366,7 @@
                         app:checkedIconEnabled="false" />
 
                     <com.google.android.material.chip.Chip
+                        android:id="@+id/jeonrado"
                         style="@style/CustomChipStyle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -363,6 +377,7 @@
                         app:checkedIconEnabled="false" />
 
                     <com.google.android.material.chip.Chip
+                        android:id="@+id/gyungsangdo"
                         style="@style/CustomChipStyle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -373,6 +388,7 @@
                         app:checkedIconEnabled="false" />
 
                     <com.google.android.material.chip.Chip
+                        android:id="@+id/jeju"
                         style="@style/CustomChipStyle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -386,6 +402,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:visibility="gone"
                 android:id="@+id/chip_group3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -393,7 +410,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginTop="22dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/chip_group2">
+                app:layout_constraintTop_toBottomOf="@id/chip_group_area">
 
                 <TextView
                     android:id="@+id/textView3"
@@ -565,7 +582,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@id/personal_color_test_button"
+            android:id="@+id/excute_filter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_424242_color"

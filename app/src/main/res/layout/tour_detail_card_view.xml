@@ -50,6 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:background="#00FFFFFF"
+                    android:visibility="gone"
                     android:src="@drawable/btn_reorder"
                     app:layout_constraintEnd_toEndOf="@id/text_layout"
                     app:layout_constraintTop_toTopOf="@id/text_layout" />

@@ -7,12 +7,15 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.colorful_android.DTO.PersonalColorTestDTO;
 import com.example.colorful_android.DTO.PersonalColorTestDTO_k;
+import com.example.colorful_android.MainActivity;
 import com.example.colorful_android.R;
 import com.example.colorful_android.Retrofit.MyRetrofit;
 
@@ -33,23 +36,42 @@ public class PersonalTestResultActivity extends AppCompatActivity {
     private String filePath;
     private boolean isRight;
 
+    private TextView subTitle;
+    private TextView title;
+    private TextView content;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test_result_personal);
+        setContentView(R.layout.color_test_result);
+        init();
 
-        Log.e(TAG, "결과 액티비티.java -----------");
+        this.subTitle = findViewById(R.id.subTitle);
+        this.title = findViewById(R.id.title);
+        this.content = findViewById(R.id.content);
 
+        Button button = findViewById(R.id.personal_color_test_button);
+        button.setText("심리 컬러 찾으러 가기");
+        button.setOnClickListener( v -> {
+            startActivity(new Intent(this, PsycoloficalTestActivity.class));
+        });
+
+        Button button_home = findViewById(R.id.homeButton);
+        button_home.setOnClickListener( v -> {
+            startActivity(new Intent(this, MainActivity.class));
+        });
+    }
+
+
+    /////////////////////////////////////////////////////////////
+    // 결과 저장
+    /////////////////////////////////////////////////////////////
+
+    private void init() {
         this.filePath = getIntent().getStringExtra("filePath");
         this.user_image_binary = this.pathToBinary(filePath);
 
         Log.e(TAG, "filePath : " + filePath);
-        Log.e(TAG, "byte[] : " + user_image_binary.length);
-
-
-//        Retrofit retrofit = MyRetrofit.create();
-//
-//        String result = MyRetrofit.createPost(retrofit);
 
         System.out.println(excute(user_image_binary));
     }

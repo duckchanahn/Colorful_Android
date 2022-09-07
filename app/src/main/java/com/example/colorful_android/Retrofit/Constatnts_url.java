@@ -4,7 +4,7 @@ public class Constatnts_url {
 
 //    public static final String BASE_URL = "http://localhost:7777/";
     public static final String BASE_URL_EMULATOR = "http://10.0.2.2:7777/";
-    public static final String BASE_URL_MYDEVICE_DH = "http://172.30.1.17:7777/";
+    public static final String BASE_URL_MYDEVICE_DH = "http://172.30.1.20:7777/";
     public static final String BASE_URL_MYDEVICE = "http://172.30.1.59:7777/";
     public static final String BASE_URL_MYDEVICE_FLASK = "http://172.30.104.131:5000/";
 
@@ -41,7 +41,7 @@ public class Constatnts_url {
     public static final String PALETTE_LIST = "tourspot/palette/list/{customerId}";
     public static final String STAR_ADD = "tourspot/star/add/";
     public static final String STAR_DELETE = "tourspot/star/delete/";
-    public static final String STAR_TOURSPOTLIST = "tourspot/tourspotlist/";
+    public static final String STAR_TOURSPOTLIST = "tourspot/star/tourspotlist/";
     public static final String STAR_CHECK = "tourspot/star/check/";
 
 }

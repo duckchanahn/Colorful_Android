@@ -1,51 +1,44 @@
 package com.example.colorful_android.Home;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.DragEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.colorful_android.Color.ColorDetailActivity;
-import com.example.colorful_android.Color.PopupCreatePaletteDue;
-import com.example.colorful_android.Color.PopupDeletePalette;
-import com.example.colorful_android.Color.TourCardView;
 import com.example.colorful_android.DTO.Customer;
-import com.example.colorful_android.DTO.Palette;
 import com.example.colorful_android.DTO.Star;
 import com.example.colorful_android.DTO.TourSpot;
+import com.example.colorful_android.MainActivity;
+import com.example.colorful_android.MapView.BaseMapview;
+import com.example.colorful_android.Mypage.MyPageTourSpotListActivity;
 import com.example.colorful_android.R;
 import com.example.colorful_android.Retrofit.MyRetrofit;
 import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
-import java.util.ArrayList;
-import java.util.List;
+import net.daum.mf.map.api.MapPoint;
+import net.daum.mf.map.api.MapView;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,10 +56,15 @@ public class HomeMainDialog extends AppCompatActivity {
     private Button addPalette;
     private ImageButton prevButton;
     private ImageView addStar;
+    private ImageView imgBg;
+
+    private RelativeLayout mapview_layout;
 
     private boolean start;
 
     private Star star;
+
+    private String prevPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,10 +89,23 @@ public class HomeMainDialog extends AppCompatActivity {
 //        cool.offsetTopAndBottom(-500);
 
 
-        app.offsetTopAndBottom(500);
+//        app.setBottom(-500);
+//        app.setGravity(Gravity.CENTER);
+//
+//        app.offsetTopAndBottom(500);
+//        findViewById(R.id.collapsing_toolbar).offsetTopAndBottom(500);
+//        findViewById(R.id.toppanel).offsetTopAndBottom(500);
+//        findViewById(R.id.collapsing_toolbar).offsetTopAndBottom(500);
         DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
         int width = (int) (dm.heightPixels); // Display 사이즈의 90%
         Log.e("app", "width: " + width);
+
+
+//        app.setY(-(dm.heightPixels/2));
+//        app.setMinimumHeight(60);
+//        findViewById(R.id.dialog_home_main).setY(-(dm.heightPixels/2));
+
+//        app.setScrollY(-(dm.heightPixels/2));
 
         start = false;
         app.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
@@ -109,10 +120,10 @@ public class HomeMainDialog extends AppCompatActivity {
 
                 if (verticalOffset == 0 && start) {
                     Log.e("app", "bottom!!");
-                    finish();
+                    prevLayout();
                 }
 
-                if (Math.abs(verticalOffset) > getApplicationContext().getResources().getDisplayMetrics().heightPixels) {
+                if (Math.abs(verticalOffset) > getApplicationContext().getResources().getDisplayMetrics().heightPixels/2) {
                     Log.e("app", "top!!");
                     prevButton.setVisibility(View.VISIBLE);
                 } else {
@@ -124,6 +135,7 @@ public class HomeMainDialog extends AppCompatActivity {
 
         Intent intent = getIntent();
         TourSpot tourSpot = (TourSpot) intent.getSerializableExtra("TourSpot");
+        prevPage = intent.getStringExtra("prevPage");
 
         Log.e("dialog", String.valueOf(tourSpot));
 
@@ -137,6 +149,10 @@ public class HomeMainDialog extends AppCompatActivity {
         this.telephone.setText(tourSpot.getTelephone());
         this.homepage = findViewById(R.id.homepage);
         this.homepage.setText(tourSpot.getHomepage());
+        this.imgBg = findViewById(R.id.bg_img);
+        this.getOriginalBitmap(tourSpot.getImages(), imgBg);
+//        ClipDrawable drawable = (ClipDrawable) imgBg.getDrawable();
+//        drawable.setLevel(drawable.getLevel() + 5000);
 
         ConstraintLayout hoursTitle = findViewById(R.id.hours_title);
         this.hours = findViewById(R.id.hours);
@@ -162,7 +178,9 @@ public class HomeMainDialog extends AppCompatActivity {
 
         this.addPalette = findViewById(R.id.add_palette);
         this.addPalette.setOnClickListener(v -> {
-
+            Intent intentPopup = new Intent(getBaseContext(), AddTourSpotInPalette.class);
+            intentPopup.putExtra("TourSpot", tourSpot);
+            startActivity(intentPopup);
         });
 
         this.addStar = findViewById(R.id.add_star);
@@ -176,12 +194,103 @@ public class HomeMainDialog extends AppCompatActivity {
             }
         });
 
+//        MapView mapView = new MapView(this);
+//        mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(Double.parseDouble(tourSpot.getPosition_x()), Double.parseDouble(tourSpot.getPosition_y())), true);
+//        mapview_layout =  findViewById(R.id.map_view);
+//        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
+//        mapViewContainer.addView(mapView);
+
+        Button moveMapview = findViewById(R.id.view_More);
+        moveMapview.setOnClickListener( v -> {
+            Intent intent1 = new Intent(this, BaseMapview.class);
+            intent1.putExtra("tourSpot", tourSpot);
+            this.startActivity(intent1);
+        });
 
     }
 
-        /////////////////////////////////////////////////////////////////
-        // 찜하기 + 찜 체크 + 찜 삭제
-        /////////////////////////////////////////////////////////////////
+    @Override
+    public void onBackPressed() {
+        prevLayout();
+    }
+
+    private void prevLayout() {
+        if(prevPage.equals("MainActivity")) {
+            this.startActivity(new Intent(this, MainActivity.class));
+            finish();
+        } else if(prevPage.equals("ColorDetailActivity")) {
+            finish();
+        } else if(prevPage.equals("SearchActivity")) {
+            finish();
+        } else if(prevPage.equals("MyPageTourSpotListActivity")) {
+            this.startActivity(new Intent(this, MyPageTourSpotListActivity.class));
+            finish();
+        }
+    }
+
+
+    /////////////////////////////////////////////////////////////////
+    // 담기
+    /////////////////////////////////////////////////////////////////
+
+
+
+
+    /////////////////////////////////////////////////////////////////
+    // url to bitmap
+    /////////////////////////////////////////////////////////////////
+
+    private Bitmap bitmap;
+    private void getOriginalBitmap(String urlString, ImageView imageView) {
+        Thread mThread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL(urlString);
+
+                    // Web에서 이미지를 가져온 뒤
+                    // ImageView에 지정할 Bitmap을 만든다
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setDoInput(true); // 서버로 부터 응답 수신
+                    conn.connect();
+
+                    InputStream is = conn.getInputStream(); // InputStream 값 가져오기
+                    bitmap = BitmapFactory.decodeStream(is); // Bitmap으로 변환
+
+//                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight()/2);
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        mThread.start(); // Thread 실행
+
+        try {
+            // 메인 Thread는 별도의 작업 Thread가 작업을 완료할 때까지 대기해야한다
+            // join()를 호출하여 별도의 작업 Thread가 종료될 때까지 메인 Thread가 기다리게 한다
+            mThread.join();
+
+            // 작업 Thread에서 이미지를 불러오는 작업을 완료한 뒤
+            // UI 작업을 할 수 있는 메인 Thread에서 ImageView에 이미지를 지정한다
+//            imageView.setImageBitmap(bitmap);
+            BitmapDrawable ob = new BitmapDrawable(getResources(), bitmap);
+            findViewById(R.id.main_content).setBackground(ob);
+//            findViewById(R.id.main_content).scale
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /////////////////////////////////////////////////////////////////
+    // 찜하기 + 찜 체크 + 찜 삭제
+    /////////////////////////////////////////////////////////////////
 
     private void excute_addStar(int tourSpotId) {
         Call<Star> call = MyRetrofit.getApiService().starAdd(Customer.getInstance().getCustomerId(), tourSpotId);
@@ -281,6 +390,7 @@ public class HomeMainDialog extends AppCompatActivity {
 //        getWindow().getAttributes().height = height;
 
     }
+
 
 
 

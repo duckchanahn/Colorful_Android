@@ -19,6 +19,7 @@ import com.example.colorful_android.Login.LoginActivity
 import com.example.colorful_android.Mypage.MypageActivity
 import com.example.colorful_android.Retrofit.MyRetrofit
 import com.example.colorful_android.Search.SerachActivity
+import com.example.colorful_android.TestColor.TestMainActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kakao.sdk.auth.TokenManagerProvider
 import com.navercorp.nid.NaverIdLoginSDK
@@ -94,8 +95,10 @@ class MainActivity : AppCompatActivity() {
         this.detailButton.setOnClickListener{
             val intent = Intent(this, HomeMainDialog::class.java)
             intent.putExtra("TourSpot", tourSpot)
+            intent.putExtra("prevPage", "MainActivity")
             Log.e("home", tourSpot.name)
             startActivity(intent)
+            finish()
         }
 
         this.starButton = findViewById<ImageButton>(R.id.star_button)
@@ -115,6 +118,7 @@ class MainActivity : AppCompatActivity() {
         swipeRefreshLayout = findViewById(R.id.swipeLayout);
         swipeRefreshLayout.setOnRefreshListener {
             excute_home()
+            excute_starCheck(tourSpot.tourSpotId)
             swipeRefreshLayout.isRefreshing = false // 새로고침을 완료하면 아이콘을 없앤다.
         }
 
@@ -208,7 +212,7 @@ class MainActivity : AppCompatActivity() {
 
                 // 테스트!!
                 if (Customer.getInstance().personalColor.equals("") && Customer.getInstance().psycologicalColor.equals("")) {
-//                    startActivity(Intent(this, TestMainActivity::class.java))
+                    startActivity(Intent(baseContext, TestMainActivity::class.java))
                 }
             }
 
@@ -263,7 +267,7 @@ class MainActivity : AppCompatActivity() {
                 tourSpotName.setText(tourSpot.name)
 
 
-                excute_starCheck(tourSpot.tourSpotId)
+                excute_starCheck(response.body()?.tourSpotId!!)
 
             }
 
@@ -344,6 +348,8 @@ class MainActivity : AppCompatActivity() {
                     result = true
                     star = response.body()!!
                     starButton.background = resources.getDrawable(R.drawable.btn_heart_fill_home, null)
+                } else {
+                    starButton.background = resources.getDrawable(R.drawable.btn_heart_home, null)
                 }
 
 //                starButton.setBackground(R.drawable.heart);
