@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.colorful_android">
+    package="com.colorful.colorful_android">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -11,17 +11,18 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Always include this permission -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Include only if your app benefits from precise location access. -->
+    <!-- Include only if your app benefits from precise location access. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
 
     <application
-        android:name=".GlobalApplication"
+        android:name="com.colorful.colorful_android.GlobalApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="알로록\n달로록"
         android:largeHeap="true"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -34,7 +35,7 @@
 <!--            android:exported="false" />-->
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.colorful.colorful_android.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,7 +48,7 @@
 
 
         <!--SplashActivity 등록록-->
-        <activity android:name=".SplashActivity"
+        <activity android:name="com.colorful.colorful_android.SplashActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="true">
             <intent-filter>
@@ -71,42 +72,42 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MapView.BaseMapview"/>
+        <activity android:name="com.colorful.colorful_android.MapView.BaseMapview"/>
 
-        <activity android:name=".Home.HomeMainDialog"/>
-        <activity android:name=".Home.PopupTourSpotPalette" android:theme="@android:style/Theme.Dialog"/>
-        <activity android:name=".Home.DialogAddConfirm" android:theme="@android:style/Theme.Dialog"/>
-        <activity android:name=".Home.AddTourSpotInPalette" android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name="com.colorful.colorful_android.Home.HomeMainDialog"/>
+        <activity android:name="com.colorful.colorful_android.Home.PopupTourSpotPalette" android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name="com.colorful.colorful_android.Home.DialogAddConfirm" android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name="com.colorful.colorful_android.Home.AddTourSpotInPalette" android:theme="@android:style/Theme.Dialog"/>
 
-        <activity android:name=".Color.ColorActivity" />
-        <activity android:name=".Color.ColorDetailActivity" />
-        <activity android:name=".Color.PaletteSetting" />
-        <activity android:name=".Color.PopupDeletePalette" android:theme="@android:style/Theme.Dialog"/>
-        <activity android:name=".Color.PopupCreatePaletteDue" android:theme="@android:style/Theme.Dialog"/>
-        <activity android:name=".Color.PopupCreatePaletteName" android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name="com.colorful.colorful_android.Color.ColorActivity" />
+        <activity android:name="com.colorful.colorful_android.Color.ColorDetailActivity" />
+        <activity android:name="com.colorful.colorful_android.Color.PaletteSetting" />
+        <activity android:name="com.colorful.colorful_android.Color.PopupDeletePalette" android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name="com.colorful.colorful_android.Color.PopupCreatePaletteDue" android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name="com.colorful.colorful_android.Color.PopupCreatePaletteName" android:theme="@android:style/Theme.Dialog"/>
 
-        <activity android:name=".Search.SerachActivity" />
-        <activity android:name=".Search.SearchFilterActivity" />
+        <activity android:name="com.colorful.colorful_android.Search.SerachActivity" />
+        <activity android:name="com.colorful.colorful_android.Search.SearchFilterActivity" />
 
-        <activity android:name=".Mypage.MypageActivity" />
-        <activity android:name=".Mypage.StarListActivity" />
-        <activity android:name=".Mypage.MyPageTourSpotListActivity" />
+        <activity android:name="com.colorful.colorful_android.Mypage.MypageActivity" />
+        <activity android:name="com.colorful.colorful_android.Mypage.StarListActivity" />
+        <activity android:name="com.colorful.colorful_android.Mypage.MyPageTourSpotListActivity" />
 
-        <activity android:name=".TestColor.TestMainActivity" />
-        <activity android:name=".TestColor.PersonalTestSelectImageActivity" />
-        <activity android:name=".TestColor.PersonalTestResultActivity" />
-        <activity android:name=".TestColor.PsycoloficalTestActivity" />
-        <activity android:name=".TestColor.PsycologicalTestResult" />
-        <activity android:name=".Login.LoginActivity" />
+        <activity android:name="com.colorful.colorful_android.TestColor.TestMainActivity" />
+        <activity android:name="com.colorful.colorful_android.TestColor.PersonalTestSelectImageActivity" />
+        <activity android:name="com.colorful.colorful_android.TestColor.PersonalTestResultActivity" />
+        <activity android:name="com.colorful.colorful_android.TestColor.PsycoloficalTestActivity" />
+        <activity android:name="com.colorful.colorful_android.TestColor.PsycologicalTestResult" />
+        <activity android:name="com.colorful.colorful_android.Login.LoginActivity" />
 
-        <activity android:name=".Setting.SettingActivity" />
-        <activity android:name=".Setting.PolicyActivity" />
-        <activity android:name=".Setting.LicenseActivity" />
+        <activity android:name="com.colorful.colorful_android.Setting.SettingActivity" />
+        <activity android:name="com.colorful.colorful_android.Setting.PolicyActivity" />
+        <activity android:name="com.colorful.colorful_android.Setting.LicenseActivity" />
 
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.colorful_android.provider"
+            android:authorities="com.colorful.colorful_android.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
